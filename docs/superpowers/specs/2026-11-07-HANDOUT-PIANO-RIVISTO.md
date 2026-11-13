@@ -6,6 +6,12 @@
 `/mnt/wwn-0x5000039d58caca35/simulomicsr-stage4-v16/20260819T185517Z-stage4-v16-3e31e59d` (194
 meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14-stage{1,2}-master.jsonl`.
 
+> **PROGETTO CHIUSO (2026-11-13, ADR-0030).** Il PI ha chiuso tutto il progetto con l'esito «non si può fare»
+> (`docs/decisions/0030-chiusura-del-progetto-non-si-puo-fare.md`). Le sessioni S12s, S12b, S12c, S12d, S13, S15,
+> S7c, S7b, S16 e S17 **non si fanno**; i loro prompt qui sotto restano come documento e non si usano. I rinvii
+> ricevuti da quelle sessioni restano scritti e non hanno più una sessione che li riceve. Per riprendere serve una
+> decisione esplicita del PI che supera ADR-0030.
+
 > **Come si usa.** Una sessione, un obiettivo. Ogni sessione dice perché, che cosa si fa, che cosa NON si
 > fa, come si sa che è finita, che cosa decide il PI, e ha il prompt da incollare. Le sessioni già chiuse
 > (S1-S11, S14 prima parte) e i prompt di S12b, S12c, S12d, S16, S17 stanno nell'handout del 2026-08-21
@@ -39,8 +45,8 @@ meta-analisi) · **Master da usare per ogni ricalcolo:** `analysis/p4-output/S14
 | **S12r2** | La prova ripetuta sugli stessi 47 studi di sviluppo: schema e prompt corretti, Mistral e uno o due modelli più grandi, riferimento senza il tempo zero come controllo, previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-10: la regola di esito dà no per i tre modelli; modello deciso (Mistral-Small 3.2), Qwen non si riprova. **Chiusa il 2026-11-11** con la terza decisione del PI: prima del Piano 2 una terza prova piccola** | carta + codice (TDD) + DGX breve | ~1-2 sessioni | **S12r** |
 | **S12r3** | La terza prova piccola sugli stessi 47 studi di sviluppo: schema delle uscite generato per ogni studio, con colonne e valori a elenco chiuso e una voce per valore; solo Mistral-Small 3.2; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-11: i 5 cancelli passano; 45 studi chiusi su 47, gruppi identici 36/47, confronti ritrovati 68/95 (oggi 13/95); la regola di esito dà no per il solo punto 4 (errori di lettura del modello in 4 studi). **Chiusa il 2026-11-12** con la decisione del PI: prima del Piano 2 una sessione breve sulle cause degli errori di lettura** | carta + codice + DGX breve | ~1 sessione | **S12r2** |
 | **S12r4** | Dove nasce ogni errore di lettura del lettore: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, un cambio per volta fra la forma dell'uscita v1 e quella generata per ogni studio (schema e prompt), più le due correzioni di forma dello schema; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-12: i 5 cancelli passano; 31 forme, 32 corse; 58 errori di lettura in 32 studi su 47: della forma 14, del modello 2, non deciso 42; col placebo la tabella dei fattori cambia in 5-9 studi su 47; forma finale secondo la regola: quella di S12r3, senza cambi. Chiusa il 2026-11-12** con le due decisioni del PI: la forma dell'uscita è quella di S12r3 senza cambi; prima del Piano 2 la sessione S12r5 | carta + codice + DGX breve | fatta | **S12r3** |
-| **S12r5** | Più letture dello stesso studio: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, forma dell'uscita `B0`, frasi del prompt riscritte senza cambiare il senso; una regola sulla discordanza fra le letture, scritta prima, che segnala soltanto; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-12: i 5 cancelli passano; 9 letture per studio; la discordanza segnala 24 studi su 47 (6 degli 8 con un errore di `B0`, 18 degli altri 39); la regola di esito dà no; 5 dei 9 errori di `B0` sono uguali in tutte le 9 letture; le 8 letture nuove portano 22 errori nuovi in 13 studi; la revisione indipendente ha trovato in `B0` un errore fuori dai 9 (`GSE147507`). Non chiusa: aspetta due decisioni del PI** | carta + codice + DGX breve | fatta, non chiusa | **S12r4** |
-| **S12s** | Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r5, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r5** |
+| **S12r5** | Più letture dello stesso studio: stessi 47 studi di sviluppo, solo Mistral-Small 3.2, forma dell'uscita `B0`, frasi del prompt riscritte senza cambiare il senso; una regola sulla discordanza fra le letture, scritta prima, che segnala soltanto; previsioni nuove prima. STOP: il PI decide se si scrive il Piano 2. **Fatta il 2026-11-12: i 5 cancelli passano; 9 letture per studio; la discordanza segnala 24 studi su 47 (6 degli 8 con un errore di `B0`, 18 degli altri 39); la regola di esito dà no; 5 dei 9 errori di `B0` sono uguali in tutte le 9 letture; le 8 letture nuove portano 22 errori nuovi in 13 studi; la revisione indipendente ha trovato in `B0` un errore fuori dai 9 (`GSE147507`). Chiusa il 2026-11-13 con la chiusura del progetto (ADR-0030)** | carta + codice + DGX breve | fatta, chiusa | **S12r4** |
+| **S12s** | **Non si fa (progetto chiuso, ADR-0030), come tutte le righe che seguono.** Piano 2 «il lettore nel pacchetto» (da scrivere dopo S12r5, se il PI lo decide): testi GEO di tutti gli studi, vista, schema, prompt, modello, cancello (giudizio A, poi B). STOP | codice + DGX | da definire | **S12r5** |
 | **S12c** (+S12b dentro) | La chiave senza ID del modello; greche, latine, negazione | ADR + codice (TDD) + misura | ~6 h | S9 ✅ |
 | **S12d** | Tabelle dei nomi agganciate ai campioni | codice (TDD) + misura | ~4 h | S10 ✅ |
 | **S13** | Piano 3 (da scrivere dopo il cancello): corsa del lettore su tutti gli studi, chiave, varianza, ruoli, doppi, re-cluster, re-pool, deliverable v17 | calcolo | da definire | **S12s, S12c, S12d** |
@@ -557,7 +563,11 @@ docs/superpowers/specs/2026-11-09-lettore-studio-tabella-dei-fattori-design.md. 
 
 # S12r5 — Più letture dello stesso studio: la discordanza segnala gli errori di lettura?
 
-> **Esito (2026-11-12): fatta, NON chiusa: aspetta due decisioni del PI.** Finding
+> **Chiusa il 2026-11-13.** Il PI non ha scelto fra le opzioni: ha chiuso tutto il progetto con l'esito «non si può
+> fare» (ADR-0030). Le due decisioni sono superate e i rinvii (a)-(e) qui sotto non hanno più una sessione che li
+> riceve.
+>
+> **Esito (2026-11-12): fatta; alla data aspettava due decisioni del PI.** Finding
 > `docs/findings/2026-11-12-S12r5-piu-letture-dello-stesso-studio.md`, evidenza
 > `analysis/audit/2026-11-12-S12r5-piu-letture/`. I 5 cancelli passano. 9 letture per studio (`B0` e 8 letture con
 > una frase del prompt riscritta) su tutti i 47 studi, `poddgx02`. **La regola sulla discordanza segnala 24 studi su

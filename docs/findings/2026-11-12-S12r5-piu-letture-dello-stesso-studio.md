@@ -62,6 +62,12 @@ sources:
 
 Appena decidi questi 2 punti, la sessione è chiusa.
 
+> **Decisione del PI (2026-11-13), aggiunta dopo il riassunto.** Il PI non ha scelto fra le opzioni qui sopra. Ha
+> giudicato la sessione raccomandata al punto 2 senza senso o con un effetto microscopico, e ha chiuso **tutto il
+> progetto** con l'esito «non si può fare»: niente ricalcolo dei risultati, niente articolo, i risultati su disco
+> restano come sono. Le due decisioni sono superate e la sessione è chiusa. Vedi
+> `docs/decisions/0030-chiusura-del-progetto-non-si-puo-fare.md`.
+
 # 1. Che cosa è stato fatto
 
 La sessione S12r5 misura se la discordanza fra più letture dello stesso studio segnala gli errori di lettura del

@@ -1,13 +1,14 @@
 # ADR-0029: Il lettore dello studio — il modello scrive la tabella dei fattori, i confronti seguono da una definizione
 
-- **Status:** Accepted (disegno approvato dal PI il 2026-11-09), **con cancello**: la misura contro Expression Atlas
+- **Status:** **Superseded by ADR-0030 (2026-11-13): il lettore è fermato prima del cancello, che non è stato
+  eseguito; il progetto è chiuso.** Prima: Accepted (disegno approvato dal PI il 2026-11-09), **con cancello**: la misura contro Expression Atlas
   sui due insiemi di giudizio (spec §5.5) prima della corsa su tutti gli studi. Se il cancello non passa, questo ADR
   torna `Proposed`
 - **Date:** 2026-11-09
 - **Deciders:** Luca Vedovelli (PI); proposta di Claude dopo la prova cieca S12p e la sua diagnosi
 - **Supersedes:** ADR-0028 (Stadio 2b, il giudice a valle); per gli Stadi 1 e 2, ADR-0020 (Stadio 2 per condizioni)
   quando il cancello passa
-- **Superseded by:** —
+- **Superseded by:** ADR-0030 (chiusura del progetto, 2026-11-13)
 
 ## Il problema
 
@@ -137,6 +138,18 @@ soltanto: non sceglie fra le letture e non fa il lavoro del modello. Limiti noti
 fatto dopo i numeri, su tre letture): la discordanza segnala 12 studi su 47, 7 con gruppi giusti; segnala 3 dei 4
 studi con un errore che costa e non `GSE57945`; non porta a zero errori. Il Piano 2 non si scrive e gli 82 studi di
 giudizio restano chiusi fino alla decisione che segue quella sessione.
+
+## Aggiornamento 2026-11-13 (decisione del PI dopo la sessione con più letture, S12r5)
+
+Finding: `docs/findings/2026-11-12-S12r5-piu-letture-dello-stesso-studio.md`. Con 9 letture per studio la
+discordanza segnala 24 studi su 47 e non separa gli studi con un errore di lettura dagli altri (6 su 8 contro 18 su
+39): la regola di esito depositata dà no. Cinque dei 9 errori noti di `B0` sono uguali in tutte le letture, la
+revisione indipendente ne ha trovato un altro, e le 8 letture nuove portano 22 errori loro in 13 studi. L'agente
+raccomandava di non usare la discordanza come filtro e di fare, prima del Piano 2, una sessione che varia la vista.
+**Il PI ha deciso (2026-11-13): «non siamo pronti per fare uno studio del genere […] chiudiamo tutto con un non si
+può fare», e «tutto» è tutto il progetto.** Il lettore dello studio si ferma: il Piano 2 non si scrive, il cancello
+su Expression Atlas non si esegue, gli 82 studi di giudizio restano chiusi e non sono mai stati letti. La decisione e
+le conseguenze stanno in ADR-0030.
 
 ## Link
 
