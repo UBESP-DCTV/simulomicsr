@@ -77,6 +77,28 @@ dai metadati GEO senza errori. Le misure non provano che la cosa è impossibile 
 - Le decisioni rinviate e i limiti per i Methods (`CLAUDE.md` §11) restano scritti ma non hanno più una sessione che
   li riceve.
 
+## Aggiornamento 2026-11-14: una prova di sola misura con i modelli Claude via API
+
+Il PI (2026-11-14): «mi è venuto in mente che le letture non ho provato a farle fare a te. Haiku Sonnet Opus e Fable
+via API. Proviamo?»; poi: «certo che è una prova e il progetto è mio e ti ho detto io di farlo».
+
+**Decisione del PI:** si fa una prova di sola misura (S12r6). Stessi 47 studi di sviluppo, stessa vista v0, forma
+dell'uscita `B0` congelata (schema generato per ogni studio a elenco chiuso, prompt v2, senza cambi), quattro modelli
+Claude via API (Haiku, Sonnet, Opus, Fable). Carta, cancelli e previsioni si depositano prima di ogni chiamata.
+
+Che cosa NON cambia:
+
+- **Il progetto resta chiuso.** La prova non apre S12s né le sessioni seguenti. Qualunque esito torna al PI.
+- **Gli 82 studi di giudizio restano chiusi.**
+- **La regola «nessun Claude nella pipeline né nella validazione pubblicata» (ADR-0028, ADR-0029) resta scritta.** La
+  prova misura; non mette un modello Claude nella pipeline. Se l'esito porta a riaprire, la regola si decide allora.
+- Deliverable, master e uscite delle prove precedenti non si toccano.
+
+Limiti dichiarati prima della prova: una corsa via API non è ripetibile al carattere per costruzione (si misura con
+due corse); i modelli via API vengono ritirati; la curazione di Expression Atlas è pubblica e un modello Claude può
+averla vista in addestramento; lo schema delle uscite arriva a 222.556 caratteri (`GSE57945`) e l'API può rifiutarlo;
+la chiave API è del PI, usa e getta, non entra nel repository.
+
 ## Link
 
 - Finding dell'ultima sessione: `docs/findings/2026-11-12-S12r5-piu-letture-dello-stesso-studio.md`
