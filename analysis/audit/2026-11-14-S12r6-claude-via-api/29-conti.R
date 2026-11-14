@@ -89,4 +89,13 @@ cat("\n== per studio: in quante delle 17 corse c'e' un errore di lettura che cos
 tb <- sort(table(unlist(lapply(S, `[[`, "largo"))), decreasing = TRUE); print(tb)
 cat(sprintf("\nstudi con un errore di lettura che costa in almeno una corsa: %d su 47; in tutte le 17 corse: %d\n", length(tb), sum(tb == 17L)))
 cat(sprintf("corse senza nessun errore di lettura che costa: %d su 17\n", sum(E$lettura_largo == 0L)))
+# conto accanto: la regola R2 (base non scritta = errore che costa) si scosta dal precedente della sessione sulle cause
+# (S12r4, GSE93624: base non scritta = senza costo). Qui le 7 schede che costano solo per R2 tornano «senza costo».
+r2 <- c("400b62925c227072", "c0a84d79b09b2047", "d22a8c0f99dfc805", "764c3094bf5082c2", "b3a4dfdc5abb7bb3", "2fc5b91534755e7e", "017b82ea23463c98")
+stopifnot(all(r2 %in% CL$scheda), all(CL$classe[match(r2, CL$scheda)] == "lettura del modello"), all(CL$costa[match(r2, CL$scheda)] == "si"),
+          all(CL$costa_su_atlas[match(r2, CL$scheda)] == "no"), all(grepl("R2", CL$descrizione[match(r2, CL$scheda)])))
+P <- do.call(rbind, lapply(E$corsa, function(k) { d <- L[L$corsa == k & L$classe == "lettura del modello" & L$costa == "si" & !(L$scheda %in% r2), ]
+  data.frame(corsa = k, largo = E$lettura_largo[E$corsa == k], largo_col_precedente_S12r4 = length(unique(d$studio)), studi = inc(sort(unique(d$studio))), stringsAsFactors = FALSE) }))
+utils::write.csv(P, file.path(S6, "29-largo-col-precedente.csv"), row.names = FALSE, fileEncoding = "UTF-8")
+cat("\n== conto accanto: studi con un errore di lettura che costa, se la base non scritta resta senza costo (precedente di S12r4)\n"); print(P, row.names = FALSE)
 sink()
