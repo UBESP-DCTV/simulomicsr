@@ -99,6 +99,14 @@ due corse); i modelli via API vengono ritirati; la curazione di Expression Atlas
 averla vista in addestramento; lo schema delle uscite arriva a 222.556 caratteri (`GSE57945`) e l'API può rifiutarlo;
 la chiave API è del PI, usa e getta, non entra nel repository.
 
+**Nota del 2026-11-14, prima delle corse: due forme invece di una.** L'API non accetta lo schema `B0` come vincolo
+dell'uscita (i limiti sugli schemi vincolati non lo ammettono; le prove stanno in
+`analysis/audit/2026-11-14-S12r6-claude-via-api/05-esplorazione/`). L'agente ha portato al PI tre opzioni e il PI ha
+scelto «fai sia 1 che 2»: (T) lo schema `B0` dato come testo nel messaggio, con la validazione del programma contro
+lo schema `B0` originale e nessun secondo tentativo; (V) lo schema v1 della prova ripetuta (S12r2), vincolato
+dall'API. Ogni forma si confronta con Mistral-Small 3.2 nella stessa forma. La carta è
+`analysis/audit/2026-11-14-S12r6-claude-via-api/00-previsioni.md`.
+
 ## Link
 
 - Finding dell'ultima sessione: `docs/findings/2026-11-12-S12r5-piu-letture-dello-stesso-studio.md`

@@ -1,0 +1,232 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+PROVA A SECCO sulle uscite congelate di Mistral: NON e' un risultato di S12r6
+24-misura.R  PROVA DA BUTTARE
+HEAD 3ba8d2d; seme 20261114, B 2000
+PASSA   K1: Mistral-Small 3.2 nella forma B0 rida' 45 chiusi, 36/47, 68/95, 2/33: 45 36 68 95 2 33
+PASSA   K1: Mistral-Small 3.2 con lo schema v1 rida' 34 chiusi, 31/47, 50/95, 0/4: 34 31 50 95 0 4
+PASSA   K1: la pipeline di oggi rida' 14/47, 13/95, 18/79: 14 13 95 18 79
+PASSA   controllo positivo dei predicati: vedono i 9 errori di lettura di B0 nelle uscite di Mistral: 9 su 9
+PASSA   K4: i 47 schemi dati come testo (forma T) sono quelli contro cui l'adattatore B0 valida: 47/47
+PASSA   il testo dello studio e' lo stesso nelle due forme, 47 studi su 47: 47/47
+PASSA   K4: le 5 corse hanno lo SHA-256 scritto al congelamento (23-uscite-sha256.txt)
+misura di 5 corse: 10 s
+PASSA   K3: ogni corsa copre 47 studi di sviluppo su 47 con una riga per studio (5 corse)
+PASSA   K4: il modello che risponde e' quello chiesto in ogni risposta
+
+== I numeri di ogni corsa (misura principale, 95 confronti) ==
+T-mistral-corsa1       chiusi 45  (a) 36/47  (b) 68/95 [97: 68/97]  (c) 2/33 | non valide 0, valide non chiuse 2, troncate 0, rifiuti 0, errori 400 0, recinti 47 | token in 175562 out 37295 (ragionamento 0, in 0 studi) | 0.00 $
+T-mistral-corsa2       chiusi 45  (a) 36/47  (b) 71/95 [97: 71/97]  (c) 3/35 | non valide 0, valide non chiuse 2, troncate 0, rifiuti 0, errori 400 0, recinti 47 | token in 175609 out 39232 (ragionamento 0, in 0 studi) | 0.00 $
+T-mistralrotto-corsa1  chiusi 42  (a) 33/47  (b) 65/95 [97: 65/97]  (c) 2/33 | non valide 3, valide non chiuse 2, troncate 0, rifiuti 0, errori 400 0, recinti 46 | token in 175562 out 37295 (ragionamento 0, in 0 studi) | 0.00 $
+V-mistral-corsa1       chiusi 34  (a) 31/47  (b) 50/95 [97: 50/97]  (c) 0/4 | non valide 0, valide non chiuse 13, troncate 0, rifiuti 0, errori 400 0, recinti 0 | token in 170768 out 36981 (ragionamento 0, in 0 studi) | 0.00 $
+V-mistral-corsa2       chiusi 34  (a) 31/47  (b) 50/95 [97: 50/97]  (c) 0/4 | non valide 0, valide non chiuse 13, troncate 0, rifiuti 0, errori 400 0, recinti 0 | token in 170768 out 36981 (ragionamento 0, in 0 studi) | 0.00 $
+Mistral-Small 3.2: forma B0 45 36 68 95 2 33; schema v1 34 31 50 95 0 4; oggi 14 13 95 18 79
+spesa delle corse misurate: 0.00 dollari (prezzi di listino; i token di cache sono 0)
+
+== Appaiati, (b) confronti ritrovati ==
+T-mistral-corsa1       meno mistral_stessa_forma   +0.0 punti (IC95   +0.0,   +0.0)
+T-mistral-corsa1       meno oggi                  +57.9 punti (IC95  +40.2,  +72.3)
+T-mistral-corsa2       meno mistral_stessa_forma   +3.2 punti (IC95   -1.2,   +9.6)
+T-mistral-corsa2       meno oggi                  +61.1 punti (IC95  +44.2,  +75.3)
+T-mistralrotto-corsa1  meno mistral_stessa_forma   -3.2 punti (IC95   -8.8,   +0.0)
+T-mistralrotto-corsa1  meno oggi                  +54.7 punti (IC95  +35.6,  +69.4)
+V-mistral-corsa1       meno mistral_stessa_forma   +0.0 punti (IC95   +0.0,   +0.0)
+V-mistral-corsa1       meno oggi                  +38.9 punti (IC95  +19.2,  +56.5)
+V-mistral-corsa2       meno mistral_stessa_forma   +0.0 punti (IC95   +0.0,   +0.0)
+V-mistral-corsa2       meno oggi                  +38.9 punti (IC95  +19.2,  +56.5)
+
+== Ripetibilita' fra le due corse (studi su 47) ==
+ forma modello identiche_al_carattere identiche_com_e_arrivata stessa_firma
+     T mistral                     15                       15           38
+     V mistral                     47                       47           47
+ stessi_gruppi stessi_confronti stessa_chiave chiusi_1 chiusi_2
+            44               40            37       45       45
+            47               47            47       34       34
+
+== Studi con la stessa chiave (tabella dei fattori, gruppi, confronti) di Mistral nella stessa forma ==
+T-mistral-corsa1       47/47
+T-mistral-corsa2       37/47
+T-mistralrotto-corsa1  44/47
+V-mistral-corsa1       47/47
+V-mistral-corsa2       47/47
+
+== I 9 errori di lettura di B0, per corsa (TRUE presente, FALSE assente, NA senza tabella dei fattori) ==
+                      GSE46665:sigle dei pazienti come malattie
+T-mistral-corsa1                                           TRUE
+T-mistral-corsa2                                           TRUE
+T-mistralrotto-corsa1                                      TRUE
+V-mistral-corsa1                                           TRUE
+V-mistral-corsa2                                           TRUE
+                      GSE57945:sesso come fattore
+T-mistral-corsa1                             TRUE
+T-mistral-corsa2                             TRUE
+T-mistralrotto-corsa1                        TRUE
+V-mistral-corsa1                            FALSE
+V-mistral-corsa2                            FALSE
+                      GSE60340:colonna del trattamento non vista
+T-mistral-corsa1                                            TRUE
+T-mistral-corsa2                                            TRUE
+T-mistralrotto-corsa1                                       TRUE
+V-mistral-corsa1                                           FALSE
+V-mistral-corsa2                                           FALSE
+                      GSE49155:fattore doppio
+T-mistral-corsa1                         TRUE
+T-mistral-corsa2                        FALSE
+T-mistralrotto-corsa1                      NA
+V-mistral-corsa1                        FALSE
+V-mistral-corsa2                        FALSE
+                      GSE46665:tempo ripetuto come secondo fattore
+T-mistral-corsa1                                              TRUE
+T-mistral-corsa2                                             FALSE
+T-mistralrotto-corsa1                                         TRUE
+V-mistral-corsa1                                             FALSE
+V-mistral-corsa2                                             FALSE
+                      GSE50760:source_name_ch1 come donatore
+T-mistral-corsa1                                        TRUE
+T-mistral-corsa2                                        TRUE
+T-mistralrotto-corsa1                                   TRUE
+V-mistral-corsa1                                        TRUE
+V-mistral-corsa2                                        TRUE
+                      GSE66573:source_name_ch1 come donatore
+T-mistral-corsa1                                        TRUE
+T-mistral-corsa2                                        TRUE
+T-mistralrotto-corsa1                                   TRUE
+V-mistral-corsa1                                       FALSE
+V-mistral-corsa2                                       FALSE
+                      GSE71595:source_name_ch1 come donatore
+T-mistral-corsa1                                        TRUE
+T-mistral-corsa2                                        TRUE
+T-mistralrotto-corsa1                                   TRUE
+V-mistral-corsa1                                        TRUE
+V-mistral-corsa2                                        TRUE
+                      GSE75852:tempo che ripete il tipo cellulare
+T-mistral-corsa1                                             TRUE
+T-mistral-corsa2                                             TRUE
+T-mistralrotto-corsa1                                        TRUE
+V-mistral-corsa1                                             TRUE
+V-mistral-corsa2                                             TRUE
+
+GSE147507, le colonne di fonte dei fattori (senza predicato: si giudica leggendo):
+ corsa                 chiuso
+ mistral_T              TRUE 
+ mistral_V             FALSE 
+ T-mistral-corsa1       TRUE 
+ T-mistral-corsa2       TRUE 
+ T-mistralrotto-corsa1  TRUE 
+ V-mistral-corsa1      FALSE 
+ V-mistral-corsa2      FALSE 
+ fonti                                                                                                                               
+ context:cell line | perturbation:treatment | perturbation:strain | time:time point | state:subject status                           
+ context:cell line | perturbation:treatment | perturbation:description | time:time after treatment                                   
+ context:cell line | perturbation:treatment | perturbation:strain | time:time point | state:subject status                           
+ context:cell line | perturbation:treatment | perturbation:strain | time:time point | perturbation:description | state:subject status
+ context:cell line | perturbation:treatment | perturbation:strain | time:time point | state:subject status                           
+ context:cell line | perturbation:treatment | perturbation:description | time:time after treatment                                   
+ context:cell line | perturbation:treatment | perturbation:description | time:time after treatment                                   
+
+== Previsioni (corsa 1) ==
+ codice forma modello
+     P1     T mistral
+     P1     V mistral
+     P2     T mistral
+     P2     V mistral
+     P3     T mistral
+     P3     V mistral
+     P4     T mistral
+     P4     V mistral
+     P5     T mistral
+     P6     T mistral
+     P6     V mistral
+     P7     T mistral
+     P7     V mistral
+     P8     T mistral
+     P8     V mistral
+     P9     T mistral
+     P9     V mistral
+    P10     T mistral
+    P10     V mistral
+    P11     T mistral
+    P12     T mistral
+    P14     T mistral
+    P14     V mistral
+    P15     T mistral
+    P15     V mistral
+                                                                               quantita
+                                                                       studi non chiusi
+                                                                       studi non chiusi
+                                                     uscite non valide contro lo schema
+                                                     uscite non valide contro lo schema
+                                                                                rifiuti
+                                                                                rifiuti
+                                                                        uscite troncate
+                                                                        uscite troncate
+                                                        uscite con un recinto di codice
+                                             (a) quota di studi con partizione identica
+                                             (a) quota di studi con partizione identica
+                                                          (b) confronti ritrovati su 95
+                                                          (b) confronti ritrovati su 95
+                                            Claude meno Mistral nella stessa forma, (b)
+                                            Claude meno Mistral nella stessa forma, (b)
+                                                                  Claude meno oggi, (b)
+                                                                  Claude meno oggi, (b)
+                                                          (c) errori fra i non elencati
+                                                          (c) errori fra i non elencati
+                                               dei 4 errori di B0 che costano, presenti
+                                           dei 5 errori di B0 che non costano, presenti
+                              studi con l'uscita identica al carattere fra le due corse
+                              studi con l'uscita identica al carattere fra le due corse
+ studi con la stessa tabella, gli stessi gruppi e gli stessi confronti fra le due corse
+ studi con la stessa tabella, gli stessi gruppi e gli stessi confronti fra le due corse
+  valore ic_basso ic_alto    atteso          rilevanza          esito
+  2.0000       NA      NA         9                0-7     confermata
+ 13.0000       NA      NA         6                0-7       smentita
+  0.0000       NA      NA         6                0-2     confermata
+  0.0000       NA      NA         0                0-0     confermata
+  0.0000       NA      NA         0                0-0     confermata
+  0.0000       NA      NA         0                0-0     confermata
+  0.0000       NA      NA         0                0-0     confermata
+  0.0000       NA      NA         0                0-0     confermata
+ 47.0000       NA      NA         0                0-2       smentita
+  0.7660    0.638   0.872     31/47 0.51063829787234-1     confermata
+  0.6596    0.532   0.787     33/47 0.51063829787234-1     confermata
+ 68.0000       NA      NA        56            vedi P8               
+ 50.0000       NA      NA        58            vedi P8               
+  0.0000    0.000   0.000 -13 punti       IC95 sopra 0 a cavallo di 0
+  0.0000    0.000   0.000  +8 punti       IC95 sopra 0 a cavallo di 0
+  0.5789    0.402   0.723   sopra 0       IC95 sopra 0        sopra 0
+  0.3895    0.192   0.565   sopra 0       IC95 sopra 0        sopra 0
+  0.0606    0.000   0.333        3%              0-0.1  indeterminata
+  0.0000    0.000   0.000        3%              0-0.1     confermata
+  4.0000       NA      NA         2                0-0       smentita
+  5.0000       NA      NA         2                0-0       smentita
+ 15.0000       NA      NA        15              47-47       smentita
+ 47.0000       NA      NA        15              47-47     confermata
+ 37.0000       NA      NA        38              43-47       smentita
+ 47.0000       NA      NA        38              43-47     confermata
+
+Per studio, forma T, i 4 errori che costano: osservato (TRUE presente)
+                                           mistral
+GSE46665:sigle dei pazienti come malattie     TRUE
+GSE57945:sesso come fattore                   TRUE
+GSE60340:colonna del trattamento non vista    TRUE
+GSE49155:fattore doppio                       TRUE
+attese giuste: 2 su 4 (senza GSE147507, che si giudica leggendo; NA = senza tabella, contato come attesa sbagliata)
+
+== Da leggere (corsa 1): 51 coppie studio-corsa con almeno un disaccordo, 34 schede distinte in 23 studi; 31 schede uguali a una lettura di Mistral ==
+PASSA   K2 (i): le uscite di Mistral nella forma B0, avvolte nel recinto e passate per estrai(), danno gli stessi numeri di K1
+PASSA   K2 (i): le uscite di Mistral con lo schema v1, nel formato del programma di lancio, danno gli stessi numeri di K1
+PASSA   K2 (ii): le tre uscite rotte apposta sono non valide e solo quelle cambiano: GSE103170 non_valida; GSE41586 non_valida; GSE49155 non_valida
+
+CANCELLI: PASSANO
