@@ -25,3 +25,16 @@ Scritto il 2026-11-14 dopo il congelamento delle 8 corse 1 e **prima di ogni mis
    una accanto all'altra. Poi partono le corse 2.
 3. Se il limite resta: la ripetibilità (P14, P15, punto 4 delle quattro risposte) non è misurata per nessun
    modello, e si dice.
+
+## 2. La misura delle corse 1 (2026-11-14): una riga di stampa del programma di misura non funziona
+
+`24-misura.R` è quello del commit `ed52296`, senza cambi. Nella corsa vera una riga di sola stampa (il commit del
+programma stesso, `git log -1 --format=%h %cI`) dà `fatal: bad revision '%cI'`: `system2()` spezza l'argomento allo
+spazio. La riga non entra in nessun numero e in nessun cancello. Non correggo il programma: per la carta il programma
+di misura resta quello depositato prima delle corse. I cancelli K1, K3 e K4 passano (`24-out.txt`); il cancello K2
+(prova a secco) è passato prima del deposito (`22-out.txt`).
+
+La colonna `rilevanza` di P6 in `24-previsioni.csv` è scritta come quota (0,5106-1): è 24-47 studi su 47, come nella carta.
+
+La spesa in `24-corse.csv` (25,06 dollari) applica a Haiku il prezzo oltre 100.000 token di ingresso dove vale; il conto
+fatto a mano prima della misura dava 24,99.
