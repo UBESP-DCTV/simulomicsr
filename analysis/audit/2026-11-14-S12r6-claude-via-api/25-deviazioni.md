@@ -38,3 +38,39 @@ La colonna `rilevanza` di P6 in `24-previsioni.csv` è scritta come quota (0,510
 
 La spesa in `24-corse.csv` (25,06 dollari) applica a Haiku il prezzo oltre 100.000 token di ingresso dove vale; il conto
 fatto a mano prima della misura dava 24,99.
+
+## 3. Il PI ha alzato il limite di spesa: i tre studi completati e le 8 corse 2 (2026-11-14, dalle 19:31Z)
+
+Scritto dopo il congelamento delle 8 corse 2 e del file completato, **prima di ogni loro misura**.
+
+- Il PI ha portato il limite di spesa della chiave a 150 dollari («Limite di spesa portato a 150$, puoi fare altre
+  prove»). Dalle 19:31Z circa l'API risponde di nuovo. Il tetto della carta (300 dollari) non cambia.
+- **I tre studi di Fable con lo schema v1 vincolato** (`GSE83415`, `GSE83687`, `GSE93624`) sono stati chiamati una
+  volta, come scritto al punto 1 (19:32-19:33Z, tre risposte `end_turn`). Programma: `23b-completa.py`, che importa
+  `23-lancia.py` senza cambi (stessa richiesta, stesse impostazioni, stesso ingresso) e verifica lo SHA-256 del file
+  di partenza, dell'ingresso, del prompt e dello schema. Il file completato è `V-fable-corsa1b.jsonl` (44 righe
+  copiate da `V-fable-corsa1.jsonl`, 3 nuove); SHA-256 in `23b-uscita-sha256.txt`, log in `23-log/`. Il file
+  `V-fable-corsa1.jsonl` resta com'è.
+- **Le 8 corse 2** sono partite alle 19:33Z e sono finite fra le 19:34Z e le 19:37Z, 47 studi su 47 in ognuna.
+  **Deviazione dall'ordine della carta:** la carta dice Haiku, poi Sonnet, Opus, Fable; le 8 corse 2 sono partite
+  tutte insieme (8 chiamate in parallelo per corsa, come nella carta). L'ordine nella carta serviva alla proiezione
+  della spesa, già fatta sulle corse 1. Nessuna chiamata ha avuto un errore del servizio (`tentativi = 1` dove il log
+  lo scrive). Rifiuti nelle corse 2, dai log: Fable nella forma T `GSE147507` e `GSE71421`; Fable nella forma V
+  `GSE71421`.
+- Le 16 corse stanno in `23-uscite-sha256.txt` (le 8 righe delle corse 1 sono uguali a prima). Copia verificata di
+  17 file in `/mnt/micron/simulomicsr-salvataggio/S12r6-claude-2026-11-14/`.
+
+**Come si misura (decisione tecnica dell'agente, dichiarata prima della misura):**
+
+1. `24-misura.R`, senza cambi, sulle 16 corse del registro: riscrive i file `24-*` (le righe delle corse 1 devono
+   restare uguali a quelle del commit `98e259d`: lo verifico) e aggiunge la ripetibilità (P14, P15, punto 4).
+   La misura principale resta la corsa 1 con `V-fable-corsa1` com'è (3 studi non chiusi).
+2. `V-fable-corsa1b` non può stare nel registro: il programma accetta solo i nomi `corsa1` e `corsa2`. Si misura
+   accanto con `24b-misura-1b.R`: esegue il testo di `24-misura.R` con **una sola riga sostituita** (la cartella di
+   uscita e del registro, fuori dal repository), su un registro dove il file completato prende il posto di
+   `V-fable-corsa1`. Le sue uscite si copiano qui col prefisso `24b-`. I due numeri di Fable con lo schema v1 si
+   riportano uno accanto all'altro.
+3. **Lettura.** La carta (§8) fa leggere i disaccordi della corsa 1. Le schede nuove dei tre studi completati le
+   legge l'agente con le stesse regole; non hanno una revisione indipendente, e si dice. Per le corse 2 la carta non
+   chiede una lettura: una scheda della corsa 2 uguale a una scheda già letta ne eredita la classe (è la stessa
+   scheda); le schede nuove della corsa 2 si contano e, se l'agente le legge, lo scrive qui sotto prima di farlo.
