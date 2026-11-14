@@ -2,10 +2,18 @@
 "mistral_T",TRUE,"context:cell line | perturbation:treatment | perturbation:strain | time:time point | state:subject status"
 "mistral_V",FALSE,"context:cell line | perturbation:treatment | perturbation:description | time:time after treatment"
 "T-haiku-corsa1",TRUE,"perturbation:treatment | context:source_name_ch1 | perturbation:source_name_ch1 | perturbation:source_name_ch1 | state:subject status"
+"T-haiku-corsa2",TRUE,"perturbation:treatment | perturbation:source_name_ch1 | context:source_name_ch1 | state:subject status"
 "T-sonnet-corsa1",TRUE,"context:source_name_ch1 | perturbation:treatment | perturbation:source_name_ch1 | state:source_name_ch1"
+"T-sonnet-corsa2",TRUE,"perturbation:treatment | perturbation:source_name_ch1 | perturbation:source_name_ch1 | context:source_name_ch1 | state:source_name_ch1"
 "T-opus-corsa1",TRUE,"perturbation:treatment | perturbation:source_name_ch1 | perturbation:source_name_ch1 | state:source_name_ch1 | context:source_name_ch1 | technical:title"
+"T-opus-corsa2",TRUE,"perturbation:treatment | context:source_name_ch1 | perturbation:source_name_ch1 | state:subject status"
 "T-fable-corsa1",FALSE,
+"T-fable-corsa2",FALSE,
 "V-haiku-corsa1",TRUE,"perturbation:treatment+strain | perturbation:source_name_ch1 | context:source_name_ch1 | state:subject status | time:time point+time after treatment+description"
+"V-haiku-corsa2",TRUE,"perturbation:treatment | perturbation:source_name_ch1+cell line+tissue/cell type | perturbation:source_name_ch1+cell line+tissue/cell type | context:cell line+tissue/cell type+source_name_ch1 | time:time point+time after treatment+description | state:subject status"
 "V-sonnet-corsa1",TRUE,"context:source_name_ch1 | perturbation:treatment | perturbation:source_name_ch1 | time:time point+time after treatment+tissue+description | state:subject status"
+"V-sonnet-corsa2",TRUE,"perturbation:treatment | perturbation:source_name_ch1 | context:source_name_ch1 | state:subject status | time:time point+time after treatment"
 "V-opus-corsa1",TRUE,"perturbation:treatment+strain | perturbation:source_name_ch1 | perturbation:source_name_ch1 | context:cell line+tissue/cell type+tissue+cell type | state:subject status | time:time point+time after treatment+description"
+"V-opus-corsa2",TRUE,"perturbation:treatment+strain | perturbation:source_name_ch1 | perturbation:source_name_ch1 | context:source_name_ch1+cell line+cell type+tissue/cell type+tissue | time:time point+time after treatment+tissue | state:subject status"
 "V-fable-corsa1",TRUE,"perturbation:treatment+strain | perturbation:source_name_ch1 | perturbation:source_name_ch1 | context:source_name_ch1+cell line+cell type+tissue/cell type+tissue | time:time point+time after treatment+tissue | state:subject status"
+"V-fable-corsa2",TRUE,"perturbation:treatment+strain | perturbation:source_name_ch1 | perturbation:source_name_ch1 | context:cell line+tissue/cell type+tissue | time:time point+time after treatment+tissue/cell type | state:subject status"

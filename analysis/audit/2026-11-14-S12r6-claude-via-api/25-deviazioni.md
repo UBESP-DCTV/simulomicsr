@@ -74,3 +74,21 @@ Scritto dopo il congelamento delle 8 corse 2 e del file completato, **prima di o
    legge l'agente con le stesse regole; non hanno una revisione indipendente, e si dice. Per le corse 2 la carta non
    chiede una lettura: una scheda della corsa 2 uguale a una scheda già letta ne eredita la classe (è la stessa
    scheda); le schede nuove della corsa 2 si contano e, se l'agente le legge, lo scrive qui sotto prima di farlo.
+
+## 4. La lettura delle schede nuove delle corse 2 e dei tre studi completati (2026-11-14, scritto prima di leggerle)
+
+La misura delle 16 corse e la misura accanto (`24b-*`) sono fatte: i cancelli passano, le righe delle corse 1 sono
+uguali a quelle del commit `98e259d`. Nelle 8 corse 2 e nel file completato ci sono 131 coppie studio-corsa con almeno
+un disaccordo: 108 hanno una scheda già letta e ne ereditano la classe, **23 sono nuove (21 schede distinte in 14
+studi)**. Per `GSE147507` ci sono altre 6 chiavi nuove senza disaccordo.
+
+Il PI ha chiesto «chi sbaglia meno?». Una corsa sola per modello e forma non basta a rispondere, perché la
+ripetibilità è bassa (25-41 studi su 47 con la stessa chiave fra le due corse). **Leggo quindi le 27 schede nuove**,
+con le stesse regole delle corse 1 e con le quattro regole scritte dopo la revisione (`28-revisione.py`). Oltre la carta:
+
+- la carta (§8) chiede la lettura delle corse 1; questa lettura è in più ed è dichiarata dopo i numeri delle corse 1;
+- il materiale lo scrive `26b-materiale-nuove.R` (il testo di `26-materiale.R` con tre righe sostituite: l'elenco
+  delle schede, la scelta delle schede, e il taglio dei testi lunghi portato da 70 a 400 caratteri);
+- le classi stanno in `29-classi-nuove.csv`; i conti per le 16 corse e per il file completato in `29-conti.R`;
+- la lettura è dell'agente, come le altre non è cieca al modello dopo l'unione con le corse, e **queste schede non
+  hanno una revisione indipendente**. P13 resta giudicata sulle corse 1, come depositato.
