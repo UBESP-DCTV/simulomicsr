@@ -107,6 +107,28 @@ lo schema `B0` originale e nessun secondo tentativo; (V) lo schema v1 della prov
 dall'API. Ogni forma si confronta con Mistral-Small 3.2 nella stessa forma. La carta è
 `analysis/audit/2026-11-14-S12r6-claude-via-api/00-previsioni.md`.
 
+## Aggiornamento 2026-11-15: il PI riprende il lavoro
+
+Il 2026-11-15 il PI ha ripreso il lavoro. La sua richiesta di lavoro è la decisione che supera la chiusura: non serve
+un altro atto formale («Se son qua che te lo chiedo vuol dire che non è un limite»). Che cosa ha deciso:
+
+1. **Il riferimento** sono due curazioni umane: Gemma (University of British Columbia) ed Expression Atlas. Gemma copre
+   circa 3.100 studi RNA-seq del nostro bacino; Atlas ne copre 129.
+2. **Si rifà sul nostro compito** (dal disegno dello studio ai confronti) quello che Rogic et al. (Database, 2026) hanno
+   fatto per l'annotazione: modelli contro curatori, con Mistral, con i modelli locali e con i modelli Claude come
+   termine di misura.
+3. **Poi la pipeline si applica a tutto ARCHS4** (24.393 studi).
+
+Vincoli: al massimo **99 dollari in tutto** per le prove via API; i modelli sono **locali** dove si può (il DGX costa
+solo tempo); solo `poddgx02`; l'uso delle GPU parte dopo il via del PI (dato il 2026-11-15 per la coda dei tre
+candidati a secondo lettore). Che cosa **non** cambia: gli 82 studi di giudizio di Atlas restano chiusi; la regola
+«nessun Claude nella pipeline né nella validazione pubblicata» resta scritta finché il PI non la cambia; il deliverable
+A3 v16 e i master non si toccano.
+
+Evidenza: `analysis/audit/2026-11-15-gemma-riferimento/` (carta, adattatore, misura curatori contro curatori; finding
+`docs/findings/2026-11-15-gemma-curatori-contro-curatori.md`) e `analysis/audit/2026-11-15-secondo-lettore/` (carta e
+lancio dei candidati locali).
+
 ## Link
 
 - Finding dell'ultima sessione: `docs/findings/2026-11-12-S12r5-piu-letture-dello-stesso-studio.md`

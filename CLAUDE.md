@@ -14,7 +14,30 @@
 
 ---
 
-## 1. Dove siamo (2026-11-13): PROGETTO CHIUSO
+## 1. Dove siamo (2026-11-15): LAVORO RIPRESO DAL PI (il progetto era chiuso dal 2026-11-13)
+
+> **Il 2026-11-15 il PI ha ripreso il lavoro (ADR-0030 §Aggiornamento 2026-11-15). La sua richiesta di lavoro è la
+> decisione: non chiedere una riapertura formale.** Direzione: (1) il riferimento sono le curazioni umane di **Gemma
+> (UBC)** e di **Expression Atlas**; (2) si rifà sul nostro compito (disegno dello studio → confronti) quello che Rogic
+> et al. (Database 2026) hanno fatto, con Mistral, con modelli locali e con i Claude come termine di misura; (3) poi la
+> pipeline va su **tutto ARCHS4** (24.393 studi). **Vincoli:** al massimo **99 dollari in tutto** per le prove via API
+> (la chiave a tempo sta solo in `.Renviron.local`; chiedine una nuova al PI quando serve); modelli **locali** dove si
+> può; solo `poddgx02`, e le GPU si usano dopo il via del PI; gli 82 studi di giudizio di Atlas restano chiusi; la
+> regola «nessun Claude nella pipeline» resta scritta.
+> **Fatto il 2026-11-15:** i disegni curati di Gemma scaricati (3.170 voci, nessuno studio di giudizio), l'adattatore
+> alla tabella dei fattori (3.107 tabelle, 2.573 con almeno un confronto), la misura **curatori contro curatori** sui 21
+> studi di sviluppo curati da tutti e due: **Gemma ha i gruppi di Atlas in 15/21 e ritrova 28/49 confronti; Mistral `B0`
+> 16/21 e 33/49; differenza −10,2 punti (IC95 −36,1, +17,0)**; i 21 confronti persi da Gemma sono scelte dei curatori
+> (fattore in più 9, livelli uniti 6, altra base 4, regola dell'adattatore 2); in 3 dei 4 studi con un errore di lettura
+> che costa Gemma ha i gruppi di Atlas, in `GSE57945` anche Gemma usa il sesso come fattore
+> (`docs/findings/2026-11-15-gemma-curatori-contro-curatori.md`).
+> **In corso:** tre candidati locali a secondo lettore (Qwen3-30B-A3B, Granite-4.2-30b, Gemma-4-31B) in coda su
+> `poddgx02` nella forma `B0` sui 47 studi (`analysis/audit/2026-11-15-secondo-lettore/`, carta `00-previsioni.md`;
+> job 524236, 524241-524243, 524252, 524257; il nodo è condiviso con l'utente `u0032` fino alla fine dei suoi job).
+> **Poi:** le viste GEO dei circa 3.100 studi di Gemma, Mistral `B0` e il secondo lettore su quelli, le letture dei
+> Claude dentro i 99 dollari, un container vLLM più nuovo per i candidati 4-9.
+> **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
+
 
 > **Il PI ha chiuso tutto il progetto il 2026-11-13 con l'esito «non si può fare» (ADR-0030,
 > `docs/decisions/0030-chiusura-del-progetto-non-si-puo-fare.md`).** Nessuna sessione si apre: niente Piano 2, niente
@@ -391,7 +414,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md` (ordine delle sessioni); quello del 2026-08-21 per le sessioni chiuse e i prompt di S12b-S12d, S16, S17;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-15-gemma-curatori-contro-curatori` · `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`
