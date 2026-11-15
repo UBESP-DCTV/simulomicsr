@@ -47,11 +47,13 @@
 > confronti non elencati giudicati errore 544/1.895 (28,7%); replica uguale al carattere 2.016/2.016**; previsioni P1, P2,
 > P4, P5, P6, P9 confermate, P3 indeterminata (sopra l'atteso 55%, intervallo a cavallo di 67%); l'accordo cala con la
 > grandezza dello studio (fino a 12 campioni 79,4%, oltre 48 campioni 38,8%) e con i fattori di Gemma (1: 73,8%, 3 o più: 44,9%).
-> **In corso:** Gemma-4-31B (`GE-rp0`) sui 2.016 studi aperti su `poddgx02` (job 527038, lancio `40-lancia.R`, log in
-> `log/lancia.out`; circa 60 minuti).
-> **Poi:** `SECONDO=GE-rp0 Rscript …/41-misura.R` per gli studi tenuti dall'accordo fra i due lettori (m7, m8), il finding,
-> le letture dei Claude dentro i 99 dollari (carta propria, chiave nuova dal PI), la lettura dei disaccordi con Gemma (carta
-> propria), un container vLLM più nuovo per i candidati 4-9. La parte chiusa (991 studi) resta chiusa fino a una decisione del PI.
+> **L'accordo fra i due lettori** (Gemma-4-31B `GE-rp0` sugli stessi 2.016 studi, job 527038, 113 minuti): **studi tenuti
+> 1.337/2.008 (66,6%); gruppi identici a Gemma fra i tenuti 1.107/1.347 voci (82,2%), fra i non tenuti 270/705 (38,3%),
+> differenza +43,9 punti (IC95 +39,6, +48,1)**; fra i tenuti: confronti ritrovati 2.567/3.846 (66,7%), non elencati giudicati
+> errore 208/822 (25,3%); previsioni P7 e P8 confermate.
+> **Poi:** il finding, le letture dei Claude dentro i 99 dollari (carta propria, chiave nuova dal PI: quella a tempo è
+> scaduta), la lettura dei disaccordi con Gemma (carta propria), un container vLLM più nuovo per i candidati 4-9. La parte
+> chiusa (991 studi) resta chiusa fino a una decisione del PI.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
 
