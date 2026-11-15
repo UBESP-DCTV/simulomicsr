@@ -21,7 +21,7 @@
 > (UBC)** e di **Expression Atlas**; (2) si rifà sul nostro compito (disegno dello studio → confronti) quello che Rogic
 > et al. (Database 2026) hanno fatto, con Mistral, con modelli locali e con i Claude come termine di misura; (3) poi la
 > pipeline va su **tutto ARCHS4** (24.393 studi). **Vincoli:** al massimo **99 dollari in tutto** per le prove via API
-> (la chiave a tempo sta solo in `.Renviron.local`; chiedine una nuova al PI quando serve); modelli **locali** dove si
+> (la chiave a tempo è stata tolta da `.Renviron.local` il 2026-11-15; chiedine una nuova al PI quando serve); modelli **locali** dove si
 > può; solo `poddgx02`, e le GPU si usano dopo il via del PI; gli 82 studi di giudizio di Atlas restano chiusi; la
 > regola «nessun Claude nella pipeline» resta scritta.
 > **Fatto il 2026-11-15:** i disegni curati di Gemma scaricati (3.170 voci, nessuno studio di giudizio), l'adattatore
@@ -31,11 +31,20 @@
 > (fattore in più 9, livelli uniti 6, altra base 4, regola dell'adattatore 2); in 3 dei 4 studi con un errore di lettura
 > che costa Gemma ha i gruppi di Atlas, in `GSE57945` anche Gemma usa il sesso come fattore
 > (`docs/findings/2026-11-15-gemma-curatori-contro-curatori.md`).
-> **In corso:** tre candidati locali a secondo lettore (Qwen3-30B-A3B, Granite-4.2-30b, Gemma-4-31B) in coda su
-> `poddgx02` nella forma `B0` sui 47 studi (`analysis/audit/2026-11-15-secondo-lettore/`, carta `00-previsioni.md`;
-> job 524236, 524241-524243, 524252, 524257; il nodo è condiviso con l'utente `u0032` fino alla fine dei suoi job).
-> **Poi:** le viste GEO dei circa 3.100 studi di Gemma, Mistral `B0` e il secondo lettore su quelli, le letture dei
-> Claude dentro i 99 dollari, un container vLLM più nuovo per i candidati 4-9.
+> **Fatto il 2026-11-15, parte seconda (`analysis/audit/2026-11-15-lettori-su-gemma/`, carta `00-previsioni.md`):** i
+> testi GEO dei 3.015 studi di Gemma congelati (6.030 file, 0 falliti), la vista v0 per 3.014 studi (1 escluso senza
+> campioni nella vista, `GSE224952`), la divisione per costruzione **parte aperta 2.024 studi, parte chiusa 991** (sulla
+> parte chiusa niente gira fino a una decisione del PI), gli schemi `B0` e l'ingresso della parte aperta (**2.016 studi
+> al modello**, 8 senza colonne non costanti, 5 oltre il contesto secondo la stima, 8 con lo schema oltre il massimo già
+> provato), il programma della misura contro Gemma con il controllo positivo passato (`41-misura.R`; la parte sugli
+> studi di Gemma non ha ancora girato).
+> **In corso:** Mistral `B0` e la replica sui 2.016 studi aperti in coda su `poddgx02` (job 526198, 526199; lancio
+> `40-lancia.R`, log in `log/lancia.out`); i tre candidati locali a secondo lettore (Qwen3-30B-A3B, Granite-4.2-30b,
+> Gemma-4-31B) sui 47 studi di sviluppo (`analysis/audit/2026-11-15-secondo-lettore/`; job 524236, 524241 e 524242
+> finiti, 524243 in corsa, 524252 e 524257 in coda; il nodo è condiviso con l'utente `u0032` fino alla fine dei suoi job).
+> **Poi:** la misura dei candidati (`24-misura.R`) e la regola di scelta, il secondo lettore ammesso sugli studi aperti,
+> `41-misura.R` sulle uscite congelate, le letture dei Claude dentro i 99 dollari (carta propria), un container vLLM
+> più nuovo per i candidati 4-9.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
 
