@@ -51,8 +51,19 @@
 > 1.337/2.008 (66,6%); gruppi identici a Gemma fra i tenuti 1.107/1.347 voci (82,2%), fra i non tenuti 270/705 (38,3%),
 > differenza +43,9 punti (IC95 +39,6, +48,1)**; fra i tenuti: confronti ritrovati 2.567/3.846 (66,7%), non elencati giudicati
 > errore 208/822 (25,3%); previsioni P7 e P8 confermate.
-> **Poi:** il finding, le letture dei Claude dentro i 99 dollari (carta propria, chiave nuova dal PI: quella a tempo è
-> scaduta), la lettura dei disaccordi con Gemma (carta propria), un container vLLM più nuovo per i candidati 4-9. La parte
+> **Fatto il 2026-11-15, parte quarta (`analysis/audit/2026-11-15-claude-su-gemma/`, carta `00-previsioni.md`, misura
+> `30-out.txt`; solo termine di misura, niente entra nella pipeline):** i Claude nella forma V sugli stessi studi aperti.
+> **Gruppi identici a Gemma: Haiku 5.5 1.494/2.060 voci (72,5%) e 1.484/2.060 (72,0%) nelle due corse, Sonnet 5.5
+> 1.502/2.060 (72,9%), Opus 5.5 184/257 (71,6%) sui soli 252 studi del pezzo 1** (la regola di spesa depositata ha fermato
+> Opus: 77,72 > 75 dollari); confronti ritrovati Haiku 51,1% e 53,3%, Sonnet 56,7%, Opus 68,0% (Mistral 60,6% sugli stessi
+> 252 studi); **differenza appaiata con Mistral nei gruppi identici: Haiku +5,6 e +5,1, Sonnet +6,0 (IC95 +4,4, +7,8), Opus
+> +7,0 (+2,4, +11,6); Haiku e Sonnet meno Opus +2,7 e +2,7 sui 252 studi**; Haiku dà gli stessi gruppi e confronti fra due
+> corse in 1.709/2.016 studi (84,8%); **l'accordo con Mistral come filtro, con un Claude come secondo lettore, dà gruppi
+> identici a Gemma fra i tenuti nell'83,2-83,8% delle voci (Opus 79,5% su 252 studi) contro l'82,2% del secondo lettore
+> locale, che tiene più studi (66,6% contro 60,8-63,7%)**; previsioni PC1, PC2, PC8, PC9, PC11 confermate, PC3-PC7 e PC10
+> indeterminate; **spesa 42,21 dollari** (51,47 spesi prima in S12r6); la riga della chiave è tolta da `.Renviron.local`.
+> Finding dei lettori locali e dei Claude: `docs/findings/2026-11-15-lettori-su-gemma-parte-aperta.md`.
+> **Poi:** la lettura dei disaccordi con Gemma (carta propria), un container vLLM più nuovo per i candidati 4-9. La parte
 > chiusa (991 studi) resta chiusa fino a una decisione del PI.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
@@ -432,7 +443,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md` (ordine delle sessioni); quello del 2026-08-21 per le sessioni chiuse e i prompt di S12b-S12d, S16, S17;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-15-gemma-curatori-contro-curatori` · `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-15-lettori-su-gemma-parte-aperta` · `2026-11-15-gemma-curatori-contro-curatori` · `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`
