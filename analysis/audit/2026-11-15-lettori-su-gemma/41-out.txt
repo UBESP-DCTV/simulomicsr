@@ -1,0 +1,76 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+41-misura.R  2026-11-15T16:32:44Z 
+PASSA   K1 riproduzione: Mistral B0 sui 47 studi di sviluppo contro Atlas: 45 chiusi, 36/47, 68/95
+PASSA   K1 controllo positivo: misura_voci() sui 21 studi di sviluppo rida' 31-pilota-per-studio.csv riga per riga: a_gruppi_identici: 14/21 = 66.7% (IC95 47.6-85.7%); b_confronti_ritrovati: 26/52 = 50.0% (IC95 22.8-85.7%); c_errori_non_elencati: 19/41 = 46.3% (IC95 0.0-76.1%)
+PASSA   K2 l'ingresso ha l'impronta di 22-ingresso-sha256.txt
+PASSA   K2 l'uscita M-rp11 ha l'impronta congelata
+PASSA   K5 M-rp11: nessuno studio chiuso, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   K3 M-rp11: un record per ogni studio dell'ingresso: 2016 su 2016
+PASSA   K3 ogni studio aperto ha un esito: somma 2024
+
+Esiti dei 2024 studi aperti:
+
+                 misurato nessuna_colonna_variabile                non_chiuso 
+                     1879                         8                       129 
+           oltre_contesto 
+                        8 
+motivi degli studi non chiusi (uno studio puo' averne piu' di uno):
+
+ livello_assente ruolo_incoerente     base_assente       non_valida 
+              71               55               31                2 
+      tf_tabella base_non_ammessa         troncata 
+               2                1                1 
+
+voci degli studi mandati al modello: 2059 (in 2008 studi); misurate 2052; senza campioni di Gemma nella vista 7
+  voci senza campioni nella vista: GSE164926.1, GSE169159, GSE211651.1, GSE267662.2, GSE30567.1, GSE67295.2, GSE83660.2 
+campioni di Gemma fuori dalla vista: 1518 in 295 voci; campioni della vista fuori da Gemma: 3195 in 97 voci
+
+Misure (parte aperta, corsa M-rp11; B = 10.000, seme 20261115, unita' lo studio GEO):
+  m1 studi aperti con una vista: 2024/2024 = 100.0%; mandati al modello su quelli con una vista: 2008/2024 = 99.2%; mandati al modello su aperti: 2008/2024 = 99.2%
+  m2 studi chiusi su mandati al modello: 1879/2008 = 93.6% (IC95 92.5-94.6%)
+  chiusi: 1922/2052 = 93.7% (IC95 92.6-94.7%)
+  a_gruppi_identici: 1377/2052 = 67.1% (IC95 65.1-69.2%)
+  a_piu_fine: 307/2052 = 15.0% (IC95 13.4-16.5%)
+  a_piu_grossa: 156/2052 = 7.6% (IC95 6.5-8.8%)
+  a_incrociata: 82/2052 = 4.0% (IC95 3.2-4.8%)
+  b_confronti_ritrovati: 3198/6850 = 46.7% (IC95 42.3-51.0%)
+  b_ogni_verso: 3324/6850 = 48.5% (IC95 44.1-52.9%)
+  c_errori_non_elencati: 544/1895 = 28.7% (IC95 23.2-35.0%)
+  P9 «piu' fine» meno «piu' grossa»: +7.4 punti (IC95 +5.3, +9.4)
+  classi dei gruppi (voci):
+
+  identica incrociata non_chiuso   piu_fine piu_grossa 
+      1377         82        130        307        156 
+
+Accanto, senza previsione (gruppi identici | confronti ritrovati):
+  13-48 campioni               voci  854 | a_gruppi_identici: 498/854 = 58.3% (IC95 55.0-61.7%) | b_confronti_ritrovati: 1793/3510 = 51.1% (IC95 47.2-55.1%)
+  fino a 12 campioni           voci 1020 | a_gruppi_identici: 810/1020 = 79.4% (IC95 76.9-81.8%) | b_confronti_ritrovati: 1003/1471 = 68.2% (IC95 64.6-71.6%)
+  oltre 48 campioni            voci  178 | a_gruppi_identici: 69/178 = 38.8% (IC95 31.1-46.5%) | b_confronti_ritrovati: 402/1869 = 21.5% (IC95 13.0-32.9%)
+  1 fattori di Gemma           voci 1007 | a_gruppi_identici: 743/1007 = 73.8% (IC95 71.1-76.5%) | b_confronti_ritrovati: 901/1660 = 54.3% (IC95 47.0-61.2%)
+  2 fattori di Gemma           voci  820 | a_gruppi_identici: 533/820 = 65.0% (IC95 61.7-68.3%) | b_confronti_ritrovati: 1735/3531 = 49.1% (IC95 42.3-55.8%)
+  3 o piu' fattori di Gemma    voci  225 | a_gruppi_identici: 101/225 = 44.9% (IC95 38.7-51.1%) | b_confronti_ritrovati: 562/1659 = 33.9% (IC95 27.0-41.3%)
+PASSA   K2 l'uscita M-rp11r ha l'impronta congelata
+PASSA   K5 M-rp11r: nessuno studio chiuso, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   K3 M-rp11r: un record per ogni studio dell'ingresso: 2016 su 2016
+
+m6 replica M-rp11r contro M-rp11 (studi dell'ingresso: 2016)
+  uscita uguale al carattere: 2016/2016 = 100.0% (IC95 100.0-100.0%)
+  stessi gruppi e stessi confronti: 2016/2016 = 100.0% (IC95 100.0-100.0%)
+  (studi non chiusi in tutte e due: 137; contano come «stessi»)
+
+m7, m8: nessun secondo lettore dato (SECONDO): non misurate
+
+FINE 41-misura.R
