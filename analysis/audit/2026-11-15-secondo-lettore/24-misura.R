@@ -37,9 +37,13 @@ if (A_SECCO) {
   reg <- data.frame(sha = NA_character_, file = "analysis/p4-output/S12r2-lettore-v1/M-corsa1.jsonl", nome = "MV-secco", adattatore = "A0", stringsAsFactors = FALSE)
 } else {
   reg <- utils::read.table(file.path(QUI, "23-uscite-sha256.txt"), col.names = c("sha", "file"), colClasses = "character", stringsAsFactors = FALSE)
-  reg$nome <- sub("\\.jsonl$", "", basename(reg$file)); reg$adattatore <- "B0"; stopifnot(!anyDuplicated(reg$nome))
+  # il registro del congelamento elenca anche i file delle cartelle dei job (uscite dei worker, log, stato): lo SHA-256
+  # si controlla su TUTTI i file; le corse da misurare sono solo le uscite congelate <corsa>.jsonl
   ok <- vapply(seq_len(nrow(reg)), function(i) file.exists(reg$file[i]) && identical(sha256(reg$file[i]), reg$sha[i]), NA)
-  passa(sprintf("K4: le %d corse hanno lo SHA-256 scritto al congelamento", nrow(reg)), all(ok), paste(reg$nome[!ok], collapse = " "))
+  passa(sprintf("K4: i %d file del registro hanno lo SHA-256 scritto al congelamento", nrow(reg)), all(ok), paste(reg$file[!ok], collapse = " "))
+  reg <- reg[dirname(reg$file) == "analysis/p4-output/secondo-lettore-B0", ]
+  reg$nome <- sub("\\.jsonl$", "", basename(reg$file)); reg$adattatore <- "B0"; stopifnot(nrow(reg) > 0L, !anyDuplicated(reg$nome))
+  cat(sprintf("corse congelate da misurare: %d (%s)\n", nrow(reg), paste(reg$nome, collapse = ", ")))
 }
 reg$candidato <- sub("-.*$", "", reg$nome); reg$variante <- sub("^[^-]*-", "", reg$nome)
 RUN <- stats::setNames(lapply(seq_len(nrow(reg)), function(i) { X <- leggi_uscite(reg$file[i])      # ferma se non sono i 47 studi di sviluppo
