@@ -38,13 +38,20 @@
 > al modello**, 8 senza colonne non costanti, 5 oltre il contesto secondo la stima, 8 con lo schema oltre il massimo già
 > provato), il programma della misura contro Gemma con il controllo positivo passato (`41-misura.R`; la parte sugli
 > studi di Gemma non ha ancora girato).
-> **In corso:** Mistral `B0` e la replica sui 2.016 studi aperti in coda su `poddgx02` (job 526198, 526199; lancio
-> `40-lancia.R`, log in `log/lancia.out`); i tre candidati locali a secondo lettore (Qwen3-30B-A3B, Granite-4.2-30b,
-> Gemma-4-31B) sui 47 studi di sviluppo (`analysis/audit/2026-11-15-secondo-lettore/`; job 524236, 524241 e 524242
-> finiti, 524243 in corsa, 524252 e 524257 in coda; il nodo è condiviso con l'utente `u0032` fino alla fine dei suoi job).
-> **Poi:** la misura dei candidati (`24-misura.R`) e la regola di scelta, il secondo lettore ammesso sugli studi aperti,
-> `41-misura.R` sulle uscite congelate, le letture dei Claude dentro i 99 dollari (carta propria), un container vLLM
-> più nuovo per i candidati 4-9.
+> **Fatto il 2026-11-15, parte terza:** la regola di scelta del secondo lettore è chiusa: **Gemma-4-31B senza
+> `repetition_penalty` (`GE-rp0`) è ammesso** (45 chiusi su 47, 31 studi tenuti in accordo con Mistral `B0`, nessuno dei 5
+> studi con un errore di Mistral che costa fra i tenuti, replica con gli stessi gruppi e confronti 47/47); Granite-4.2-30b e
+> Qwen3-30B-A3B non ammessi (`analysis/audit/2026-11-15-secondo-lettore/24-out.txt`). **Mistral `B0` sui 2.024 studi aperti
+> di Gemma** (`41-out.txt`, corse `M-rp11` e `M-rp11r`, 51 minuti l'una): 2.008 al modello, **1.879 chiusi (93,6%); gruppi
+> identici a Gemma 1.377/2.052 voci (67,1%, IC95 65,1-69,2); confronti ritrovati 3.198/6.850 (46,7%, IC95 42,3-51,0);
+> confronti non elencati giudicati errore 544/1.895 (28,7%); replica uguale al carattere 2.016/2.016**; previsioni P1, P2,
+> P4, P5, P6, P9 confermate, P3 indeterminata (sopra l'atteso 55%, intervallo a cavallo di 67%); l'accordo cala con la
+> grandezza dello studio (fino a 12 campioni 79,4%, oltre 48 campioni 38,8%) e con i fattori di Gemma (1: 73,8%, 3 o più: 44,9%).
+> **In corso:** Gemma-4-31B (`GE-rp0`) sui 2.016 studi aperti su `poddgx02` (job 527038, lancio `40-lancia.R`, log in
+> `log/lancia.out`; circa 60 minuti).
+> **Poi:** `SECONDO=GE-rp0 Rscript …/41-misura.R` per gli studi tenuti dall'accordo fra i due lettori (m7, m8), il finding,
+> le letture dei Claude dentro i 99 dollari (carta propria, chiave nuova dal PI), la lettura dei disaccordi con Gemma (carta
+> propria), un container vLLM più nuovo per i candidati 4-9. La parte chiusa (991 studi) resta chiusa fino a una decisione del PI.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
 
