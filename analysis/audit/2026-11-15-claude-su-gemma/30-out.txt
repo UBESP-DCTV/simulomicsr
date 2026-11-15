@@ -1,0 +1,247 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+30-misura.R  2026-11-15T19:56:05Z  fase  misura 
+PASSA   KC1 la misura della forma V rida' il 2026-11-14 contro Atlas (Opus corsa 1 sui 47 studi di sviluppo): 47 chiusi, 38/47, 72/95
+PASSA   KC2 l'ingresso ha l'impronta di 22-ingresso-sha256.txt
+PASSA   KC2 prompt v1 e schema v1 hanno le impronte della carta
+PASSA   KC2 l'uscita M-rp11 ha l'impronta congelata
+PASSA   KC5 M-rp11: nessuno studio della parte chiusa, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   KC3 M-rp11: un record per ogni studio richiesto: 2016 su 2016
+PASSA   KC2 l'uscita GE-rp0 ha l'impronta congelata
+PASSA   KC5 GE-rp0: nessuno studio della parte chiusa, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   KC3 GE-rp0: un record per ogni studio richiesto: 2016 su 2016
+PASSA   KC1 la misura di Mistral M-rp11 contro Gemma rida' 1.377/2.052 voci identiche e 3.198/6.850 confronti: 1377/2052, 3198/6850
+
+==================== haiku-corsa1 ====================
+PASSA   KC2 l'uscita haiku-corsa1 ha l'impronta congelata
+PASSA   KC5 haiku-corsa1: nessuno studio della parte chiusa, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   KC3 haiku-corsa1: un record per ogni studio richiesto: 2016 su 2016
+PASSA   KC3 haiku-corsa1: ogni studio richiesto ha un esito: somma 2016 (pezzi 1,2,3,4,5,6,7,8)
+Esiti:
+
+  misurato non_chiuso 
+      1990         26 
+motivi degli studi non chiusi (uno studio puo' averne piu' di uno):
+
+    non_coperta    base_assente livello_assente 
+             17              10              10 
+motivi di fine (stop_reason):
+
+end_turn 
+    2016 
+token: ingresso 13723205, uscita 9051228; studi con l'ingresso oltre 100.000 token: 1; spesa 2.98 dollari (listino, meta' per i lotti)
+voci degli studi richiesti: 2067 (in 2016 studi); misurate 2060; senza campioni di Gemma nella vista 7
+  c2 studi chiusi su studi con una risposta richiesta: 1990/2016 = 98.7% (IC95 98.2-99.2%)
+  chiusi: 2031/2060 = 98.6% (IC95 98.0-99.1%)
+  a_gruppi_identici: 1494/2060 = 72.5% (IC95 70.6-74.5%)
+  a_piu_fine: 356/2060 = 17.3% (IC95 15.7-18.9%)
+  a_piu_grossa: 121/2060 = 5.9% (IC95 4.9-6.9%)
+  a_incrociata: 60/2060 = 2.9% (IC95 2.2-3.7%)
+  b_confronti_ritrovati: 3676/7190 = 51.1% (IC95 46.0-56.2%)
+  b_ogni_verso: 3788/7190 = 52.7% (IC95 47.5-57.9%)
+  c_errori_non_elencati: 842/3044 = 27.7% (IC95 18.2-38.2%)
+  accanto, senza previsione (gruppi identici | confronti ritrovati):
+    13-48 campioni               voci  854 | a_gruppi_identici: 548/854 = 64.2% (IC95 60.9-67.5%) | b_confronti_ritrovati: 2006/3510 = 57.2% (IC95 53.2-61.0%)
+    fino a 12 campioni           voci 1020 | a_gruppi_identici: 859/1020 = 84.2% (IC95 81.9-86.5%) | b_confronti_ritrovati: 1079/1471 = 73.4% (IC95 70.1-76.6%)
+    oltre 48 campioni            voci  186 | a_gruppi_identici: 87/186 = 46.8% (IC95 39.1-54.3%) | b_confronti_ritrovati: 591/2209 = 26.8% (IC95 17.6-38.5%)
+    1 fattori di Gemma           voci 1009 | a_gruppi_identici: 801/1009 = 79.4% (IC95 76.9-81.9%) | b_confronti_ritrovati: 984/1684 = 58.4% (IC95 50.9-65.2%)
+    2 fattori di Gemma           voci  823 | a_gruppi_identici: 578/823 = 70.2% (IC95 67.0-73.4%) | b_confronti_ritrovati: 1909/3695 = 51.7% (IC95 43.9-59.4%)
+    3 o piu' fattori di Gemma    voci  228 | a_gruppi_identici: 115/228 = 50.4% (IC95 43.9-57.0%) | b_confronti_ritrovati: 783/1811 = 43.2% (IC95 33.7-53.6%)
+
+==================== haiku-corsa2 ====================
+PASSA   KC2 l'uscita haiku-corsa2 ha l'impronta congelata
+PASSA   KC5 haiku-corsa2: nessuno studio della parte chiusa, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   KC3 haiku-corsa2: un record per ogni studio richiesto: 2016 su 2016
+PASSA   KC3 haiku-corsa2: ogni studio richiesto ha un esito: somma 2016 (pezzi 1,2,3,4,5,6,7,8)
+Esiti:
+
+  misurato non_chiuso 
+      1984         32 
+motivi degli studi non chiusi (uno studio puo' averne piu' di uno):
+
+    non_coperta    base_assente livello_assente      non_valida        troncata 
+             17              14              14               1               1 
+motivi di fine (stop_reason):
+
+  end_turn max_tokens 
+      2015          1 
+token: ingresso 13723205, uscita 8985192; studi con l'ingresso oltre 100.000 token: 1; spesa 2.97 dollari (listino, meta' per i lotti)
+voci degli studi richiesti: 2067 (in 2016 studi); misurate 2060; senza campioni di Gemma nella vista 7
+  c2 studi chiusi su studi con una risposta richiesta: 1984/2016 = 98.4% (IC95 97.8-98.9%)
+  chiusi: 2022/2060 = 98.2% (IC95 97.4-98.8%)
+  a_gruppi_identici: 1484/2060 = 72.0% (IC95 70.1-74.0%)
+  a_piu_fine: 365/2060 = 17.7% (IC95 16.1-19.4%)
+  a_piu_grossa: 119/2060 = 5.8% (IC95 4.8-6.8%)
+  a_incrociata: 54/2060 = 2.6% (IC95 1.9-3.4%)
+  b_confronti_ritrovati: 3834/7190 = 53.3% (IC95 48.1-58.3%)
+  b_ogni_verso: 3944/7190 = 54.9% (IC95 49.6-59.9%)
+  c_errori_non_elencati: 578/2782 = 20.8% (IC95 14.7-28.4%)
+  accanto, senza previsione (gruppi identici | confronti ritrovati):
+    13-48 campioni               voci  854 | a_gruppi_identici: 550/854 = 64.4% (IC95 61.1-67.6%) | b_confronti_ritrovati: 2012/3510 = 57.3% (IC95 53.4-61.1%)
+    fino a 12 campioni           voci 1020 | a_gruppi_identici: 851/1020 = 83.4% (IC95 81.1-85.7%) | b_confronti_ritrovati: 1065/1471 = 72.4% (IC95 69.1-75.7%)
+    oltre 48 campioni            voci  186 | a_gruppi_identici: 83/186 = 44.6% (IC95 37.4-52.1%) | b_confronti_ritrovati: 757/2209 = 34.3% (IC95 21.5-48.3%)
+    1 fattori di Gemma           voci 1009 | a_gruppi_identici: 798/1009 = 79.1% (IC95 76.5-81.6%) | b_confronti_ritrovati: 983/1684 = 58.4% (IC95 51.0-65.0%)
+    2 fattori di Gemma           voci  823 | a_gruppi_identici: 574/823 = 69.7% (IC95 66.5-72.9%) | b_confronti_ritrovati: 2114/3695 = 57.2% (IC95 49.3-64.6%)
+    3 o piu' fattori di Gemma    voci  228 | a_gruppi_identici: 112/228 = 49.1% (IC95 42.5-55.7%) | b_confronti_ritrovati: 737/1811 = 40.7% (IC95 31.6-50.7%)
+
+==================== opus-corsa1 ====================
+PASSA   KC2 l'uscita opus-corsa1 ha l'impronta congelata
+PASSA   KC5 opus-corsa1: nessuno studio della parte chiusa, di giudizio o di sviluppo: 252 record, tutti della parte aperta
+PASSA   KC3 opus-corsa1: un record per ogni studio richiesto: 252 su 252
+PASSA   KC3 opus-corsa1: ogni studio richiesto ha un esito: somma 252 (pezzi 1)
+Esiti:
+
+  misurato non_chiuso 
+       251          1 
+motivi degli studi non chiusi (uno studio puo' averne piu' di uno):
+rifiuto 
+      1 
+motivi di fine (stop_reason):
+
+end_turn  refusal 
+     251        1 
+token: ingresso 1648132, uscita 370285; studi con l'ingresso oltre 100.000 token: 0; spesa 7.00 dollari (listino, meta' per i lotti)
+voci degli studi richiesti: 258 (in 252 studi); misurate 257; senza campioni di Gemma nella vista 1
+  c2 studi chiusi su studi con una risposta richiesta: 251/252 = 99.6% (IC95 98.8-100.0%)
+  chiusi: 256/257 = 99.6% (IC95 98.8-100.0%)
+  a_gruppi_identici: 184/257 = 71.6% (IC95 65.9-77.0%)
+  a_piu_fine: 59/257 = 23.0% (IC95 17.9-28.3%)
+  a_piu_grossa: 8/257 = 3.1% (IC95 1.2-5.4%)
+  a_incrociata: 5/257 = 1.9% (IC95 0.4-3.9%)
+  b_confronti_ritrovati: 570/838 = 68.0% (IC95 58.4-76.5%)
+  b_ogni_verso: 583/838 = 69.6% (IC95 60.3-77.6%)
+  c_errori_non_elencati: 30/253 = 11.9% (IC95 6.1-18.8%)
+  accanto, senza previsione (gruppi identici | confronti ritrovati):
+    13-48 campioni               voci  113 | a_gruppi_identici: 68/113 = 60.2% (IC95 51.3-69.0%) | b_confronti_ritrovati: 297/486 = 61.1% (IC95 50.9-70.8%)
+    fino a 12 campioni           voci  125 | a_gruppi_identici: 106/125 = 84.8% (IC95 78.2-90.6%) | b_confronti_ritrovati: 133/173 = 76.9% (IC95 66.0-86.4%)
+    oltre 48 campioni            voci   19 | a_gruppi_identici: 10/19 = 52.6% (IC95 31.6-73.7%) | b_confronti_ritrovati: 140/179 = 78.2% (IC95 38.8-94.1%)
+    1 fattori di Gemma           voci  127 | a_gruppi_identici: 97/127 = 76.4% (IC95 68.8-83.5%) | b_confronti_ritrovati: 115/195 = 59.0% (IC95 48.2-70.2%)
+    2 fattori di Gemma           voci   99 | a_gruppi_identici: 66/99 = 66.7% (IC95 57.3-76.0%) | b_confronti_ritrovati: 298/451 = 66.1% (IC95 49.7-79.4%)
+    3 o piu' fattori di Gemma    voci   31 | a_gruppi_identici: 21/31 = 67.7% (IC95 51.6-83.9%) | b_confronti_ritrovati: 157/192 = 81.8% (IC95 67.3-92.3%)
+
+==================== sonnet-corsa1 ====================
+PASSA   KC2 l'uscita sonnet-corsa1 ha l'impronta congelata
+PASSA   KC5 sonnet-corsa1: nessuno studio della parte chiusa, di giudizio o di sviluppo: 2016 record, tutti della parte aperta
+PASSA   KC3 sonnet-corsa1: un record per ogni studio richiesto: 2016 su 2016
+PASSA   KC3 sonnet-corsa1: ogni studio richiesto ha un esito: somma 2016 (pezzi 1,2,3,4,5,6,7,8)
+Esiti:
+
+  misurato non_chiuso 
+      2011          5 
+motivi degli studi non chiusi (uno studio puo' averne piu' di uno):
+non_coperta 
+          5 
+motivi di fine (stop_reason):
+
+end_turn 
+    2016 
+token: ingresso 13723205, uscita 3106321; studi con l'ingresso oltre 100.000 token: 1; spesa 29.25 dollari (listino, meta' per i lotti)
+voci degli studi richiesti: 2067 (in 2016 studi); misurate 2060; senza campioni di Gemma nella vista 7
+  c2 studi chiusi su studi con una risposta richiesta: 2011/2016 = 99.8% (IC95 99.5-100.0%)
+  chiusi: 2053/2060 = 99.7% (IC95 99.3-100.0%)
+  a_gruppi_identici: 1502/2060 = 72.9% (IC95 71.0-74.9%)
+  a_piu_fine: 393/2060 = 19.1% (IC95 17.4-20.8%)
+  a_piu_grossa: 101/2060 = 4.9% (IC95 4.0-5.9%)
+  a_incrociata: 57/2060 = 2.8% (IC95 2.1-3.5%)
+  b_confronti_ritrovati: 4076/7190 = 56.7% (IC95 51.4-61.7%)
+  b_ogni_verso: 4212/7190 = 58.6% (IC95 53.3-63.6%)
+  c_errori_non_elencati: 675/3131 = 21.6% (IC95 14.2-31.4%)
+  accanto, senza previsione (gruppi identici | confronti ritrovati):
+    13-48 campioni               voci  854 | a_gruppi_identici: 547/854 = 64.1% (IC95 60.7-67.3%) | b_confronti_ritrovati: 2143/3510 = 61.1% (IC95 57.2-64.8%)
+    fino a 12 campioni           voci 1020 | a_gruppi_identici: 862/1020 = 84.5% (IC95 82.2-86.8%) | b_confronti_ritrovati: 1101/1471 = 74.8% (IC95 71.6-78.0%)
+    oltre 48 campioni            voci  186 | a_gruppi_identici: 93/186 = 50.0% (IC95 42.1-57.7%) | b_confronti_ritrovati: 832/2209 = 37.7% (IC95 24.7-51.7%)
+    1 fattori di Gemma           voci 1009 | a_gruppi_identici: 794/1009 = 78.7% (IC95 76.2-81.2%) | b_confronti_ritrovati: 1020/1684 = 60.6% (IC95 52.9-67.5%)
+    2 fattori di Gemma           voci  823 | a_gruppi_identici: 583/823 = 70.8% (IC95 67.8-74.0%) | b_confronti_ritrovati: 2216/3695 = 60.0% (IC95 52.1-67.2%)
+    3 o piu' fattori di Gemma    voci  228 | a_gruppi_identici: 125/228 = 54.8% (IC95 48.2-61.4%) | b_confronti_ritrovati: 840/1811 = 46.4% (IC95 36.7-56.9%)
+
+PASSA   KC4 la spesa contata da usage e' al massimo 75 dollari: 42.21 dollari (prove del percorso 0.001)
+PASSA   KC5 la chiave non sta in nessun file tracciato o scritto dalla prova: file tracciati con una chiave: 0; file della prova con una chiave: 0
+
+c6: differenza appaiata (prima corsa meno seconda), sulle voci degli studi che tutte e due hanno
+  haiku-corsa1 meno M-rp11 (2052 voci, 2007 studi): a_gruppi_identici: 72.7% contro 67.1%, differenza +5.6 punti (IC95 +3.8, +7.3); b_confronti_ritrovati: 53.3% contro 46.7%, differenza +6.6 punti (IC95 +4.0, +9.6); c_errori_non_elencati: 23.9% contro 28.7%, differenza -4.8 punti (IC95 -11.2, +1.8)
+  haiku-corsa2 meno M-rp11 (2052 voci, 2007 studi): a_gruppi_identici: 72.2% contro 67.1%, differenza +5.1 punti (IC95 +3.2, +6.8); b_confronti_ritrovati: 53.4% contro 46.7%, differenza +6.7 punti (IC95 +3.9, +9.5); c_errori_non_elencati: 20.3% contro 28.7%, differenza -8.4 punti (IC95 -13.3, -3.7)
+  opus-corsa1 meno M-rp11 (257 voci, 252 studi): a_gruppi_identici: 71.6% contro 64.6%, differenza +7.0 punti (IC95 +2.4, +11.6); b_confronti_ritrovati: 68.0% contro 60.6%, differenza +7.4 punti (IC95 +0.7, +14.6); c_errori_non_elencati: 11.9% contro 42.7%, differenza -30.8 punti (IC95 -48.3, -13.9)
+  sonnet-corsa1 meno M-rp11 (2052 voci, 2007 studi): a_gruppi_identici: 73.1% contro 67.1%, differenza +6.0 punti (IC95 +4.4, +7.8); b_confronti_ritrovati: 56.9% contro 46.7%, differenza +10.2 punti (IC95 +7.2, +13.5); c_errori_non_elencati: 18.9% contro 28.7%, differenza -9.8 punti (IC95 -14.7, -5.2)
+  haiku-corsa1 meno opus-corsa1 (257 voci, 252 studi): a_gruppi_identici: 74.3% contro 71.6%, differenza +2.7 punti (IC95 +0.0, +5.5); b_confronti_ritrovati: 67.9% contro 68.0%, differenza -0.1 punti (IC95 -3.6, +3.3); c_errori_non_elencati: 17.6% contro 11.9%, differenza +5.8 punti (IC95 -1.4, +13.8)
+  haiku-corsa2 meno opus-corsa1 (257 voci, 252 studi): a_gruppi_identici: 72.8% contro 71.6%, differenza +1.2 punti (IC95 -1.9, +4.3); b_confronti_ritrovati: 66.0% contro 68.0%, differenza -2.0 punti (IC95 -5.8, +1.4); c_errori_non_elencati: 13.4% contro 11.9%, differenza +1.6 punti (IC95 -3.8, +7.7)
+  sonnet-corsa1 meno opus-corsa1 (257 voci, 252 studi): a_gruppi_identici: 74.3% contro 71.6%, differenza +2.7 punti (IC95 +0.4, +5.4); b_confronti_ritrovati: 70.2% contro 68.0%, differenza +2.1 punti (IC95 +0.1, +4.7); c_errori_non_elencati: 12.6% contro 11.9%, differenza +0.7 punti (IC95 -2.5, +3.5)
+
+c7: studi con gli stessi gruppi e gli stessi confronti fra due corse (sugli studi che tutte e due hanno chiesto)
+  haiku-corsa1 = haiku-corsa2: stessi: 1709/2016 = 84.8% (IC95 83.2-86.3%); non chiusi in tutte e due 8 (contano come «stessi»)
+  haiku-corsa1 = opus-corsa1: stessi: 198/252 = 78.6% (IC95 73.4-83.7%); non chiusi in tutte e due 0 (contano come «stessi»)
+  haiku-corsa1 = sonnet-corsa1: stessi: 1580/2016 = 78.4% (IC95 76.5-80.2%); non chiusi in tutte e due 4 (contano come «stessi»)
+  haiku-corsa2 = opus-corsa1: stessi: 203/252 = 80.6% (IC95 75.8-85.3%); non chiusi in tutte e due 0 (contano come «stessi»)
+  haiku-corsa2 = sonnet-corsa1: stessi: 1618/2016 = 80.3% (IC95 78.5-81.9%); non chiusi in tutte e due 5 (contano come «stessi»)
+  opus-corsa1 = sonnet-corsa1: stessi: 215/252 = 85.3% (IC95 81.0-89.7%); non chiusi in tutte e due 0 (contano come «stessi»)
+
+c8: l'accordo con Mistral B0 (stessi gruppi e stessi confronti) come filtro; voci misurate di Mistral
+  Mistral = Gemma-4-31B (GE-rp0)
+    studi tenuti: 1337/2008 = 66.6% (IC95 64.5-68.6%)
+    gruppi identici a Gemma: fra i tenuti 1107/1347 = 82.2% (IC95 80.1-84.2%), fra i non tenuti 270/705 = 38.3%; differenza +43.9 punti (IC95 +39.6, +48.1)
+    fra i tenuti: b_confronti_ritrovati: 2567/3846 = 66.7% (IC95 62.3-71.1%); c_errori_non_elencati: 208/822 = 25.3% (IC95 18.8-32.3%)
+  Mistral = haiku-corsa1
+    studi tenuti: 1221/2008 = 60.8% (IC95 58.7-62.9%)
+    gruppi identici a Gemma: fra i tenuti 1027/1225 = 83.8% (IC95 81.8-85.9%), fra i non tenuti 350/827 = 42.3%; differenza +41.5 punti (IC95 +37.5, +45.5)
+    fra i tenuti: b_confronti_ritrovati: 2338/3360 = 69.6% (IC95 64.8-74.2%); c_errori_non_elencati: 136/701 = 19.4% (IC95 13.5-26.4%)
+  Mistral = haiku-corsa2
+    studi tenuti: 1239/2008 = 61.7% (IC95 59.6-63.8%)
+    gruppi identici a Gemma: fra i tenuti 1039/1243 = 83.6% (IC95 81.6-85.6%), fra i non tenuti 338/809 = 41.8%; differenza +41.8 punti (IC95 +37.8, +45.9)
+    fra i tenuti: b_confronti_ritrovati: 2366/3475 = 68.1% (IC95 63.3-72.7%); c_errori_non_elencati: 155/783 = 19.8% (IC95 13.6-26.9%)
+  Mistral = opus-corsa1
+    studi tenuti: 159/252 = 63.1% (IC95 57.1-69.0%)
+    gruppi identici a Gemma: fra i tenuti 128/161 = 79.5% (IC95 73.1-85.6%), fra i non tenuti 38/96 = 39.6%; differenza +39.9 punti (IC95 +28.2, +51.8)
+    fra i tenuti: b_confronti_ritrovati: 422/519 = 81.3% (IC95 71.4-88.9%); c_errori_non_elencati: 10/65 = 15.4% (IC95 4.1-34.1%)
+  Mistral = sonnet-corsa1
+    studi tenuti: 1279/2008 = 63.7% (IC95 61.6-65.8%)
+    gruppi identici a Gemma: fra i tenuti 1072/1288 = 83.2% (IC95 81.2-85.2%), fra i non tenuti 305/764 = 39.9%; differenza +43.3 punti (IC95 +39.2, +47.5)
+    fra i tenuti: b_confronti_ritrovati: 2479/3667 = 67.6% (IC95 62.6-72.4%); c_errori_non_elencati: 180/898 = 20.0% (IC95 13.6-27.9%)
+  Mistral = Gemma-4-31B = opus-corsa1 (accordo a tre)
+    studi tenuti: 140/252 = 55.6% (IC95 49.2-61.9%)
+    gruppi identici a Gemma: fra i tenuti 117/140 = 83.6% (IC95 77.1-89.6%), fra i non tenuti 49/117 = 41.9%; differenza +41.7 punti (IC95 +30.7, +52.6)
+    fra i tenuti: b_confronti_ritrovati: 387/469 = 82.5% (IC95 71.9-90.1%); c_errori_non_elencati: 7/42 = 16.7% (IC95 3.6-39.1%)
+
+Accanto: voci degli studi che Mistral e Opus hanno tutti e due (257 voci)
+  gruppi identici a Gemma, Mistral (righe) per Opus (colonne):
+       opus
+mistral FALSE TRUE
+  FALSE    64   27
+  TRUE      9  157
+  voci di studi dove Mistral e Opus hanno gli stessi gruppi: 198; di queste con gruppi diversi da Gemma: 41
+  classi di quelle voci (stessi gruppi Mistral = Opus, diversi da Gemma):
+
+incrociata   piu_fine piu_grossa 
+         2         33          6 
+  classi di Mistral nelle voci non identiche a Gemma (righe) per «Mistral e Opus hanno gli stessi gruppi» (colonne):
+              stessi_gruppi_di_opus
+classe_mistral FALSE TRUE
+    incrociata     4    2
+    non_chiuso    17    0
+    piu_fine      10   33
+    piu_grossa    19    6
+
+Previsioni (carta 00-previsioni.md; il giudizio usa l'intervallo al 95%)
+  PC1 Opus, studi chiusi (%): atteso 97, rilevanza 93..100; stima 99.6 (IC95 98.8, 100.0): CONFERMATA
+  PC2 Opus, voci con gruppi identici a Gemma (%): atteso 72, rilevanza 62..80; stima 71.6 (IC95 65.9, 77.0): CONFERMATA
+  PC3 Opus meno Mistral, gruppi identici (punti): atteso +4, rilevanza -5..5; stima 7.0 (IC95 2.4, 11.6): INDETERMINATA
+  PC4 Opus, confronti di Gemma ritrovati (%): atteso 52, rilevanza 40..62; stima 68.0 (IC95 58.4, 76.5): INDETERMINATA
+  PC5 Opus, non elencati giudicati errore (%): atteso 30, rilevanza 15..45; stima 11.9 (IC95 6.1, 18.8): INDETERMINATA
+  PC6 Haiku corsa 1 meno Opus, gruppi identici (punti): atteso -2, rilevanza -5..5; stima 2.7 (IC95 0.0, 5.5): INDETERMINATA
+  PC7 Sonnet meno Opus, gruppi identici (punti): atteso 0, rilevanza -5..5; stima 2.7 (IC95 0.4, 5.4): INDETERMINATA [257 voci, 252 studi]
+  PC8 Haiku, stessi gruppi e confronti fra le due corse (%): atteso 80, rilevanza 70..90; stima 84.8 (IC95 83.2, 86.3): CONFERMATA
+  PC9 studi tenuti dall'accordo Mistral = Opus (%): atteso 65, rilevanza 55..78; stima 63.1 (IC95 57.1, 69.0): CONFERMATA
+  PC10 identici fra i tenuti da Mistral = Opus meno fra i tenuti da Mistral = Gemma-4-31B (punti): atteso +2, rilevanza -5..5; stima -1.7 (IC95 -6.1, 2.7): INDETERMINATA [79.5% contro 81.2%, 252 studi]
+  PC11 tenuti meno non tenuti, accordo Mistral = Opus (punti): atteso +40, rilevanza 0..Inf; stima 39.9 (IC95 28.2, 51.8): CONFERMATA [confermata = intervallo tutto sopra 0]
+
+FINE 30-misura.R

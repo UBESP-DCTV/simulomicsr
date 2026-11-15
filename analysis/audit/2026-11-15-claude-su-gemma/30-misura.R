@@ -163,7 +163,10 @@ apri_corsa <- function(corsa) {
   x[attesi]
 }
 RUN <- list()
-carica <- function(corsa) { X <- apri_corsa(corsa); L <- letture_cache(corsa, X); stopifnot(identical(names(L), names(X)))
+carica <- function(corsa) { X <- apri_corsa(corsa); L <- letture_cache(corsa, X)
+  # correzione del 2026-11-15, dopo il primo lancio della misura (fermo qui, prima di ogni numero su Gemma): la fase
+  # "letture" scrive la cache nell'ordine del file, la misura chiede l'ordine dell'ingresso. Stessi studi, riordino per nome.
+  stopifnot(setequal(names(L), names(X)), !anyDuplicated(names(L))); L <- L[names(X)]; stopifnot(identical(names(L), names(X)))
   list(X = X, L = L, kc = vapply(L, chiave_gc, ""), kg = vapply(L, chiave_g, ""), chiuso = vapply(L, function(r) isTRUE(r$chiuso), NA)) }
 
 # ---- Mistral M-rp11 e Gemma-4-31B GE-rp0 (corse congelate) ----------------------------------------------------
