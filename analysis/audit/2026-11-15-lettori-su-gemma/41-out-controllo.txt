@@ -1,0 +1,8 @@
+NOTE: Dependency discovery took 12 seconds during snapshot.
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+41-misura.R  2026-11-15T12:50:54Z 
+PASSA   K1 riproduzione: Mistral B0 sui 47 studi di sviluppo contro Atlas: 45 chiusi, 36/47, 68/95
+PASSA   K1 controllo positivo: misura_voci() sui 21 studi di sviluppo rida' 31-pilota-per-studio.csv riga per riga: a_gruppi_identici: 14/21 = 66.7% (IC95 47.6-85.7%); b_confronti_ritrovati: 26/52 = 50.0% (IC95 22.8-85.7%); c_errori_non_elencati: 19/41 = 46.3% (IC95 0.0-76.1%)
+SOLO_CONTROLLO=1: fine dopo il controllo positivo
