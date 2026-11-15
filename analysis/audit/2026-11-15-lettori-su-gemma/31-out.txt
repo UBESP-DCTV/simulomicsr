@@ -1,0 +1,103 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+(controllo positivo saltato: SALTA_CP=1; il suo esito sta in 31-out-controllo-positivo.txt)
+
+Taratura sui 21 studi di sviluppo, riferimento = Gemma (B = 10.000, seme 20261115, unita' lo studio):
+  Mistral B0   chiusi: 21/21 = 100.0% (IC95 100.0-100.0%)
+  Mistral B0   a_gruppi_identici: 14/21 = 66.7% (IC95 47.6-85.7%)
+  Mistral B0   a_piu_fine: 4/21 = 19.0% (IC95 4.8-38.1%)
+  Mistral B0   a_piu_grossa: 2/21 = 9.5% (IC95 0.0-23.8%)
+  Mistral B0   a_incrociata: 1/21 = 4.8% (IC95 0.0-14.3%)
+  Mistral B0   b_confronti_ritrovati: 26/52 = 50.0% (IC95 22.8-85.7%)
+  Mistral B0   b_ogni_verso: 26/52 = 50.0% (IC95 22.8-85.7%)
+  Mistral B0   c_errori_non_elencati: 19/41 = 46.3% (IC95 0.0-76.1%)
+  Atlas        chiusi: 21/21 = 100.0% (IC95 100.0-100.0%)
+  Atlas        a_gruppi_identici: 12/21 = 57.1% (IC95 38.1-76.2%)
+  Atlas        a_piu_fine: 3/21 = 14.3% (IC95 0.0-28.6%)
+  Atlas        a_piu_grossa: 1/21 = 4.8% (IC95 0.0-14.3%)
+  Atlas        a_incrociata: 2/21 = 9.5% (IC95 0.0-23.8%)
+  Atlas        b_confronti_ritrovati: 30/52 = 57.7% (IC95 28.0-92.5%)
+  Atlas        b_ogni_verso: 30/52 = 57.7% (IC95 28.0-92.5%)
+  Atlas        c_errori_non_elencati: 15/35 = 42.9% (IC95 10.5-69.4%)
+
+Per studio (Mistral B0 contro Gemma | Atlas contro Gemma):
+     studio n_universo n_gruppi_gemma n_gruppi_lettore classe_gruppi n_b_den
+   GSE46665         25              3               25      piu_fine       2
+   GSE47718         17              2                2      identica       1
+   GSE49155         13              3                3      identica       2
+   GSE50760         54              3                3      identica       0
+   GSE51261          9              2                3      piu_fine       1
+   GSE52194         20              4                4      identica       3
+ GSE52778.2         13             13                4    piu_grossa       0
+   GSE52946         19              3                3      identica       2
+   GSE56691         12              4                4      identica       0
+   GSE56787         38              2                9      piu_fine       1
+   GSE57027          9              3                3      identica       2
+   GSE57116         14              4                4      identica       0
+   GSE57945        322             12               14    incrociata      16
+   GSE60340         24              8                6    piu_grossa       0
+   GSE63015          6              2                2      identica       1
+   GSE67196         53              6                6      identica       4
+   GSE71289         42              6                8      piu_fine       4
+   GSE71595         14              4                4      identica       4
+   GSE75852         12              4                4      identica       2
+   GSE78936         82              9                9      identica       6
+   GSE83415         21              2                2      identica       1
+ n_b_uguale n_b_verso_opposto n_giudicabili n_errori        atlas_classe
+          0                 0             0        0            identica
+          1                 0             0        0            identica
+          0                 0             0        0            identica
+          0                 0             2        0          incrociata
+          0                 0             2        0            piu_fine
+          3                 0             0        0 identica_sui_comuni
+          0                 0             3        3          piu_grossa
+          2                 0             0        0 identica_sui_comuni
+          0                 0             3        0            identica
+          0                 0             6        0            piu_fine
+          2                 0             0        0            identica
+          0                 0             3        0 identica_sui_comuni
+          0                 0            18       16          incrociata
+          0                 0             0        0            identica
+          1                 0             0        0            identica
+          4                 0             0        0            identica
+          2                 0             4        0            piu_fine
+          2                 0             0        0            identica
+          2                 0             0        0            identica
+          6                 0             0        0            identica
+          1                 0             0        0            identica
+ atlas_uguale atlas_opposto
+            2             0
+            1             0
+            2             0
+            0             0
+            0             0
+            2             0
+            0             0
+            1             0
+            0             0
+            0             0
+            2             0
+            0             0
+            0             0
+            0             0
+            1             0
+            4             0
+            2             0
+            4             0
+            2             0
+            6             0
+            1             0
+
+campioni di Gemma fuori dalla vista: 14 in 3 studi; campioni della vista fuori da Gemma: 1 in 1 studi
