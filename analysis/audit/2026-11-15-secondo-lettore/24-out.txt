@@ -13,30 +13,37 @@ controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confro
 10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
 10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
 24-misura.R  secondo lettore
-HEAD 8a622ca; seme 20261115, B 10000
+HEAD 48b126f; seme 20261115, B 10000
 PASSA   K1: Mistral-Small 3.2 nella forma B0 rida' 45 chiusi, 36/47, 68/95: 45 36 68 95
 PASSA   K1: i predicati vedono i 9 errori di lettura di B0 nelle uscite di Mistral: 9 su 9
-PASSA   K4: i 52 file del registro hanno lo SHA-256 scritto al congelamento
-corse congelate da misurare: 6 (GE-rp0, GE-rp11, GR-rp0, GR-rp11, QW-rp0, QW-rp11)
-PASSA   K3: ogni corsa copre 47 studi di sviluppo su 47, una riga per studio (6 corse)
+PASSA   K4: i 60 file del registro hanno lo SHA-256 scritto al congelamento
+corse congelate da misurare: 7 (GE-rp0, GE-rp0r, GE-rp11, GR-rp0, GR-rp11, QW-rp0, QW-rp11)
+PASSA   K3: ogni corsa copre 47 studi di sviluppo su 47, una riga per studio (7 corse)
 
 == Le misure di ogni corsa (riferimento a 95 confronti) ==
 GE-rp0     chiusi 45  identici 36/47  ritrovati 66/95 (meno Mistral  -2.1 punti, IC95 -13.7,  +7.8)  non valide 0 | accordo con Mistral B0: tenuti 31, con errore di Mistral 0 , identici ad Atlas 26, ritrovati 50/59 | errori di B0 presenti: 0 che costano, 0 che non costano
+GE-rp0r    chiusi 45  identici 36/47  ritrovati 66/95 (meno Mistral  -2.1 punti, IC95 -13.7,  +7.8)  non valide 0 | accordo con Mistral B0: tenuti 31, con errore di Mistral 0 , identici ad Atlas 26, ritrovati 50/59 | errori di B0 presenti: 0 che costano, 0 che non costano
 GE-rp11    chiusi 45  identici 35/47  ritrovati 69/95 (meno Mistral  +1.1 punti, IC95 -11.6, +12.2)  non valide 0 | accordo con Mistral B0: tenuti 30, con errore di Mistral 0 , identici ad Atlas 25, ritrovati 48/55 | errori di B0 presenti: 0 che costano, 0 che non costano
 GR-rp0     chiusi 39  identici 31/47  ritrovati 45/95 (meno Mistral -24.2 punti, IC95 -41.7,  -7.9)  non valide 2 | accordo con Mistral B0: tenuti 26, con errore di Mistral 0 , identici ad Atlas 25, ritrovati 40/43 | errori di B0 presenti: 1 che costano, 2 che non costano
 GR-rp11    chiusi 37  identici 30/47  ritrovati 52/95 (meno Mistral -16.8 punti, IC95 -36.4,  +2.8)  non valide 0 | accordo con Mistral B0: tenuti 28, con errore di Mistral 0 , identici ad Atlas 27, ritrovati 47/52 | errori di B0 presenti: 2 che costano, 1 che non costano
 QW-rp0     chiusi 36  identici 31/47  ritrovati 47/95 (meno Mistral -22.1 punti, IC95 -38.8,  -6.2)  non valide 3 | accordo con Mistral B0: tenuti 25, con errore di Mistral 0 , identici ad Atlas 24, ritrovati 42/44 | errori di B0 presenti: 1 che costano, 2 che non costano
 QW-rp11    chiusi 40  identici 34/47  ritrovati 50/95 (meno Mistral -18.9 punti, IC95 -35.4,  -3.3)  non valide 0 | accordo con Mistral B0: tenuti 28, con errore di Mistral 0 , identici ad Atlas 26, ritrovati 40/46 | errori di B0 presenti: 1 che costano, 2 che non costano
 
+== Repliche (studi su 47) ==
+  corsa replica identiche_al_carattere stessa_tabella stessi_gruppi_e_confronti
+ GE-rp0 GE-rp0r                     45             47                        47
+ studi_diversi
+              
+
 == La regola di scelta ==
  candidato corsa_giudicata p1_chiusi_40 p2_tenuti_30
         GE          GE-rp0         TRUE         TRUE
         GR         GR-rp11        FALSE        FALSE
         QW         QW-rp11         TRUE        FALSE
- p3_nessun_errore_fra_i_tenuti p4_replica_47                       esito
-                          TRUE            NA passa 1-3: serve la replica
-                          TRUE            NA                 non ammesso
-                          TRUE            NA                 non ammesso
+ p3_nessun_errore_fra_i_tenuti p4_replica_47       esito
+                          TRUE          TRUE     ammesso
+                          TRUE            NA non ammesso
+                          TRUE            NA non ammesso
  possibile_primo_lettore
                    FALSE
                    FALSE
