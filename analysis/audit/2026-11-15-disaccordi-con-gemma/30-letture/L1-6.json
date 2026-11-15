@@ -1,0 +1,152 @@
+[
+  {
+    "scheda": "S004",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori: malattia (schizophrenia contro controllo, 15 e 15) e sesso. Il sesso è una variabile di contesto che il testo non dichiara a confronto: tenerla non è un errore; le assegnazioni corrispondono alla tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un solo fattore, diagnosis (control 15, schizophrenia 15), come la colonna «psychiatric diagnosis» e come il testo «schizophrenia cases (n = 15) and controls (n = 15)»."
+  },
+  {
+    "scheda": "S007",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore con 4 livelli: knockdown di ASCL1, knockdown dei tre fattori, controllo siRNA (H2107 NT) e «wild type genotype» per i 4 PDX non trattati. I gruppi corrispondono alla tabella; il nome «TTF1 transcription termination factor» per NKX2-1 è una forma del nome e non cambia i gruppi.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "siRNA (3TF, ASCL1, NT) e cell_line (H2107 e 4 PDX). I 4 PDX («no treatment» nella colonna sirna) stanno nel livello «NT» con i controlli siRNA di H2107; dubbio su (b), ma «NT» si può leggere come non trattato e il fattore cell_line tiene i PDX in gruppi separati: i gruppi sono difendibili."
+  },
+  {
+    "scheda": "S008",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «wild type genotype» in A673 unisce A673-sgNEG, A673-SAM-Control e A673-SAM-Dox (GSM5701333-336): i campioni trattati con doxiciclina stanno con i non trattati. Il testo dichiara le manipolazioni a confronto: «RNA-Seq and ChIP-Seq of different manipulation of ETV6 and EWS-FLI1» e «Samples were collected 5 days post guide RNA infection or 48h after doxycycline treatment». Anche RD-EF è unito a RD.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore genetic_perturbation assegna a «sgNEG» tutti i campioni sgETV6_1, sgETV6_2 e sgEWS_FLI1 (per esempio GSM5701291 «A673-sgETV6_1_rep1», GSM5701295 «A673_sgEWS_FLI1_rep1»): il titolo li smentisce. Il knockout di ETV6, oggetto dello studio, non divide i campioni."
+  },
+  {
+    "scheda": "S017",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tre gruppi che corrispondono alla colonna «group»: MB (LL, 8), ENL non trattato (15), trattato con talidomide (13). Dubbio: i campioni THAL hanno disease = «non applicabile» anche se sono pazienti ENL («ENL.THAL.n»); non è un livello che la scheda smentisce e i gruppi sono quelli del testo «comparing ENL to MB and ENL before and after thalidomide treatment».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Malattia con tre livelli (riferimento = LL/MB, ENL, ENL con talidomide) e sesso. I tre gruppi del testo ci sono; il sesso è una variabile di contesto in più, non un errore."
+  },
+  {
+    "scheda": "S027",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il gruppo «wild type genotype» senza UV unisce mock RNAi noUV (GSM1885097-099), non-infected (GSM2027301-303) e Y3wt-infected (GSM2027304-306, «overexpression of Y3 wt RNA»). Il testo dichiara l'infezione a confronto: «IMR-32 cells were subjected to lentiviral YRNA infection or nELAVL RNAi and/or UV stress».",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "Il fattore lentiviral_infection ha un solo livello «non applicabile» per tutti i 21 campioni: non-infected, Y3 wt e Y3 mut (GSM2027301-309) stanno in un gruppo solo. Il testo dichiara la variabile: «IMR-32 cells were subjected to lentiviral YRNA infection or nELAVL RNAi and/or UV stress», e la colonna «lentiviral infection» cambia fra i campioni."
+  },
+  {
+    "scheda": "S033",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «exon 8 mutation DISC1» (18 campioni) unisce ex8_wm (eterozigote) ed ex8_mm (omozigote). Il testo li dichiara gruppi distinti: «exon 8 single allelic frameshift mutant = 'ex8_wm', exon 8 biallelic frameshift mutant = 'ex8_mm'» e «3-6 biological replicates per group». Dubbio residuo: lo scopo dichiarato confronta soprattutto l'esone 2 con l'esone 8; il giudizio si regge sulla frase che dà i due genotipi come gruppi separati.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo con 4 livelli (wt, exon8 wt/mut, exon8 mut/mut, exon2 mut/mut), tipo cellulare e tempo. Tipo cellulare e tempo coincidono (NPC = day 17, neuroni = day 50) e danno gli stessi 8 gruppi: difendibili."
+  },
+  {
+    "scheda": "S034",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un solo fattore: osimertinib per 6 settimane (9) contro non trattato (6). Il modello PDX è una variabile di contesto che il testo non dichiara a confronto: toglierla non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Trattamento (osimertinib contro untreated) e modello PDX (YU-003, YU-006, YU-030) come contesto: 6 gruppi che corrispondono ai titoli."
+  },
+  {
+    "scheda": "S037",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore claudin_1_depletion ha un solo livello «shntc» per tutti i 12 campioni: gli 8 campioni shCLDN1 (per esempio GSM7469902 «DLD-1 shCLDN1 #1-1») sono assegnati a shNTC, il titolo li smentisce. Manca il confronto dichiarato: «with (shCLDN1) or without (shNTC) CLDN1 depletion».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare (DLD-1, LoVo) e knockdown di CLDN1 (8) contro controllo (4 shNTC): 4 gruppi che corrispondono ai titoli; i due shRNA uniti sono repliche della stessa condizione."
+  },
+  {
+    "scheda": "S065",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Sesso, tipo cellulare (TEM scritto «control», TEMRA, TRM), CD4 o CD8, tessuto (blood, WM, GM), più un fattore «collection of material» (DE_Include / DE_Exclude). Dubbio su (a): DE_Exclude è un'etichetta di analisi, ma segna solo i 2 campioni «pooled» (GSM6656409-410), che la scheda distingue e che sono già separati dal sesso «non scritto»: i gruppi non cambiano. La malattia non è dichiarata a confronto in questo dataset.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore cell_type ha solo livelli «cd4_tem», «cd4_temra», «cd4_trm»: tutti i campioni CD8 sono assegnati a livelli CD4 (per esempio GSM6656345 «Blood, CD8, TEM, 01» = «cd4_tem»), la colonna tcell li smentisce. CD4 e CD8 sono uniti contro il testo: «Comparative gene expression profiling analysis ... of CD8+ and CD4+ ... T cells»."
+  },
+  {
+    "scheda": "S066",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il livello di treatment «lipofectamine_transfection_of_WT_G3BP1_transgene_sodium_arsenite_treatment» contiene anche GSM7232892-893 (G3BP_KO_NTF2-rescue_NaAsO2), che la tabella dà come «Lipofectamine transfection of NTF2 deletion mutant G3BP1 transgene, 200 uM sodium arsenite». Anche «transient_transfection» unisce il transgene WT e il mutante NTF2 (GSM7232886-887 con GSM7232890-891). Fiducia media: il giudizio si regge sul nome del livello, che dice transgene WT.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Un solo fattore genotype. Il livello «wild type genotype G3BP1 ... with Genetic rescue» (10 campioni) contiene GSM7232890-893, che la tabella dà come «NTF2 deletion mutant G3BP1 transgene»: non è G3BP1 wild type. Inoltre i campioni con arsenito (GSM7232884-885, 888-889, 892-893) stanno con i non trattati; il testo non nomina l'arsenito, quindi non è (c). Fiducia media."
+  },
+  {
+    "scheda": "S087",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo (wild type, vettore di controllo, knockdown di PU.1, sovraespressione di PU.1) e trattamento (controllo veicolo, non trattato, NaBut, SAHA): 9 gruppi. Dubbio: il livello «control» unisce il veicolo DMSO (GSM1940164-165) e il veicolo PBS (GSM1940168-170); il testo dichiara «K562 +/- NaBut» e «K562 +/- SAHA», non DMSO contro PBS, quindi non è (d). I due shRNA uniti sono la stessa condizione.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il livello agent = «DMSO» (15 campioni) contiene i 3 campioni con veicolo PBS (GSM1940168-170, «0.5% 1xPBS vehicle») e i 4 campioni non trattati (GSM1940174-177, «none (untreated)»): la colonna «treated with» li smentisce. Il vettore di controllo della sovraespressione (GSM1940176-177) cade nello stesso gruppo dei controlli DMSO e PBS non trasdotti."
+  },
+  {
+    "scheda": "S090",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Un solo fattore: gamba sinistra o destra. Manca il sesso, che il titolo dichiara oggetto di studio: «The human skeletal muscle transcriptome – sex differences, alternative splicing and tissue homogeneity assessed with RNA sequencing»; la colonna gender cambia fra i campioni (12 female, 9 male).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso (female 12, male 9) e gamba (left, right) come contesto: 4 gruppi che corrispondono alla tabella; il soggetto non è usato come fattore."
+  },
+  {
+    "scheda": "S103",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «wild_type» (48 campioni) segue la colonna genotype e unisce ai controlli i campioni che la colonna condition dà come trattati: «eRNA knockdown» (GSM5516886-891), «RNase H1 overexpression» (GSM5516894-895), «CRISPRi of elogation» (GSM5516899-904), «CRISPRi of initiation» (GSM5516908-910), «eRNA overexpression» (GSM5533461-463). Il testo dichiara queste manipolazioni a confronto: «Through loss- and gain-of-function experiments with CRISPR/Cas9 DNA-fragment editing, CRISPRi, and CRISPRa as well as locked nucleic acid strategies». Anche «del_eRNA_TSS» unisce il controllo e il rescue con sovraespressione (GSM5533464-466 con GSM5533467-468).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore con 12 livelli che corrispondono alle colonne genotype e condition: delezione del TSS (2E8, 5E6, OEdelctr), inserzione poliA (14G1), CRISPRa (on_3g), CRISPRi a 1158 e a 1959 bp, inibizione dell'inizio (kii), K44, LNA (i due LNA uniti: stessa condizione), sovraespressione di eRNA, rescue (OEdel), RNase H1; i 28 controlli dei vari esperimenti (A2, KNC, on_NC, WTLNARNA, RNHWT, knc, OENC, HEC-1-B) stanno nel riferimento. Unire i controlli è difendibile."
+  },
+  {
+    "scheda": "S106",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore shRNA con 3 livelli (control, BS69-1, BS69-2; 3 campioni ciascuno), come la colonna transfection. Tenere divisi i due shRNA contro lo stesso gene è dividere repliche della stessa condizione: non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockdown di ZMYND11 (= BS69, 6 campioni) contro controllo (3), come il testo «HeLa cells were infected with lentiviruses carrying control and BS69 shRNA». I due shRNA uniti sono la stessa condizione."
+  },
+  {
+    "scheda": "S118",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «genetic perturbation» ha un solo livello «sgNeg» per tutti i 16 campioni: gli 8 campioni sgPU.1 e sgMEF2D (per esempio GSM5638993 «MOLM13_sgPU.1_1», GSM5638997 «MV4-11_sgMEF2D_1») sono assegnati a sgNeg, il titolo li smentisce. Manca il confronto dichiarato dal titolo: «Gene expression change after inactivation of MEF2D or PU.1 by CRISPR-Cas9».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare (4) e genotipo (MEF2D inattivato 6, SPI1 = PU.1 inattivato 2, wild type 8 = sgNeg): 8 gruppi che corrispondono ai titoli dei campioni. «Homozygous negative» è una forma del nome."
+  }
+]

@@ -1,0 +1,172 @@
+[
+  {
+    "scheda": "S019",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori, genotype (GFP / OMO) e treatment (+Dox / untreated): sono le colonne «genotype/variation» e «treatment» della tabella. I 4 campioni vanno in 4 gruppi da 1 e ogni assegnazione è uguale alla tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore: GSM6084324 (omo + dox) contro gli altri 3 campioni come riferimento. Segue la frase del disegno «Three samples are controls/references (1-SM-vumc-GFP_S1, 2-SM-vumc-GFP-dox_S2, 3-SM-vumc-omo_S3) and one sample is treated/test (4-SM-vumc-omo-dox_S4)». Il nome «wild type» per GSM6084323 (vettore Omomyc non indotto) è una scelta di nome coerente con questa frase."
+  },
+  {
+    "scheda": "S025",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Divide la colonna genotype in due fattori (KO di MIR200C, KO di MIR141): il doppio KO ha tutti e due. I 4 gruppi sono uguali ai 4 valori della colonna genotype, 2 campioni per gruppo.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore di perturbazione genetica a 4 livelli più l'«experimental set», che è un lotto scritto nella tabella (variabile di contesto): 8 gruppi da 1 campione. Le assegnazioni sono uguali alla tabella; tenere il lotto non è un errore."
+  },
+  {
+    "scheda": "S032",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore a 3 livelli (prima dell'LVAD come base, 7 giorni, 180 giorni): è la colonna «time», coerente con «Blood was drawn before LVAD placement, 7 days post implant, and 180 days post implant». Assegnazioni uguali alla tabella.",
+    "B": "errore",
+    "B_tipo": "a",
+    "B_prova": "Il fattore «disease» (tipo stato) ha 9 livelli DCM, GCN, HSD, JDM, NMN, RAB, RDR, TCA, TLF: sono il prefisso della colonna description (DCM_T0, GCN_T0...), cioè la sigla del soggetto, non una malattia. Ogni livello è un individuo e l'individuo non è oggetto del confronto; con LVAD e time dà 25 gruppi da 1 campione. Dubbio dichiarato: ci sono più campioni per soggetto, ma il disegno scrive la sigla come stato di malattia, non come donatore di contesto."
+  },
+  {
+    "scheda": "S033",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «exon 8 mutation» (18 campioni) unisce ex8_wm (wt/mut) ed ex8_mm (mut/mut), per esempio GSM1833882-884 con GSM1833885-889. Il testo li dichiara gruppi distinti: «exon 8 single allelic frameshift mutant = \"ex8_wm\", exon 8 biallelic frameshift mutant = \"ex8_mm\"» e «3-6 biological replicates per group».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotype a 4 livelli (wt 12, exon8_wt_mut 9, exon8_mut_mut 9, exon2_mut_mut 12), cell_type e time (il tempo coincide col tipo cellulare): 8 gruppi uguali ai gruppi del testo. Assegnazioni uguali alla tabella."
+  },
+  {
+    "scheda": "S035",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tissue e cell_type (coincidono) più il venditore, che è una colonna della tabella (variabile di contesto, lotto): 6 gruppi. Il tessuto è il confronto del testo («obtained from 3 tissues»). Assegnazioni uguali alla tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso e organism part: 4 gruppi (brain femmina, lung femmina, lung maschio = solo GSM7080170, liver maschio). Il sesso è la colonna «Sex» della tabella e le assegnazioni sono giuste. Dubbio dichiarato: il sesso è scritto come perturbazione e il testo non lo dichiara a confronto, ma tenere una variabile di contesto non è un errore per le regole."
+  },
+  {
+    "scheda": "S044",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Cell type a 3 livelli: NZC (4), SIX2- (8, unisce SIX2-, SIX2-_MEIS1+ e SIX2-_MEIS1-), SIX2+ (3, unisce SIX2+ e SIX2+_MEIS1+). Dubbio dichiarato: il titolo nomina «SIX2+ and SIX2-/MEIS1+ cells», ma nessuna frase del testo dichiara a confronto SIX2-/MEIS1+ contro SIX2-/MEIS1- o SIX2-; la divisione SIX2+ contro SIX2- è tenuta. Nel dubbio: sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Cell_type a 6 livelli e stage a 7 livelli (colonna «developing stage», un tempo di sviluppo: variabile di contesto, non una sigla), più organism con un solo livello. Assegnazioni uguali alla tabella. Nota: i 15 gruppi hanno un campione ciascuno."
+  },
+  {
+    "scheda": "S060",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Disease_state (asd 12, control 9) per time (day_35 10, day_135 11): 4 gruppi. Il tempo è scritto nella colonna description e nel testo («at day 35 post differentiation and day 135 post differentiation»). Assegnazioni uguali alla tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Solo la malattia: 2 gruppi (ASD, controllo). Il confronto dichiarato è «differentially expressed between the control iPSC-derived neurons and the Autism-specific iPSC-derived neurons». Dubbio dichiarato: il titolo dice «Time Course» e l'analisi è fatta ai giorni 35 e 135, ma nessuna frase dichiara il confronto fra i due tempi: il tempo è contesto e toglierlo non è un errore."
+  },
+  {
+    "scheda": "S067",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Organism part (bone marrow 70, blood 22, non scritto 1 = GSM4615512) per treatment a 2 livelli: i 35 campioni Day5 trattati, i 58 Day0 riferimento. Coglie il confronto del testo «Samples were collected at Day 0 (before treatment) and Day 5 (after 5 days of AZA treatment)». Dubbio dichiarato: manca la coorte di terapia (colonna therapy), ma il testo non dichiara un confronto fra terapie; il nome del livello trattato elenca tre farmaci mentre al giorno 5 c'è solo AZA (forma del nome).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Treatment a 3 livelli (AZA 10, AZA-HiDAC-Mito 65, HiDAC-Mito 18) per time per tissue: 8 gruppi. Sono le colonne therapy, time e tissue della tabella e le assegnazioni sono uguali alla tabella."
+  },
+  {
+    "scheda": "S073",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore disease_state ha il solo livello «healthy» per tutti gli 11 campioni: GSM2790562-563 (source_name «fAD Cranial Pericytes») e GSM2790564-565 («sAD human brain pericytes») sono assegnati a «healthy», smentito dalla scheda. Vale anche (c): il testo dichiara «Comparison of primary and in vitro derived pericytes, as well as fAD and sAD versus control pericytes» e nessuna delle due variabili divide i campioni.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Origine (ESC 1, forebrain 4, iPSC 6), cell type e disease a 4 livelli (fAD 2, sAD 2, due livelli di riferimento 5 e 2): 6 gruppi che separano fAD, sAD, controlli, periciti primari e derivati, come nel testo. I due livelli di riferimento coincidono con la distinzione già data dall'origine (i primari 1oPC, GSM2790560-561)."
+  },
+  {
+    "scheda": "S076",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Cell type (H9 ESC 8, iPSC 16 con le due linee iPSC unite) per timepoint (13, 14, 15, 16 giorni; 6 campioni ciascuno): 8 gruppi. Il testo parla di «ES and iPS-derived forebrain progenitor cells at four time points»; le due linee iPSC non sono dichiarate a confronto (la linea cellulare è contesto).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tipo di linea, tempo e linea cellulare (H9, RBRC-HPS0328_606A1, RBRC-HPS0331_610B1; 8 campioni ciascuna): 12 gruppi da 2 repliche, coerente con «Two differentiation replicates were used at each of the time points». Assegnazioni uguali alla tabella."
+  },
+  {
+    "scheda": "S078",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM5849813-814 (shNELFE_Con, colonna genotype «transduced with NELF-E shRNA», DMSO) sono assegnati a «wild type genotype», mentre GSM5849815-816 (shNELFE_DOX) vanno al knockdown di NELFE: la scheda smentisce il livello. Vale anche (c): manca Doxiciclina contro DMSO, dichiarata nel disegno «with the induction of Doxycycline or DMSO vehicle»; scramble_Con (GSM5849809-810) e scramble_DOX (GSM5849811-812) stanno nello stesso gruppo.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM7151694-695 (titolo «RNA-seq.BT549.shNELFE_rep1/2», colonna condition «shNELFE») sono assegnati a «wild_type» insieme a GSM7151696-697 (BT549 WT): i 4 campioni BT549 stanno in un gruppo solo, smentito dalla scheda. In più il livello «DMSO» è dato a campioni con treatment «NA» o vuoto (MCF7, SUM159, BT549), distinzione non scritta nella scheda; con un errore e una distinzione non verificabile il giudizio è errore."
+  },
+  {
+    "scheda": "S083",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «induced_senescence» (9 campioni) unisce Adriamycin (GSM1473790, 792, 794), 5-aza (GSM1473796, 798, 800) e H2O2 (GSM1473803, 805, 807). Il testo li dichiara tipi distinti e a confronto: «in order to profile the pathways common in all 4 types of sensecence» (la replicativa e le tre indotte) e «biological triplicates of each sample».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Cell type a 6 livelli e treatment a 5 livelli (5-aza, doxorubicin, hydrogen peroxide, serum starved, riferimento 12): 8 gruppi da 3 campioni che separano i tre induttori. Assegnazioni uguali alla colonna «treated with» (Adriamycin scritto come doxorubicin è solo un nome)."
+  },
+  {
+    "scheda": "S090",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Il solo fattore è la gamba (left 11, right 10). Manca il sesso, che il titolo dichiara oggetto di confronto: «The human skeletal muscle transcriptome – sex differences, alternative splicing and tissue homogeneity assessed with RNA sequencing»; il sesso cambia fra i campioni (colonna gender: 9 male, 12 female) e ogni gruppo di A mescola maschi e femmine (per esempio GSM1409687 male e GSM1409690 female in «leg with left»).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Gender (female 12, male 9) per leg (left 11, right 10): 4 gruppi. Il sesso è il confronto del titolo («sex differences»), la gamba è la colonna «biopsy location» (contesto, «two biopsies from each leg»). Assegnazioni uguali alla tabella."
+  },
+  {
+    "scheda": "S093",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM2877973 (titolo «NICD4_1», description «X2266_7_21_U373_NICD_4») è assegnato a «NICD3»: i livelli diventano NICD3 = 4 campioni e NICD4 = 2. Il disegno lo smentisce: «5 groups and 3 replicate per group= 15 samples». Dubbio dichiarato: le colonne source_name e genotype/variation di questo campione scrivono «NICD3», ma titolo, description e la frase del disegno dicono NICD4 con 3 repliche per gruppo.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotype a 5 livelli da 3 campioni (EV come «wild type genotype», sovraespressione di NOTCH1, 2, 3, 4): sono i 5 gruppi del disegno («control group (EV) and 4 gorups each expressing different NOTCH receptor ... 3 replicate per group»). GSM2877973 va a NOTCH4, come dicono titolo e description."
+  },
+  {
+    "scheda": "S103",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Il fattore treatment copia la colonna genotype e mette in «wild_type» (48 campioni) i trattati e i loro controlli: LNA eRNA knockdown (GSM5516886-891) con «control for eRNA knockdown» (GSM5516883-885), CRISPRi di allungamento e di inizio (GSM5516899-904, GSM5516908-910), sovraespressione di RNase H1 (GSM5516894-895) e dell'eRNA (GSM5533461-463). Manca la variabile della colonna condition, che il testo dichiara: «Through loss- and gain-of-function experiments with CRISPR/Cas9 DNA-fragment editing, CRISPRi, and CRISPRa as well as locked nucleic acid strategies». Anche «del_eRNA_TSS» unisce OEdelctr (GSM5533464-466) e OEdel con sovraespressione (GSM5533467-468). Il fattore «control» ha un solo livello «non scritto» e non divide.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore treatment a 12 livelli che segue le colonne genotype e condition: delezione del TSS 7 (2E8, 5E6, OEdelctr), LNA 6, CRISPRi a 1158 bp 3 e a 1959 bp 3, inibizione dell'inizio 3, dell'allungamento 3 (K44), inserzione del poliA 3, attivazione 3, sovraespressione dell'eRNA 3, sovraespressione più delezione 2, RNase H1 2, riferimento 28 (tutti i controlli e i wild type). Assegnazioni verificate campione per campione. Unire i controlli dei diversi esperimenti e i due LNA in un livello non è un errore: il testo non li dichiara a confronto."
+  },
+  {
+    "scheda": "S106",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore shRNA a 3 livelli (control, BS69-1, BS69-2), 3 campioni ciascuno: è la colonna transfection della tabella. Tenere divisi i due shRNA contro lo stesso gene è dividere repliche della stessa condizione, non un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore a 2 livelli: knockdown di ZMYND11 (BS69) con i due shRNA uniti (GSM1241331-336, 6 campioni) contro il controllo (GSM1241328-330). Segue il disegno «HeLa cells were infected with lentiviruses carrying control and BS69 shRNA»: i due shRNA colpiscono lo stesso gene e il testo non li dichiara a confronto fra loro."
+  },
+  {
+    "scheda": "S111",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore population a 7 livelli (Cambodian 7, Maya 6, Mbuti Pygmy 7, Mozabite 6, Pathan 7, San 4, Yakut 6): è la colonna population e il confronto del testo («differentially expressed among populations»). Il sesso non è dichiarato a confronto: toglierlo non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Population a 7 livelli per sesso (female 19, male 24): 13 gruppi (San ha solo maschi). Il sesso è la colonna «Sex» della tabella, variabile di contesto; le assegnazioni sono uguali alla tabella. La sigla dell'individuo (colonna cell line) non è usata come fattore."
+  }
+]

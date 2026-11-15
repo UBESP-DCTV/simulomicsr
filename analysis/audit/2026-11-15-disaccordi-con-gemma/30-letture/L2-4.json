@@ -1,0 +1,152 @@
+[
+  {
+    "scheda": "S007",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore di genotipo con 4 gruppi: knockdown di ASCL1 (2), knockdown triplo (2), controllo NT (2) e i 4 PDX non trattati come «wild type genotype». Le assegnazioni seguono la tabella; il nome del livello con «TTF1 transcription termination factor» per NKX2-1 è una forma del nome, i campioni insieme sono quelli giusti.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "siRNA più linea cellulare, 7 gruppi difendibili. Dubbio: i 4 PDX hanno il livello siRNA = «NT», mentre la tabella scrive sirna = «no treatment» per i PDX e «control siRNA-A» per H2107 NT. «NT» si può leggere come «no treatment» e il fattore della linea cellulare separa ogni PDX da H2107, quindi nessun PDX sta in un gruppo con i campioni col siRNA di controllo: nel dubbio, sostenuto."
+  },
+  {
+    "scheda": "S011",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tre fattori (KLK5, KLK7, inibitore a 180 ug/mL, chiamato «SPINK5»: forma del nome) danno i 6 gruppi della colonna treatment: non trattato, KLK5, KLK5+antiKLK5/7, KLK7, KLK7+antiKLK5/7, KLK5+KLK7. Le assegnazioni seguono la tabella.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore dell'agente ha «non scritto» per i 6 campioni con l'anticorpo (per esempio GSM6214327 «KLK5+antiKLK5/7» e GSM6214329 «KLK7 +antiKLK5/7»), ma la colonna treatment scrive KLK5 o KLK7 per questi campioni. Così KLK5+anticorpo e KLK7+anticorpo cadono in un solo gruppo (5 gruppi invece di 6)."
+  },
+  {
+    "scheda": "S024",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Cinque livelli di trattamento come nella tabella; il veicolo DMSO (3 campioni) è separato dai non trattati (6 campioni), come chiede il testo.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Il livello «reference substance role» unisce i 3 campioni con DMSO e i 6 non trattati (9 campioni). Il testo dichiara i due controlli distinti e a confronto con antibiotici diversi: «Clindamycin and ciprofloxacin compared to untreated, while tigecycline compared to DMSO»."
+  },
+  {
+    "scheda": "S039",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare × trattamento × giorno come nella tabella, 12 gruppi; la linea (ZO1, RFP) è una variabile di contesto tenuta. Le assegnazioni seguono la tabella.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "I livelli della dose sono scambiati fra le due esposizioni: i campioni «acute exposure» (giorno 0 e giorno 4, per esempio GSM5823164) hanno il livello «hydrogen peroxide delivered at dose 100 uM», i campioni «chronic exposure» (giorno 7, per esempio GSM5823167) hanno «delivered for duration 1 h and delivered at dose 500 uM». Il riassunto dice il contrario: «chronic (100 µM continuously) and acute (500 µM for 1 h)». I gruppi sono gli stessi di trattamento × tempo (6 gruppi): l'errore sta nel livello, che descrive la condizione dell'altro gruppo, non nella divisione dei campioni."
+  },
+  {
+    "scheda": "S048",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello cell_type = «microglia» unisce la microglia derivata da hiPSC (GSM5175989, GSM5175990) e la microglia fetale umana (GSM5175993, GSM5175994). Il testo le dichiara distinte e a confronto: «We performed RNA-seq analysis to compare hiPSC-derived microglia with hiPSCs, NPCs and human fetal microglia».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Quattro gruppi: hiPSC, microglia derivata da hiPSC, NPC derivati da hiPSC, microglia fetale. Sono i quattro tipi che il testo confronta; le assegnazioni seguono la tabella."
+  },
+  {
+    "scheda": "S064",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due livelli di genotipo, uno per ciascun mutante. La distinzione è nella tabella (genotype «MECP2 mutant 1» e «MECP2 mutant 2»; nel titolo c'è «Q83X»). Il nome «K82 Frameshift» non è scritto nella scheda, ma è solo il nome del livello: la distinzione fra i due campioni è verificabile.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un solo gruppo: i due campioni sono «mutant» e «untreated». Il testo non dichiara un confronto fra i due mutanti, quindi unire i due campioni non è un errore (nessuna frase del testo per il tipo d)."
+  },
+  {
+    "scheda": "S065",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Fattori: sesso, tipo cellulare (TEM, chiamato «control», TEMRA, TRM), CD4 o CD8, DE_Include o DE_Exclude, parte dell'organismo; 16 gruppi, assegnazioni uguali alla tabella. Il sesso è una variabile di contesto tenuta; DE_Exclude segna solo i 2 campioni in pool, che il sesso «non scritto» separa già.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore cell_type ha solo i livelli «cd4_tem», «cd4_temra», «cd4_trm» e i campioni CD8 vanno su livelli cd4: per esempio GSM6656345 «Blood, CD8, TEM, 01» ha «cd4_tem», mentre la tabella scrive tcell = CD8. Così CD4 e CD8 stanno insieme, e il testo li distingue: «CD8+ and CD4+ effector memory ... T cells»."
+  },
+  {
+    "scheda": "S072",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Concentrazione di FGF2 × numero del passaggio, 22 gruppi, come nella tabella. Le assegnazioni seguono la tabella.",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "B ha solo la dose di FGF2 e mette in un solo gruppo gli 11 campioni FGF20 dei passaggi da 2 a 8: manca il passaggio, che cambia fra i campioni. Il testo lo dichiara oggetto dello studio: «this covers the passaging of human H9 ESC-derived neural stem cells (hNSCs) in vitro with varying exposure to FGF2 during final passage». Confidenza media: la frase parla del passaggio come asse dello studio ma non usa la parola confronto; ho scelto errore perché il passaggio è una delle due variabili nominate nel disegno."
+  },
+  {
+    "scheda": "S095",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare più genotipo con 9 livelli, 9 gruppi difendibili. Il knockout con la ricostituzione di una isoforma è scritto come perdita delle altre due isoforme, il knockout con vettore vuoto come perdita di tutte e tre; MO-ctrl e REH parentale stanno insieme come «wild type genotype has role control» (5 campioni). Unire due controlli che il testo non dichiara a confronto non è un errore.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "I campioni knockout con ricostituzione vanno sui livelli del knockdown: per esempio GSM6523767 «SYY123-2-cl5-a», genotype «pan-FBXW7 knockout + FBXW7 alpha reconstitution», ha il livello «alpha_knockdown». I campioni knockout con vettore vuoto (GSM6523766, GSM6523770) hanno «control». La tabella smentisce questi livelli e l'Overall design separa «transient knockdown with Morpholinos» da «knocked out ... and stably reconstituted with each FBXW7 isoform»."
+  },
+  {
+    "scheda": "S096",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Fattori: sesso, malattia (dalla colonna «cell type»: MPNST, MPNST di basso grado, neurofibroma, NF atipico), genotipo (NF1 o sporadico). Manca il sottogruppo di metilazione (colonna «disease state», G1-G5): MPNST_G1 e MPNST_G2 stanno insieme e il neurofibroma unisce G3, G4 e G5. Il testo lo dichiara oggetto di confronto: «Comparative gene expression profiling analysis of RNA-seq data for different methylation subgroups of PNSTs»; «Gene Expression comparing the subgroups were performed using bulk RNA Seq».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "disease_state (i 5 sottogruppi di metilazione) × genotipo, 9 gruppi; le assegnazioni seguono la tabella. È la variabile che il testo confronta."
+  },
+  {
+    "scheda": "S102",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Malattia (sindrome di Down, controllo) × tessuto (ippocampo, corteccia), 4 gruppi; le assegnazioni seguono la tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso, malattia, parte dell'organismo e popolazione (dalla colonna race), 16 gruppi. Sesso e popolazione sono variabili di contesto tenute e le assegnazioni seguono la tabella (per esempio GSM6850071 Asian, GSM6850055 Hispanic). Sono scritte col tipo «perturbazione» e rendono piccoli i gruppi, ma per le regole tenere una variabile di contesto non è un errore."
+  },
+  {
+    "scheda": "S109",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "I 5 campioni shScramble_48h (GSM7009753-GSM7009757) hanno il livello «gene knockdown of CHD4». La colonna genotype scrive «CHD4 knockdown» per questi campioni e A la segue alla lettera, ma il titolo dei campioni, la colonna treatment («shScramble») e i nomi dei file nella descrizione («48hshCHD4#1_vs_48hshScramble») dicono che sono il controllo scramble. Con A a 48h non c'è un controllo. L'unione di shCHD4#1 e shCHD4#2 non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockdown (scramble, CHD4#1, CHD4#2, FLI1) × tempo (24h, 48h), 8 gruppi, come nel titolo dei campioni e nella colonna treatment."
+  },
+  {
+    "scheda": "S118",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «genetic perturbation» ha un solo livello, «sgNeg», per tutti i 16 campioni: anche GSM5638993 «MOLM13_sgPU.1_1», GSM5638997 «MV4-11_sgMEF2D_1», GSM5639001 «THP1_sgMEF2D_2_1», GSM5639005 «K562_sgMEF2D_1» hanno «sgNeg», e il titolo dei campioni lo smentisce. I gruppi sono solo le 4 linee: manca l'inattivazione, che il titolo dichiara oggetto dello studio («Gene expression change after inactivation of MEF2D or PU.1 by CRISPR-Cas9»).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare × genotipo (controllo, MEF2D inattivato, SPI1 cioè PU.1 inattivato), 8 gruppi; ogni campione sgNeg è «wild type genotype», i 6 sgMEF2D e i 2 sgPU.1 sono sui livelli giusti. «Homozygous negative» è una forma del nome."
+  },
+  {
+    "scheda": "S123",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Malattia (CdLS 3, controllo 6) × sesso (6 femmine, 3 maschi), 4 gruppi; le assegnazioni seguono le colonne disorder e gender (per esempio GSM4523801 CdLS, Male). Il sesso è una variabile di contesto tenuta: è scritta col tipo «perturbazione», ma per le regole tenerla non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore di malattia, 2 gruppi: 3 CdLS e 6 controlli sani, come nel disegno dello studio («3 of CdLS patient pre-frontal cortex samples, and 6 healthy age-matched controls»)."
+  },
+  {
+    "scheda": "S124",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare (H1, H9) × trattamento con 26 livelli: i 41 gruppi sono esattamente quelli della colonna treatment dentro ogni linea, e il PBS è il livello di base come dice il testo. Dubbio: tre nomi di livello portano dosi che la tabella smentisce (DGA pre AA: «ascorbic acid delivered at dose 2 μM ... 3 w ... glutamate(1-) delivered at dose 100 μM ... 1 h», mentre la tabella scrive glutammato 2 microM per 3 settimane e acido ascorbico 100 microM per 1h; «SKF81297 delivered at dose 1 μM» contro 50 microM; «quinpirole delivered at dose 2 μM» contro 20 microM nei campioni Quin and CGS). Nessun campione finisce però nel gruppo di un'altra condizione e nessun altro livello ha quella descrizione: lo leggo come forma del nome e, nel dubbio, scrivo sostenuto.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il livello neurotransmitter = «dopamine» (72 campioni) prende campioni senza dopamina: GSM7567960 «Acute Antag SCH Only 1h» (treatment «SCH23390 250 microM 1h»), GSM7567964 «Acute Antag Sulp Only 1h», GSM7567971 «CGS 1h», GSM7567982 «Quinpirole 1h», GSM7567990 «SKF812 1h», GSM7567994 «SKF829 1h». I campioni PBS (GSM7567955, treatment «PBS 1X 1h») hanno «ascorbic_acid» e stanno insieme ai campioni AA pre AA. La tabella smentisce questi livelli. In più il testo dichiara a confronto queste condizioni («responses to dopamine and dopamine receptor agonists and antagonists»; «Comparative gene expression analyses were compared against PBS dosed hMSN-like cells») e le due linee, che B non ha («similar and distinct responses between hMSN-like cells derived from H9 and H1 stem cell lines»)."
+  }
+]

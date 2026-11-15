@@ -1,0 +1,162 @@
+[
+  {
+    "scheda": "S013",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore siRNA con tre livelli (siCtrl, siGRHL2A, siGRHL2C), 3 gruppi: tiene distinti i due siRNA contro GRHL2, come i titoli dei campioni. Dividere repliche della stessa condizione non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore genotipo: knockdown di GRHL2 (12 campioni, i due siRNA insieme) contro wild type (6 siCtrl), 2 gruppi. Il testo dichiara solo «This study compares depletion of GRHL2 by siRNA vs siCtrl» e la colonna si_group unisce anche lei i due siRNA: i due siRNA non sono dichiarati a confronto fra loro."
+  },
+  {
+    "scheda": "S032",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore trattamento con tre livelli (prima del LVAD come riferimento, 7 giorni, 180 giorni), 3 gruppi: è il confronto prima e dopo il supporto meccanico che il testo descrive. I pazienti non entrano come fattore.",
+    "B": "errore",
+    "B_tipo": "a",
+    "B_prova": "Il fattore «disease» (tipo stato) ha 9 livelli DCM, GCN, HSD, JDM, NMN, RAB, RDR, TCA, TLF: sono le sigle dei pazienti della colonna description (per esempio «DCM_T0»), una per individuo, non malattie. Con LVAD e tempo dà 25 gruppi di un campione. Dubbio: il donatore come contesto con più campioni per donatore non è un errore, ma qui la sigla è scritta come stato di malattia, ogni livello è un individuo e l'individuo non è l'oggetto del confronto."
+  },
+  {
+    "scheda": "S038",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori: sesso (2 femmine, 6 maschi) e parte dell'organismo (7 fegato, 1 polmone), 3 gruppi. I livelli seguono la tabella dei campioni. Il sesso è scritto come perturbazione e il testo non dichiara un confronto per sesso: è una variabile di contesto tenuta, non un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un solo fattore, il tessuto (7 fegato, 1 polmone), 2 gruppi, come la tabella. Togliere il sesso non è un errore: il testo non lo dichiara a confronto."
+  },
+  {
+    "scheda": "S040",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Lentivirus (shNS, shALKBH5-#1, shALKBH5-#2) per tempo (0h, 8h, 12h), 9 gruppi: i livelli seguono titoli e colonne. Tenere distinti i due shRNA è una divisione di repliche della stessa condizione.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo (knockdown di ALKBH5 con i due shRNA insieme, contro wild type) per durata dell'actinomicina D (0h come riferimento, 8 h, 12 h), 6 gruppi. Il testo non dichiara i due shRNA a confronto fra loro; 0h come riferimento è una scelta del livello di base."
+  },
+  {
+    "scheda": "S041",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare (RMC219, RMC2C) per genotipo (sovraespressione di SMARCB1 = 12 campioni con doxiciclina, 12 h e 48 h insieme; wild type = 6 DMSO), 4 gruppi. Dubbio su (d): il testo scrive «Cells were treated with either DMSO or with 2uM of doxycycline for 12 or 48 hours», ma non dichiara 12 e 48 ore a confronto fra loro; il tempo è una variabile di contesto tolta. Nel dubbio, sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare per trattamento (DMSO, doxiciclina) per tempo (0, 12, 48 ore), 6 gruppi: segue titoli e colonne della tabella e tiene distinte le due durate che il testo nomina («for 12 or 48 hours»)."
+  },
+  {
+    "scheda": "S050",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il trattamento segue la colonna treatment, che in 16 campioni su 16 è uguale al numero di replica (replica 1 = control, replica 2 = TMG). Titolo e description la smentiscono in 8 campioni: GSM5211737 «D0 control, replicate 2», description «D0.D.2», messo in TMG; GSM5211738 «D0 TMG, replicate 1», «D0.T.1», messo in control. Dubbio che resta: la colonna sostiene A, ma due campi (titolo e description) dicono il contrario e la colonna coincide con la replica.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tempo per Thiamet G 40 uM contro riferimento, 8 gruppi: il trattamento segue titolo e description (per esempio GSM5211737 «D0 control, replicate 2» nel riferimento, GSM5211738 «D0 TMG, replicate 1» nel trattato). Dubbio: non segue la colonna treatment, che però coincide con il numero di replica."
+  },
+  {
+    "scheda": "S056",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Stato di infezione per categoria di trattamento per trattamento (8 livelli), 16 gruppi: i livelli seguono le colonne della tabella dei campioni e tengono distinte le condizioni che il testo elenca.",
+    "B": "non_verificabile",
+    "B_tipo": "",
+    "B_prova": "Il fattore «collection of material» divide DE_Exclude (1 campione, GSM5466144 COV_NPC_7) da DE_Include (47): questa distinzione non c'è né nella tabella dei campioni né nel testo. B unisce anche IL10RB-1..4 gRNA in un livello di sovraespressione: il testo li elenca come condizioni ma non li dichiara a confronto fra loro, quindi non è (d)."
+  },
+  {
+    "scheda": "S077",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare (LNCaP, DU145, NCI-H660) per genotipo (knockdown di YAP1 con i cloni 1 e 2 insieme, sovraespressione di YAP1, wild type), 6 gruppi. Il testo parla di «YAP1 knowckdown or overexpression» e non dichiara i due cloni a confronto: unirli è unire repliche della stessa condizione.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare per perturbazione genetica (control, YAP1_KD_clone1, YAP1_KD_clone2, YAP1_OE), 8 gruppi: segue i titoli dei campioni. Tenere distinti i due cloni è una divisione di repliche, non un errore."
+  },
+  {
+    "scheda": "S080",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tre livelli: control, YBX1-ko sgRNA1, YBX1-ko sgRNA2, 3 gruppi, come i titoli. Il testo: «YBX1-knockout using 2 different CRISPR guide-RNAs and a non-targeting guide as control»; tenere distinte le due guide è difendibile.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockout di YBX1 (8 campioni, le due guide insieme) contro wild type (4), 2 gruppi. Il testo nomina le due guide ma non le dichiara a confronto fra loro: unirle è unire repliche della stessa condizione."
+  },
+  {
+    "scheda": "S094",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore tessuto: colon 49, duodeno 30, ileo 47, «non applicabile» 12 (i campioni di muscolo VU15_MuD, VU15_MuC, VU15_MuI, VU20_Musc), 4 gruppi. Il testo è un atlante e non dichiara un confronto per muscolo o per sesso. Dubbio: i campioni «Musc» di VU19, VU21, VU22, VU23, VU24 stanno in duodeno, colon o ileo come dice source_name_ch1 mentre il titolo dice Musc; è uguale nei due disegni e la tabella lo sostiene.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso (54 femmine, 84 maschi, scritto come perturbazione) per parte dell'organismo con 6 livelli (colon, duodeno, ileo, muscolo nel colon 3, nel duodeno 3, nell'ileo 6), 9 gruppi. I livelli seguono la tabella; il sesso è una variabile di contesto tenuta, che il testo non dichiara a confronto. Stesso dubbio di A sui campioni «Musc» di VU19, VU21-VU24."
+  },
+  {
+    "scheda": "S098",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "a",
+    "A_prova": "Il fattore «biological replicate» (rep1 6, rep2 6, rep3 5, rep4 3) fa i 4 gruppi con il numero di replica, che non è una variabile dell'esperimento; la perturbazione genetica ha un solo livello «non scritto» per tutti i 20 campioni. Vale anche (c): il testo dichiara «we performed knockdown of these genes using shRNAs and checked which genes were differentially expressed» e NC, shNFIA, shNFIB sono nei titoli.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare (BT084 9, PDX12 11) per genotipo (knockdown di NFIA 7, knockdown di NFIB 6, wild type 7), 6 gruppi: segue i titoli (NC, shNFIA, shNFIB) e il confronto che il testo dichiara."
+  },
+  {
+    "scheda": "S099",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Un solo gruppo: tutti gli 8 campioni hanno treatment = «shARL4D-1». La scheda lo smentisce per 6: GSM5603552, GSM5603553, GSM5603556, GSM5603557 sono «MB002_SCR_rep1..4» (description SCR_1..4) e GSM5603558, GSM5603559 sono «MB002_shARL4D-2_rep1/2». Vale anche (c): «we knocked down ARL4D with two separate shRNA in MB002 ... to identify the downstream genes of ARL4D»; il confronto knockdown contro controllo sparisce.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockdown di ARL4D (4 campioni: shARL4D-1 e shARL4D-2) contro wild type (4 SCR), 2 gruppi, come i titoli. Il testo nomina due shRNA ma non li dichiara a confronto fra loro: unirli è unire repliche della stessa condizione."
+  },
+  {
+    "scheda": "S104",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore grado: grade1 (11) contro grade2 (5), 2 gruppi, come la colonna grade (GSM7688120-24 «Grade 2 meningioma», gli altri «Grade 1 meningioma»).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un solo gruppo «meningioma» (16 campioni). Il testo («RNA-seq of 17 human meningioma tumor samples was used to validate our MRI based predictions of iron homeostasis») non dichiara un confronto per grado: senza una frase del testo togliere il grado non è (c)."
+  },
+  {
+    "scheda": "S108",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il trattamento segue la colonna timepoint: musica 52 campioni, non trattati 6. La colonna dice 2 per la maggior parte dei titoli «Timepoint-1», anche per tutti e due i campioni dello stesso soggetto: per esempio GSM7662543 «Control; Timepoint-1; 22-P-1021 [22_P_1021_1_t]» è messo fra i trattati. Il disegno è prima e dopo («before and after a 50-minute session of classical musical stimuli»; «differential expression between the two time points and cohorts»): i campioni di prima non possono essere trattati.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Musica 50 minuti (29) contro riferimento (29) per malattia (disturbo cognitivo 30, riferimento 28), 4 gruppi: il tempo segue l'etichetta del titolo e le coorti seguono il testo. Dubbio: nel soggetto 22-P-1145 l'etichetta del titolo e la sigla fra parentesi non concordano (GSM7662555 «Timepoint-2 … [22_P_1145_1_t]», GSM7662556 «Timepoint-1 … [22_P_1145_2_t]»); B segue l'etichetta del titolo."
+  },
+  {
+    "scheda": "S109",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "A mette i 5 campioni shScramble_48h (GSM7009753-57) nel livello «gene knockdown of CHD4» (17 campioni; wild type solo 5), come la colonna genotype. Titolo, colonna treatment (shScramble) e description («FilteredNormalizedCounts_48h») dicono che sono controlli scramble: la scheda smentisce il livello. Dubbio che resta: una colonna della tabella sostiene A, ma tre campi dicono il contrario.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockdown (CHD4#1 6, CHD4#2 6, FLI1 6, scramble 10) per tempo (24h, 48h), 8 gruppi: segue titoli e colonna treatment; i 5 shScramble_48h stanno fra i controlli."
+  },
+  {
+    "scheda": "S124",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare (H1 78, H9 45) per trattamento con 26 livelli, uno per ogni valore della colonna treatment (PBS = riferimento), 41 gruppi: i campioni che stanno insieme sono quelli della tabella. Dubbio: tre nomi di livello hanno dosi che la tabella smentisce (DGA pre AA: «ascorbic acid 2 μM 3 w, glutamate 100 μM 1 h» contro «Glutamate 2 microM 3 weeks, Ascorbic Acid 100 microM 1h»; Quin and CGS: quinpirole 2 μM contro 20 microM; SKF81297 1 μM contro 50 microM), ma nessun campione cambia gruppo: è la forma del nome.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il livello «dopamine» (72 campioni) contiene campioni che non hanno ricevuto dopamina: GSM7567960-62 «SCH23390 250 microM 1h», GSM7567964-66 «Sulpiride 250 microM 1h», GSM7567971-74 «CGS21680 5 microM 1h», quinpirole, SKF81297, SKF82958; i 6 campioni PBS (GSM7567955-58, GSM7568053-56 «PBS 1X 1h») stanno in «ascorbic_acid» con AA pre AA. Vale anche (d): il testo dichiara «responses to dopamine and dopamine receptor agonists and antagonists presented in dosing patterns mimicking acute, chronic, and withdrawal regimens» e «compared against PBS dosed hMSN-like cells»; B unisce agonisti, antagonisti e dopamina, e Acute Dop 24h con Chronic Dop 24h."
+  }
+]

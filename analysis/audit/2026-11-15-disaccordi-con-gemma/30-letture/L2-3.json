@@ -1,0 +1,132 @@
+[
+  {
+    "scheda": "S015",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori, malattia (sclerosi multipla 15 / riferimento 16) e parte del tessuto (sostanza grigia 10 / bianca 21), 4 gruppi. I livelli seguono i titoli dei campioni e il disegno del testo: «10 MS donors, including 5 grey matter and 10 white matter samples, and from 11 control donors, including 5 grey matter and 11 white matter».",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "La malattia segue la regione e non il donatore: GSM3045828-GSM3045832 (titoli «Sample_MS_GM_*») sono nel livello «control» e GSM3045833-GSM3045843 (titoli «Sample_CON_WM_*») sono nel livello «ms». I titoli smentiscono l'assegnazione. Ne escono solo 2 gruppi."
+  },
+  {
+    "scheda": "S023",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM3414829-GSM3414832 (MCF7_MLL3_WT_Rep1/2 e MCF7_MLL3_KO_Rep1/2) hanno il genotipo «non applicabile» e cadono in un solo gruppo, ma la colonna genotype/variation dice «Wild type MLL3» e «MLL3 knockout»: il knockout e il suo controllo stanno insieme. Il disegno toglie anche la linea cellulare (MCF7 e CAL51 insieme), che da sola è contesto e non sarebbe errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare, genotipo e trattamento danno gruppi difendibili: shMLL3 e MLL3 KO sono separati dai controlli, i controlli di tipo diverso sono uniti come riferimento. Dubbio: i livelli di shMLL3 (GSM3414817-20) e di MLL3 KO (GSM3414831-32) portano il nome del gene WDR5, che non è MLL3; i campioni che stanno insieme sono giusti e la forma del nome non conta, quindi resta sostenuto."
+  },
+  {
+    "scheda": "S030",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "La perturbazione è divisa per variante (rs1078004, rs12311848, rs78260931, safe) e per metodo (Cas9 / CRISPRa); il TNFα è collineare con Cas9, come dice il testo («cells expressing Cas9 were stimulated using TNFɑ»). 5 gruppi, coerenti con la tabella dei campioni.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Il livello «sgRNA targeting coronary artery disease loci» unisce in un solo gruppo CRISPRa GSM5058281-82 (sg_06147, rs12311848) e GSM5058285-86 (sg_25344, rs78260931), cioè due loci diversi. Il riassunto li dichiara distinti: «CRISPR-mediated over-expression experiments at the FURIN/FES, CCDC92/ZNF664 and CNNM2 loci». Dubbio residuo: il disegno del testo dice solo «sgRNA targeting coronary artery disease loci or a safe-harbor locus as control»."
+  },
+  {
+    "scheda": "S040",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Lentivirus (shNS, shALKBH5-#1, shALKBH5-#2) per tempo (0h, 8h, 12h), 9 gruppi che seguono le colonne «lentivirus» e «time point». Tenere separati i due shRNA divide repliche della stessa condizione: non è errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo (knockdown di ALKBH5 6 / wild type 6) per trattamento (actinomicina D 8 h, 12 h, riferimento = 0h), 6 gruppi. Unire i due shRNA e usare lo 0h come riferimento sono scelte difendibili; nessun campione è in un livello che la tabella smentisce."
+  },
+  {
+    "scheda": "S066",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM7232892-93 (G3BP_KO_NTF2-rescue_NaAsO2_rep1/2) sono nel livello «lipofectamine_transfection_of_WT_G3BP1_transgene_sodium_arsenite_treatment», ma la tabella dice «Lipofectamine transfection of NTF2 deletion mutant G3BP1 transgene, 200 uM sodium arsenite»: il mutante è assegnato al transgene WT. Anche il livello «transient_transfection» unisce rescue WT e rescue col mutante NTF2.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Un solo fattore, genotipo (KO 6, rescue 10, WT 2). GSM7232890-93 (rescue col mutante senza NTF2) sono nel livello «wild type genotype G3BP1 … Genetic rescue», ma la tabella dice «NTF2 deletion mutant G3BP1 transgene». Il disegno toglie anche l'arsenito (GSM7232884-85 stanno con i KO non trattati): titolo, riassunto e disegno non hanno una frase che lo dichiara a confronto, quindi non lo conto come (c)."
+  },
+  {
+    "scheda": "S071",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare, genotipo (sovraespressione di PIK3CA 3 / wild type 27), fenotipo (resistente 12 / riferimento 18) e trattamento (JQ1 12 / riferimento 18), 9 gruppi coerenti con la tabella. Il controllo GFP sta con le SK-N-BE(2)-C naive col veicolo: è un'unione di controlli che il testo non dichiara a confronto.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM3231619-GSM3231624 (Kelly, «Naïve_JQ1_treated_rep1-3» e «Resistant_JQ1_treated_rep1-3») hanno il trattamento «vehicle», ma la colonna «treatement» e i titoli dicono JQ1. Il disegno conta JQ1 6 / veicolo 24 e nelle Kelly i trattati stanno con i non trattati."
+  },
+  {
+    "scheda": "S075",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare (10 livelli) per trattamento (etanolo 2 h, etanolo 6 h, metilprednisolone 2 h, metilprednisolone 6 h), 38 gruppi che seguono titoli e tabella per tutti i 138 campioni. Gli osteoblasti sono divisi in «derived from adult» (GSM3057704, GSM3057706) e «derived from child» (GSM3416614-25): la distinzione sta in source_name_ch1 ed è contesto, non errore.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Nei campioni BR2-BR4 (GSM3416554-GSM3416661) l'agente è «non scritto» per tutti: per esempio GSM3416554-56 (Mono_2H_MP) e GSM3416557-59 (Mono_2H_VH) stanno nello stesso gruppo, cioè metilprednisolone e veicolo uniti. Nei campioni BR1 (GSM3057630-GSM3057756) il tempo è «non scritto» e 2 h e 6 h sono uniti, benché la colonna «time» dica «2 hours» e «6 hours». Il testo dichiara il confronto: «samples were collected at two time points after treatment with methylprednisolone or vehicle: 2 hours and 6 hours»."
+  },
+  {
+    "scheda": "S082",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare per tempo per trattamento (9 livelli), 18 gruppi che seguono la tabella. Il nome del livello della combinazione nel PDX ha le dosi scambiate («lenalidomide delivered at dose 0.1%, VTP50469 delivered at dose 50 mpk», la tabella dice «0.1% VTP50469 in chow and 50mpk lenalidomide»), ma i campioni che stanno insieme sono giusti.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "L'agente «non scritto» (18 campioni) unisce in ogni linea «1uM CC220», «1uM CC220 and 50nM VTP50469 combo» e «5uM lenalidomide and 50nM VTP50469 combo»: GSM5140888-93 e GSM5140900-02 in MOLM-13, GSM5140906-11 e GSM5140921-23 in MV4;11. Il testo li dichiara distinti e a confronto: «following drug treatment with lenalidomide, CC220, VTP-50469 and the drug combinations»."
+  },
+  {
+    "scheda": "S084",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «low» (24 campioni) unisce le tre concentrazioni di VX: i campioni dal titolo «medium» e «high» (GSM6855755-62 e GSM6855771-78) stanno con i «low». Il testo dichiara le tre concentrazioni distinte e a confronto col controllo: «comparing VX-exposed (three concentrations) to Control media -exposed cultures at Day 1 (24 hrs) and Day 7 (168 hrs)». Il nome «low» è anche smentito dai titoli per 16 campioni.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tempo (1 d, 7 d) per trattamento (riferimento, VX 6,25 uM, 12,5 uM, 25 uM), 8 gruppi da 4 campioni. Le dosi vengono dal protocollo («final concentrations of 6.25 µM, 12.5 µM, and 25 µM») e seguono i titoli low, medium, high; il giorno segue la colonna «day»."
+  },
+  {
+    "scheda": "S087",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo (controllo col vettore 6, knockdown di PU.1 8, sovraespressione di PU.1 2, wild type 10) per trattamento (controllo 11, riferimento 4, butirrato 3, vorinostat 8), 9 gruppi coerenti con la tabella. I veicoli DMSO e PBS delle K562 non modificate sono uniti (GSM1940164-65 con GSM1940168-70) e i due shRNA sono uniti: unioni di controlli e di repliche, che il testo non dichiara a confronto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Agente (DMSO 15, NaBut 3, SAHA 8) per variazione genetica (control 12, depletion 8, overexpression 2, vector control 4), 8 gruppi. Dubbio: il livello «DMSO» contiene anche i veicoli PBS (GSM1940168-70) e i campioni non trattati (GSM1940174-77, tabella «none (untreated)»), e il controllo col vettore della sovraespressione (GSM1940176-77) sta nel livello «control» con le K562 non modificate, mentre quello del knockdown ha un livello suo. Sono unioni di controlli sotto un nome impreciso; nessun campione trattato sta con i non trattati e il testo non dichiara a confronto i controlli fra loro, quindi resta sostenuto."
+  },
+  {
+    "scheda": "S088",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori, KO di SCAF4 e KO di SCAF8, che danno 4 gruppi: WT 6, KO singolo di SCAF4 9, KO singolo di SCAF8 9, doppio KO 12. Seguono la colonna «crispr status» per tutti i 36 campioni; la doxiciclina non entra, e il testo dice che un doppio KO col gene di rescue espresso «is genotypically and phenotypically a single SCAF8 KO cell line».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo (4 livelli, come «crispr status») per doxiciclina (con 18 / senza 18), 6 gruppi. La doxiciclina segue source_name_ch1 e il protocollo («plus Dox» / «minus Dox») e divide i KO singoli per la linea di origine (per esempio SCAF4KO1 senza, SCAF4KO2 e KO3 con): è una variabile di contesto tenuta, non un'assegnazione smentita."
+  },
+  {
+    "scheda": "S098",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "a",
+    "A_prova": "L'unico fattore che divide i campioni è «biological replicate» (rep1-rep4, tipo tecnico): i 4 gruppi sono i numeri di replica e uniscono NC, shNFIA e shNFIB (per esempio GSM7731549, GSM7731550, GSM7731551 insieme in «rep1»). La perturbazione è «non scritto» per tutti i 20 campioni, quindi manca anche la variabile che il testo dichiara a confronto (c): «we performed knockdown of these genes using shRNAs and checked which genes were differentially expressed».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea (BT084 9 / PDX12 11) per genotipo (knockdown di NFIA 7, knockdown di NFIB 6, wild type 7), 6 gruppi che seguono i titoli (NC, shNFIA, shNFIB) e source_name_ch1 per tutti i 20 campioni."
+  },
+  {
+    "scheda": "S110",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore «stage» con 4 livelli (non differenziato, NCSC, ENCP, EN) da 2 campioni l'uno, come dice il riassunto («at 4 different stage»). H1 e hiPSC stanno insieme negli stadi non differenziato e NCSC (GSM2108668 con GSM2108669, GSM2108670 con GSM2108671): la linea di origine è contesto, toglierla non è errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore «cell type» con 6 livelli che seguono la colonna «cell type» della tabella: H1 e hiPSC sono separati, anche negli NCSC; ENCP 2 e EN 2. I nomi sono imprecisi (gli NCSC sono «neural stem cell», gli ENCP «neural crest cell»), ma i campioni che stanno insieme sono quelli della tabella."
+  }
+]

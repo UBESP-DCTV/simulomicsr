@@ -1,0 +1,152 @@
+[
+  {
+    "scheda": "S001",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori, cell_line (parental / DTMYC) e treatment (DMSO / dTAG47): 4 gruppi che seguono titoli e colonne dei 10 campioni. Nessun campione è in un livello che la scheda smentisce.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Un solo fattore genotype: «Homozygous negative MYC» per i 3 campioni DTMYC + dTAG47, «wild type genotype» per gli altri 7. Il livello wild type unisce le cellule parentali con DMSO (GSM5023041), le parentali con dTAG47 (GSM5023042-44) e le DTMYC con DMSO (GSM5023045-47). Il testo dichiara il confronto dTAG47 contro DMSO: «engineered G401 cells were treated for 24 hours with dTAG47 or DMSO control. For RNA-seq of parental G401 cell lines treated with dTAG47, the experiment was also performed at the 24 hour timepoint». Certezza media: il trattamento delle parentali è un controllo del composto, ma nel disegno B il trattamento come variabile manca del tutto (anche tipo c)."
+  },
+  {
+    "scheda": "S008",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare (6) per genotype (ETV6 KO 28, EWS-FLI1 KO 2, wild type 18): 13 gruppi, assegnazioni coerenti con i titoli. Dubbio: mette in un gruppo A673-sgNEG, A673-SAM-Control e A673-SAM-Dox, e RD-EF con RD, che titoli e colonna treatment distinguono; ma titolo, riassunto e disegno non dichiarano quel confronto con una frase chiara (solo «different manipulation of ETV6 and EWS-FLI1»; la doxiciclina sta solo nel protocollo). Senza la frase resta sostenuto.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore genetic_perturbation ha i livelli control (2), doxycycline (2) e «sgNEG» (44): i campioni con sgETV6 e sgEWS_FLI1, per esempio GSM5701291 «A673-sgETV6_1_rep1» e GSM5701295 «A673_sgEWS_FLI1_rep1», sono assegnati a «sgNEG», che i titoli smentiscono. Così si perde anche il confronto del titolo («ETV6 dependency») e del disegno («different manipulation of ETV6 and EWS-FLI1») (anche tipo c e d)."
+  },
+  {
+    "scheda": "S010",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Fattori developmental stage e treatment, 4 gruppi: manca il tipo cellulare (A2B5+ «Apos» contro A2B5− «Aneg»), che cambia fra i 29 campioni. Il testo lo dichiara a confronto: «RNA was extracted from dissociated cultures of A2B5+ or A2B5- cells ... under control conditions or with addition of metformin» e «Metformin induced changes in gene expression distinct for each cell type». Apos e Aneg stanno negli stessi gruppi.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Treatment per age per cell_type (Apos = progenitori, Aneg = oligodendrociti maturi): 8 gruppi; le assegnazioni seguono titoli e colonne."
+  },
+  {
+    "scheda": "S016",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Fattori biological sex e genotype, 4 gruppi: manca la stimolazione con LPS (M0 contro M1), che cambia fra i 36 campioni; M0 e M1 stanno nello stesso gruppo. Il testo: «most prominently after LPS priming» e «For all lines, cells without stimulation ('M0') and with LPS stimulation (100 ng/mL, 48 hours, 'M1') were included».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotype per treatment (M0 / M1 con LPS): 4 gruppi; le assegnazioni seguono titoli e colonne. Il sesso tolto è una variabile di contesto che il testo non dichiara a confronto."
+  },
+  {
+    "scheda": "S021",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori di genotype (knockdown di p53, knockdown di LATS1/2): 4 gruppi di 2 campioni, come le 4 condizioni di siRNA della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "sirna (4 livelli) per batch (1 / 2, tipo tecnico): 8 gruppi di 1 campione. Dubbio: la colonna è «batch/replicate» e il testo dice «Two independent MCF10A batches provided biological replicates», quindi il lotto è anche l'indice della replica (possibile tipo a). Però ogni lotto contiene le 4 condizioni: è un lotto come variabile di contesto (blocco), non una sigla per campione. Nel dubbio: sostenuto."
+  },
+  {
+    "scheda": "S038",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Biological sex per organism part: 3 gruppi sugli 8 tumori. Il sesso e la sede sono variabili di contesto; il testo non dichiara un confronto fra questi campioni e le assegnazioni seguono le colonne.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Solo il tessuto (liver 7 / lung 1): 2 gruppi; le assegnazioni seguono la colonna. Togliere il sesso non è un errore."
+  },
+  {
+    "scheda": "S045",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "cell_type (macrophages 11 / neurons 7) per treatment: GSM7120101 e GSM7120102 («S20/S21 CD14+ primary monocytes D4 unstimulated», colonna cell type «CD14+ primary monocytes») sono assegnati a «macrophages» e stanno nel gruppo di GSM7120124 (macrofagi da hiPSC non stimolati). La scheda smentisce il livello.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Cell type (monociti CD14+ 2, macrofagi 9, neuroni 7) per treatment (lipofectamine, poly dA:dT 0.25, poly dA:dT 2, non stimolato): 7 gruppi; le assegnazioni seguono titoli e colonne dei 18 campioni."
+  },
+  {
+    "scheda": "S046",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Biological sex per disease (hypoglycemia) per treatment, 10 gruppi: manca il prima / dopo il pasto, che cambia fra i 64 campioni (colonna «status pre or post meal»: 32 Pre, 32 Post); Pre e Post stanno nello stesso gruppo. Il testo: «we isolated monocytes from peripheral blood samples taken immediately before and 60 min ... after ingestion of the mixed meal test on all three treatment days», per misurare i cambiamenti trascrizionali. Certezza media: il testo descrive il prelievo prima e dopo, il confronto è dichiarato in modo meno diretto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Treatment per meal (pre / post) per hypoglycemia: 12 gruppi; le assegnazioni seguono le colonne."
+  },
+  {
+    "scheda": "S049",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotype KO (5) contro WT (3): unisce i due cloni KO, che sono repliche della stessa condizione; il testo dichiara solo «WT and UTX-KO neurons».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotype con KO clone 1 (3), KO clone 2 (2) e wild type (3): la distinzione dei cloni sta nei titoli («RNA-seq_UTX_KO1_rep1», «RNA-seq_UTX_KO2_rep1»), quindi è verificabile; dividere le repliche per clone non è un errore."
+  },
+  {
+    "scheda": "S053",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore disease ha un solo livello, «septic shock», per tutti gli 80 campioni: i 42 campioni di controllo (per esempio GSM7655493 «control1_cortex») sono assegnati a «septic shock», che la scheda smentisce. Manca così il confronto del testo «seven individuals who succumbed to sepsis and seven uninfected controls» (anche tipo c). Restano 6 gruppi, solo per tessuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Disease (septic shock 38 / riferimento 42) per organism part (6 tessuti): 12 gruppi; le assegnazioni seguono titoli e colonne."
+  },
+  {
+    "scheda": "S063",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "a",
+    "A_prova": "Usa come fattore instrument_model (HiSeq_2500 60 / NovaSeq_6000 2), una colonna tecnica: separa GSM4872601 «LNCaP-95 [LN95_P24_290]» dagli altri tumori solo per il sequenziatore. L'altro fattore (healthy 1 / prostate_cancer 61) è difendibile.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore «cell line» con 31 livelli, uno per modello PDX (1-3 campioni per livello), con PrEC come controllo. Dubbio: ogni modello viene da un paziente (possibile tipo a); però i modelli sono l'oggetto dello studio («29 prostate cancer patient-derived xenografts (PDXs) recapitulating the full spectrum of proposed genetic alterations») e i livelli sono modelli con repliche, non sigle per campione. Nel dubbio: sostenuto."
+  },
+  {
+    "scheda": "S079",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Biological sex per disease (5 livelli) per organism part (5 sedi): 29 gruppi. Le assegnazioni seguono le colonne dei 162 campioni (i 13 «ControlHippocampus» in «Ammon's horn», i TLE-HS in «temporal cortex»). Il sesso tenuto come fattore è una variabile di contesto: non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore disease_state con 5 livelli; le 4 patologie seguono la colonna. Dubbio: il livello «control_cortex» (27) contiene anche i 13 controlli di ippocampo (per esempio GSM8084991 «ControlHippocampus_1», tessuto Hippocampus), che la colonna disease state tiene distinti da «ControlCortex»; il disegno dice «matching control cortex and hippocampal samples». I due controlli sono distinti per tessuto, ma il testo non li dichiara a confronto fra loro, e togliere il tessuto come contesto non è un errore; il nome del livello non conta. Nel dubbio: sostenuto."
+  },
+  {
+    "scheda": "S099",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Un solo gruppo: tutti gli 8 campioni hanno treatment = «shARL4D-1». I 4 controlli con shRNA scrambled (GSM5603552, GSM5603553, GSM5603556, GSM5603557, titoli «MB002_SCR_rep1-4») e i 2 con il secondo shRNA («MB002_shARL4D-2_rep1-2») sono assegnati a «shARL4D-1», che i titoli smentiscono. Si perde il confronto del testo: «we knocked down ARL4D with two separate shRNA in MB002, then processed RNA-seq to identify the downstream genes of ARL4D» (anche tipo c).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotype: knockdown di ARL4D (4: shARL4D-1 e shARL4D-2 uniti) contro «wild type genotype» (4 SCR). Unire i due shRNA dello stesso gene è unire repliche della stessa condizione; il testo non dichiara un confronto fra i due shRNA. Il nome «wild type» per i controlli SCR è solo un nome."
+  },
+  {
+    "scheda": "S107",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Disease: «reference subject role» per tutti i 12 campioni «IIH_WT_*», IIH per i 13 «IIH_DT_*». Ma 6 dei 12 hanno subject status «IIH» nella tabella: GSM5224858 «IIH_WT_003», GSM5224859, GSM5224860, GSM5224861, GSM5224869 «IIH_WT_H5041», GSM5224870. Sono pazienti assegnati al livello di controllo, che la scheda smentisce; i controlli veri sono solo GSM5224862-63 e GSM5224865-68.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Disease (control 6 / iih 19) per treatment (none 18, placebo 4, drug 3): 4 gruppi; le assegnazioni seguono le colonne subject status e treatment. I campioni Pre stanno con «none» insieme agli IIH non trattati: difendibile, il testo dichiara solo il confronto IIH contro controlli."
+  },
+  {
+    "scheda": "S108",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Disease per music (treated 52 / untreated 6). 23 campioni con titolo «Timepoint-1» sono assegnati a «treated», per esempio GSM7662543 «Control; Timepoint-1; 22-P-1021 [22_P_1021_1_t]» e GSM7662546 «ACD; Timepoint-1; 22-P-1052 [22_P_1052_1_t]», nello stesso gruppo del campione «Timepoint-2» dello stesso soggetto. Il disegno segue la colonna timepoint, che dà 2 a tutti e due i campioni del soggetto; il titolo e il testo la smentiscono: «before and after a 50-minute session of classical musical stimuli», «differential expression between the two time points and cohorts». Certezza media: la colonna timepoint sostiene il disegno A, ma due prelievi dello stesso soggetto allo stesso tempo non sono possibili in questo studio.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Disease (cognitive disorder 30 / riferimento 28) per treatment (musica 29 / riferimento 29): 4 gruppi. Segue il titolo (Timepoint-1 = prima, Timepoint-2 = dopo), coerente con il disegno appaiato del testo; la colonna timepoint è diversa dal titolo in 23 campioni, ma il titolo e il testo sostengono questa lettura. In GSM7662555 e GSM7662556 titolo e sigla fra parentesi non concordano; il disegno segue il titolo."
+  }
+]

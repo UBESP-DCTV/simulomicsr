@@ -1,0 +1,162 @@
+[
+  {
+    "scheda": "S009",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare (NPC da ESC o da iPSC) e genotipo (5 livelli): 6 gruppi. I livelli corrispondono alle colonne della tabella; unire le linee con lo stesso genotipo è unire repliche della stessa condizione.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare (7 livelli, 2 repliche l'una) e genotipo: 7 gruppi. Dubbio: ogni linea iPSC viene da un individuo, ma la linea è una colonna della tabella, ha 2 campioni per livello ed è una variabile di contesto ammessa; non è una sigla di campione."
+  },
+  {
+    "scheda": "S017",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Malattia e talidomide danno 3 gruppi uguali alla colonna «group» (THAL, ENL, LL). Dubbio: i 13 campioni ENL dopo talidomide hanno disease = «non applicabile» anche se sono pazienti ENL; i campioni che stanno insieme sono però quelli dello studio.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso (female 7, male 29) e malattia: 6 gruppi. Il sesso è una variabile di contesto e i livelli corrispondono alla colonna «Sex»; tenere il sesso non è un errore."
+  },
+  {
+    "scheda": "S022",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo ARID1A, perturbazione di CHAF1A (knockdown, degradazione 12 h e 24 h, nessuna) e trattamento (GSK126, testosterone, riferimento): 16 gruppi coerenti con la tabella. Dubbio: unisce i controlli «Control_DMSO» e «Control» dello stesso genotipo; il testo non li dichiara a confronto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo, knockdown, degradazione e trattamento: 16 gruppi. Dubbio: gli 8 campioni con degradazione di CHAF1A (dTAG 12 h e 24 h nella tabella) hanno degradation = «non applicabile» e i due tempi sono uniti; restano però un gruppo separato dai controlli e il tempo è una variabile di contesto. Il testo dice solo «further perturbed with CHAF1A knockdown, degradation or EZH2 inhibitor or Testorsterone»."
+  },
+  {
+    "scheda": "S036",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il campione GSM3510882 («TRAPSeq Neu WT rep3 Lane 3», genotype wild type nella tabella) è assegnato a disease = «Rett syndrome»: la scheda lo smentisce. I campioni RTT della scheda sono 16, il livello ne conta 17.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tipo cellulare e genotipo (RTT 16, wild type 24), più un fattore di protocollo con un solo livello che non divide i campioni: 5 gruppi che corrispondono alla tabella."
+  },
+  {
+    "scheda": "S041",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare e genotipo (sovraespressione di SMARCB1 12, wild type 6): 4 gruppi. Dubbio: unisce 12 h e 48 h di induzione; il testo dice «for 12 or 48 hours» ma non dichiara un confronto fra i due tempi, e il tempo è una variabile di contesto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare, trattamento con doxiciclina e tempo dopo il trattamento (0, 12, 48 h): 6 gruppi che corrispondono alla tabella."
+  },
+  {
+    "scheda": "S042",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tempo e trattamento (7 livelli, DMSO e non trattati distinti): 14 gruppi che seguono le colonne della tabella. Dubbio: GSM8156327, GSM8156328 e GSM8156329 hanno «24 hr» nel titolo e «2 hr» nella colonna time; il disegno segue la colonna e così unisce i 6 campioni Selumetinib&Digoxin. La scheda si contraddice, quindi non è un errore certo.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "I campioni di solo Selumetinib (GSM8156300-302, GSM8156336-338; tabella: treatment 2 = None) e i campioni Selumetinib&Rigosertib (GSM8156315-317, GSM8156333-335, GSM8156339-341; tabella: treatment 2 = Rigosertib) sono assegnati a second_treatment = «digoxin»: la tabella lo smentisce. Manca anche un fattore per il selumetinib, quindi farmaci diversi cadono nello stesso gruppo."
+  },
+  {
+    "scheda": "S057",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare e shRNA (control, sh6, sh7, sh8): 6 gruppi che corrispondono alla colonna treatment della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare e genotipo (knockdown di EYA2 12, wild type 6): 4 gruppi. Dubbio: unisce i due shRNA di ogni linea; il testo dice «Control vs two different EYA2-targeting shRNAs», cioè il confronto è controllo contro knockdown dello stesso gene, non uno shRNA contro l'altro. Unire i due shRNA è unire repliche della stessa condizione."
+  },
+  {
+    "scheda": "S059",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Condizione (static, flow, flow con Apelin 13) e siRNA (APLNR, controllo, nessuno): 7 gruppi, come le «7 different conditions» del riassunto e come la colonna treatment.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo (knockdown di APLNR o wild type) e condizione di crescita: 5 gruppi. Dubbio: unisce le cellule senza siRNA con quelle con siRNA di controllo (statiche: GSM7226661-663 con GSM7226670-671; flusso: GSM7226664-666 con GSM7226676-678). Il testo parla di «7 different conditions» ma i confronti dichiarati sono «Static vs flow, flowCont vs flow with Apelin 13, siCont vs siAPLNR»: nessuno mette a confronto senza siRNA contro siRNA di controllo."
+  },
+  {
+    "scheda": "S069",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Gli 8 campioni con nicotina hanno first_agent = «non applicabile»: i campioni NiW-NTE e UT-NTE della stessa dose cadono nello stesso gruppo (GSM7770588-589 con GSM7770594-595; GSM7770590-591 con GSM7770596-597). Il testo li dichiara distinti e a confronto: «the exposure of NiW cells to nicotine (NiW-NTE) caused unique gene expression changes that were markedly different from the gene expression changes caused by nicotine exposure of UT cells».",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Il livello «nicotine» unisce gli 8 campioni NiW-NTE e UT-NTE (GSM7770588-591 con GSM7770594-597), e anche le due dosi. Il testo li dichiara distinti e a confronto: «we exposed untreated Beas-2B cells and nickel-washed-out Beas-2B cells to nicotine» e «NiW-NTE ... markedly different from the gene expression changes caused by nicotine exposure of UT cells»."
+  },
+  {
+    "scheda": "S070",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM7073945 e GSM7073946 (K562_FLT3_NR, tabella: treatment = NR) hanno phenotype = «reference subject role» e stanno nel gruppo dei campioni K562_FLT3 senza trattamento (GSM7073939, GSM7073940, treatment = n/a). La colonna treatment li distingue: il livello di riferimento è smentito dalla tabella. La scheda non dice che cosa vuol dire IR o NR.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Vettore di espressione (FLT3 cDNA, mock) e trattamento (IR, NR, non trattato): 4 gruppi uguali alle colonne della tabella."
+  },
+  {
+    "scheda": "S085",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Ogni fattore di perturbazione ha solo i livelli «control» e «non applicabile»: i campioni siTRIM24 (GSM7656588-590), siRB1 (GSM7656591-593), HA-RBN (GSM7656597-599) e i campioni con RBprotac 5 e 10 umol/L (GSM7656609-614) sono assegnati a «control». La tabella li chiama «the treat group of knockdown of TRIM24 by siRNA», «the treat group of overexpression of RBN», «the treat group of inhibition of RB1 by RBprotac 5 umol/L». Escono 3 gruppi che uniscono trattati e controlli.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM7656606, GSM7656607 e GSM7656608 («RBprotac-0 umol/L», tabella: «the control group of inhibition of RB1 by RBprotac») sono assegnati a treatment = «PROTAC ... delivered at dose 5 umol/L», insieme ai campioni a 5 umol/L: la scheda lo smentisce. In più i campioni HA-RB(245-255) (GSM7656603-605) sono «wild type» con i vettori vuoti; lì la colonna genotype della tabella li chiama «control group», quindi quel punto resta dubbio."
+  },
+  {
+    "scheda": "S086",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare, shRNA (BRCA2, Luciferase) e doxiciclina (trattato, non trattato): 8 gruppi uguali alle colonne della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare e genotipo: BRCA2 ridotto solo nei 5 campioni con shRNA BRCA2 e doxiciclina (GSM3264699-701, GSM3264709-710), gli altri 16 sono «wild type». Dubbio: unisce tre tipi di controllo (shRNA Luciferase senza e con doxiciclina, shRNA BRCA2 senza doxiciclina). Il testo dichiara solo il confronto sulla deplezione di BRCA2 («changes in gene expression upon BRCA2 depletion», «doxycyclin inducible short hairpin RNAs») e non mette a confronto i controlli fra loro."
+  },
+  {
+    "scheda": "S092",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo con 4 knockdown e «wild type» (3 campioni): 5 gruppi. Dubbio: unisce il siRNA Luciferase (GSM2784562) con il siRNA Control (GSM2784564, GSM2784565); il testo dice «two independent control siRNAs» ma li presenta come controlli, non come condizioni a confronto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "siRNA con 6 livelli uguali alla colonna sirna della tabella (i nomi «dsccl» e «sephsl» sono solo una forma diversa di DSCC1 e SEPHS1): 6 gruppi, con i due siRNA di controllo distinti."
+  },
+  {
+    "scheda": "S100",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare e tempo: 4 gruppi (ESC, cellule corneali derivate a 10 giorni, a 20 giorni, cellule corneali primarie), come il disegno dello studio. Dubbio: il livello del tipo cellulare si chiama «corneal_epithelial_cells_day_10» anche per i campioni a 20 giorni (GSM5811765-767); è un nome sbagliato, ma il fattore time li separa e i gruppi sono giusti.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Solo il tipo cellulare: 3 gruppi, con i giorni 10 e 20 uniti (GSM5811762-764 con GSM5811765-767). Dubbio: il testo dice «K1-CEC at day 10 and day 20» e parla di «early stage» e «late stage», ma non c'è una frase che dichiara il confronto fra giorno 10 e giorno 20; il tempo è una variabile di contesto."
+  },
+  {
+    "scheda": "S114",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare e genotipo (TERT senza funzione 13, wild type 8): 6 gruppi. Unisce i due cloni C13 e C16, che sono repliche della stessa condizione; il testo confronta «wild type» con «TERT loss-of-function».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tipo cellulare e genotipo con i due cloni distinti (tert_ko_c13 5, tert_ko_c16 8, wt 8): 8 gruppi uguali alla colonna genotype della tabella. Ogni clone ha più campioni: non è una sigla di campione; dividere le repliche della stessa condizione non è un errore."
+  },
+  {
+    "scheda": "S119",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea di origine, genotipo e trattamento: 9 gruppi uguali alle colonne della tabella (3AC contro veicolo in BR01 e BR33; het contro WT nei cloni di BR33; sovraespressione, knockdown e WT in BR24). I campioni GSM7808626-629 hanno «BR33.7» nel titolo e «BR33» nella colonna: il disegno segue la colonna.",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "C'è solo il genotipo: i 6 campioni trattati con 3AC (GSM7808620-621, GSM7808626-629) stanno nel gruppo «wild type» con i campioni con veicolo. Manca il trattamento, che il testo dichiara oggetto di confronto: «For INPP5D acute inhibition, samples include iMGs from 2 genetic backgrounds (BR01, BR33), treated with 3AC (1.25 uM 3AC, 6 hours) or vehicle» e «using both pharmacological inhibition of the phosphatase activity of INPP5D and genetic reduction in copy number»."
+  }
+]

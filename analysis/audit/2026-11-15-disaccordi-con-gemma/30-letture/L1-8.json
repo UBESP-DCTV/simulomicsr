@@ -1,0 +1,152 @@
+[
+  {
+    "scheda": "S001",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori, cell_line (G401 parentali, DTMYC) e treatment (DMSO, dTAG47): i 4 gruppi sono quelli della tabella dei campioni.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Un solo fattore genotype: «MYC negative» = i 3 campioni DTMYC con dTAG47; «wild type» = gli altri 7 (parentali con DMSO, parentali con dTAG47, DTMYC con DMSO). Il livello «wild type» unisce i parentali trattati con dTAG47 ai campioni con DMSO, che il testo dichiara distinti e a confronto: «engineered G401 cells were treated for 24 hours with dTAG47 or DMSO control. For RNA-seq of parental G401 cell lines treated with dTAG47, the experiment was also performed». Dubbio dichiarato: il contrasto sulla perdita di MYC resta leggibile."
+  },
+  {
+    "scheda": "S003",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "genotype (WT 4, KO 4, non applicabile 18) per treatment (Control Food 4, DMSO 9, «Doxycycline Food» 13): 4 gruppi. Unisce in vitro il vettore vuoto e le cellule con shRNA. Dubbio: il testo («KELLY cells containing doxycycline-inducible shRNA to Runx1t1 were cultured with and without treatment») non nomina il vettore vuoto come termine di confronto, quindi manca la frase per (c) o (d). Il nome «Doxycycline Food» per le cellule in coltura è solo un nome: i gruppi non cambiano.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "cell line (KELLY o derivata dal tumore) per genotype (knockdown = sh4 e shAMB con doxiciclina, 6; KO 4; wild type 16): 4 gruppi. Tiene il confronto con e senza trattamento per le cellule con shRNA. Il vettore vuoto con doxiciclina sta fra i wild type, e il testo non lo dichiara a confronto."
+  },
+  {
+    "scheda": "S011",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tre fattori binari (KLK5, KLK7, inibitore): i 6 gruppi sono quelli della colonna treatment (non trattato, KLK5, KLK5+antiKLK5/7, KLK7, KLK7+antiKLK5/7, KLK5+KLK7). Il nome «SPINK5» per l'anticorpo inibitore è solo un nome: i gruppi non cambiano.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore agent ha il livello «non scritto» per i 6 campioni «KLK5+antiKLK5/7» e «KLK7 +antiKLK5/7», che così stanno in un solo gruppo (5 gruppi invece di 6). La scheda scrive l'agente nella colonna treatment. Vale anche (d): il testo dichiara le condizioni distinte, «treated with recombinant and active KLK5 (6 µg/mL), KLK7 ( 5 µg/mL) and an inhibitory antibody against KLK5 and KLK7»."
+  },
+  {
+    "scheda": "S047",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore con shGFP, shMek5 (6 campioni, le due forcine unite) e shScr: 3 gruppi. Le due forcine contro Mek5 sono repliche della stessa condizione; tenere divisi i due controlli è difendibile.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "knockdown (6 campioni shMek5) contro wild type (shGFP e shScr, 6 campioni): 2 gruppi. Il testo chiama shGFP e shScr tutti e due «control knockdowns (shGFP and shScr)» e non li dichiara a confronto fra loro."
+  },
+  {
+    "scheda": "S058",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore disease_status: AD sporadico (3 campioni, una linea) contro sani (6 campioni, due linee). È il confronto della colonna della malattia nella tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "cell line (3 livelli, tipo contesto) per disease: 3 gruppi, uno per linea. Dubbio su (a): ogni linea viene da un donatore («from 3 different donors») e dentro la linea la malattia non cambia, quindi il fattore vale un individuo per livello. Ma è la colonna «cell line» della tabella, ha 3 campioni per linea, ed è tipo contesto; la linea cellulare è fra le variabili di contesto che si possono tenere. Nel dubbio: sostenuto."
+  },
+  {
+    "scheda": "S063",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "a",
+    "A_prova": "Usa come fattore «instrument_model» (HiSeq 2500 60 campioni, NovaSeq 6000 2 campioni): è una colonna tecnica, non una variabile dell'esperimento. Il fattore stacca GSM4872601 (LNCaP-95, NovaSeq) dagli altri tumori: 3 gruppi con cell_type (sano 1, tumore 61).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un fattore «cell line» con 31 livelli: un livello per ogni modello PDX (1-3 campioni) e PrEC come controllo. I modelli sono l'oggetto dello studio: «29 prostate cancer patient-derived xenografts (PDXs) recapitulating the full spectrum». Dubbio su (a): alcuni livelli hanno un campione solo, ma il livello è il modello PDX, non il campione."
+  },
+  {
+    "scheda": "S064",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "genotype a 2 livelli, un campione per livello (K82 frameshift, Q83X nonsense). La distinzione fra i due campioni c'è nella tabella («MECP2 mutant 1» e «MECP2 mutant 2», titoli «904 2…» e «Q83X 1…»). Solo il nome «K82 Frameshift» non si verifica sulla scheda, e il nome non conta: la distinzione c'è.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "genotype «mutant» a un livello e agent «untreated»: un gruppo con i 2 campioni. Il testo non dichiara i due mutanti a confronto fra loro, quindi unirli non è errore (d)."
+  },
+  {
+    "scheda": "S069",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "first_agent = «non applicabile» e second_agent = «non scritto» per tutti gli 8 campioni con nicotina: NiW-NTE e UT-NTE stanno nello stesso gruppo alla stessa dose (per esempio GSM7770588 «NiW-NTE 1.25 rep1» con GSM7770594 «UT-NTE 1.25 rep1»). Il testo li dichiara distinti e a confronto: «the exposure of NiW cells to nicotine (NiW-NTE) caused unique gene expression changes that were markedly different from the gene expression changes caused by nicotine exposure of UT cells». Vale anche (b): la scheda dà i NiW-NTE come cellule esposte prima al nichel.",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Un fattore treatment a 3 livelli: il livello «nicotine» (8 campioni) unisce NiW-NTE con UT-NTE e le due dosi. Il testo li dichiara distinti e a confronto: «the exposure of NiW cells to nicotine (NiW-NTE) caused unique gene expression changes that were markedly different from the gene expression changes caused by nicotine exposure of UT cells»."
+  },
+  {
+    "scheda": "S072",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "fgf_concentration (0, 0.1, 1, 10, 20) per passage_number (P1-P8): 22 gruppi, uguali alle colonne passage e fgf della tabella. Il passaggio qui è una variabile dell'esperimento: «this covers the passaging of human H9 ESC-derived neural stem cells (hNSCs) in vitro with varying exposure to FGF2 during final passage». L'etichetta «tecnico» del fattore non cambia i gruppi.",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "Solo la dose di FGF2: 5 gruppi. Manca il passaggio, che il testo dichiara oggetto dello studio: «this covers the passaging of human H9 ESC-derived neural stem cells (hNSCs) in vitro with varying exposure to FGF2 during final passage». Il passaggio cambia fra i campioni (P1-P8) e nella serie GSM4282244-GSM4282249 (P2.FGF20r … P8.FGF20r) è l'unica variabile: gli 11 campioni a 20 ng/mL dei passaggi P2-P8 stanno in un solo gruppo."
+  },
+  {
+    "scheda": "S076",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "cell type (ESC, iPSC) per timepoint (giorni 13-16): 8 gruppi. Unisce le due linee iPSC (hiPS10 e HS1); il testo confronta ESC e iPSC e i giorni, non le due linee iPSC fra loro.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "cell_line_type per time per cell_line: 12 gruppi (linea per giorno, 2 repliche per gruppo). Tiene la linea cellulare come variabile di contesto: i gruppi sono quelli della tabella."
+  },
+  {
+    "scheda": "S079",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "biological sex per disease (5 livelli, riferimento 27 campioni) per organism part (Ammon's horn 13, frontale 54, occipitale 3, parietale 9, temporale 83): 29 gruppi. Sesso e tessuto sono variabili di contesto scritte nella tabella: tenerle non è errore. I controlli dell'ippocampo restano divisi dai controlli della corteccia grazie al tessuto.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Un fattore disease_state a 5 livelli: i 13 campioni ControlHippocampus (per esempio GSM8084991, GSM8085009) stanno nel livello «control_cortex» con i 14 ControlCortex. La scheda li dà con tissue = Hippocampus e disease state = ControlHippocampus. Vale anche (d): il testo dichiara i due controlli distinti, «four epilepsy pathologies (TLE-HS, FCD IIa, FCD Iib, TSC) and matching control cortex and hippocampal samples». Dubbio dichiarato: se «control_cortex» è solo il nome di un livello che unisce tutti i controlli, il tipo giusto è (d) e non (b); il giudizio resta errore."
+  },
+  {
+    "scheda": "S082",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "cell line per timepoint per treatment (9 livelli): i 18 gruppi sono quelli della tabella (PDX 4, MOLM-13 6, MV4;11 6 a 3 giorni e 2 a 6 giorni). Nel nome del livello dei 5 PDX con la combinazione (GSM5140869-GSM5140873) le dosi sono scambiate («lenalidomide delivered at dose 0.1%, VTP50469 delivered at dose 50 mpk»; la tabella scrive «0.1% VTP50469 in chow and 50mpk lenalidomide»): è un difetto del nome, i campioni che stanno insieme sono giusti.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore agent ha il livello «non scritto» per 18 campioni: CC220, CC220 con VTP50469, lenalidomide con VTP50469 nelle due linee (per esempio GSM5140888 «1uM CC220», GSM5140891 «1uM CC220 and 50nM VTP50469 combo», GSM5140900 «5uM lenalidomide and 50nM VTP50469 combo»). La scheda scrive l'agente nella colonna treatment. Dentro ogni linea le tre condizioni finiscono in un solo gruppo (14 gruppi invece di 18). Vale anche (d): «following drug treatment with lenalidomide, CC220, VTP-50469 and the drug combinations»."
+  },
+  {
+    "scheda": "S086",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "cell_line per shRNA (Luciferase, BRCA2) per doxycycline (trattato, non trattato): gli 8 gruppi sono quelli delle tre colonne della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "cell line per genotype: «BRCA2 negativo» = i 5 campioni con shRNA BRCA2 e doxiciclina (GSM3264699-GSM3264701, GSM3264709, GSM3264710); «wild type» = gli altri 16 (Luciferase con e senza doxiciclina, shBRCA2 senza doxiciclina). 4 gruppi. Tiene il confronto che il testo dichiara: «changes in gene expression upon BRCA2 depletion», «Examination of BRCA2 deficiency in 2 different breast cancer cell lines». Dubbio su (d): i tre tipi di controllo sono uniti, ma titolo, riassunto e disegno non li dichiarano a confronto fra loro (la doxiciclina sta solo nel protocollo di trattamento). Il nome «Homozygous negative» per un knockdown è solo un nome."
+  },
+  {
+    "scheda": "S088",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Due fattori binari (SCAF4 KO, SCAF8 KO): 4 gruppi uguali alla colonna «crispr status» (WT 6, SCAF4 KO 9, SCAF8 KO 9, doppio KO 12). Unisce i KO singoli veri senza doxiciclina con i doppi KO con il gene di recupero acceso, come dice il testo: «a SCAF4 SCAF8 double KO expressing the SCAF4 rescue gene is genotypically and phenotypically a single SCAF8 KO cell line». La doxiciclina non è dichiarata a confronto per conto suo.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "genotype (4 livelli, uguale a «crispr status») per treatment (con o senza doxiciclina): 6 gruppi. Divide i KO singoli in linee KO singole senza doxiciclina (3 campioni) e linee doppio KO con il gene di recupero e doxiciclina (6 campioni). La distinzione c'è nella tabella (source_name e treatment_protocol) e il testo descrive i «12 cell types (6 different cell lines grown with or without Dox)»: gruppi difendibili."
+  },
+  {
+    "scheda": "S096",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "biological sex per disease (4 livelli, dalla colonna «cell type») per genotype: 13 gruppi. Manca il sottogruppo di metilazione (colonna «disease state», G1-G5), che il testo dichiara oggetto del confronto: «Comparative gene expression profiling analysis of RNA-seq data for different methylation subgroups of PNSTs». Il sottogruppo cambia dentro i gruppi del disegno: GSM6285496 (MPNST_G2) e GSM6285500 (MPNST_G1) sono tutti e due maschio, MPNST, NF1 e stanno nello stesso gruppo; GSM6285513 (PremalignantNF_G3) e GSM6285514 (Sporadic Spinal NF_G5) anche.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "disease_state (i 5 sottogruppi di metilazione G1-G5) per genotype (NF1, Sporadic): 9 gruppi. Ha la variabile che il testo dichiara a confronto («different methylation subgroups of PNSTs»); il genotipo è una colonna della tabella tenuta come contesto."
+  }
+]

@@ -1,0 +1,152 @@
+[
+ {
+  "scheda": "S004",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Due fattori: sesso (female 5, male 25) e malattia (reference 15, schizophrenia 15), 4 gruppi. Le assegnazioni seguono la tabella (femmine: Sample13, 14, 19, 20, 22). Il sesso è una variabile di contesto che il testo non dichiara a confronto: tenerla non è un errore.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Un fattore, la diagnosi (control 15, schizophrenia 15), come nella tabella. Togliere il sesso, variabile di contesto, non è un errore."
+ },
+ {
+  "scheda": "S005",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Fattori «grade» (HGG 95, LGG 77, non scritto 1) e «idh_status_prediction» (Mutant 116, WT 10, non scritto 47): seguono le colonne della tabella; GSM5600902 ha il grado vuoto anche nella tabella. Lo stato IDH è contesto preso dalla tabella, tenerlo non è un errore.",
+  "B": "errore",
+  "B_tipo": "b",
+  "B_prova": "I 14 campioni GSM5600921-GSM5600934 stanno nel livello «merged (high + low grade)», ma la colonna `grade` dà a ognuno un solo grado: LGG per GSM5600921, 923, 924, 925, 926, 928; HGG per GSM5600922, 927, 929, 930, 931, 932, 933, 934. «merged» alla fine dei titoli riguarda il file delle corsie, non il grado. Il livello unisce anche LGG e HGG, che il testo mette a confronto («mRNA profiles of low- and high-grade human glioma samples»): vale anche (d)."
+ },
+ {
+  "scheda": "S014",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Un fattore «genotype»: NFKBIZ knockdown 10, POU2F2 knockdown 6, wild type 4 (sgROSA_1 e sgROSA_2). Unisce le guide contro lo stesso gene: il testo non dichiara le guide a confronto fra loro, sono repliche della stessa condizione.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Un fattore «genetic_perturbation» con un livello per guida (cinque sgNFKBIZ, tre sgPOU2F2) e sgROSA unito a 4 campioni, 9 gruppi di 2-4 campioni. Le assegnazioni seguono la colonna `sgrna`; dividere per guida è difendibile."
+ },
+ {
+  "scheda": "S020",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Un solo fattore «treatment» con 37 livelli, senza il tipo di macrofago. Dubbio: il livello DMSO unisce GSM4303849-850 (su M2 Mac) e GSM4303885-886 (su M1 Mac). Il testo tiene distinti i due bracci («M2 Mac were treated with different M1-type compounds or IFNg or DMSO for 24 hrs. M1 Mac were treated with different M2-type compounds or IL4 or DMSO for 24 hrs.»), ma nessuna frase dichiara M1 contro M2 o i due DMSO a confronto: per la regola sul dubbio non è (c) né (d).",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori «macrophage_state» (M1 38, M2 38) e «compound_treatment» (37 livelli), 38 gruppi di 2 campioni: i due DMSO restano separati per tipo di macrofago. Le assegnazioni seguono la tabella."
+ },
+ {
+  "scheda": "S026",
+  "letta_fino_alla_fine": true,
+  "A": "errore",
+  "A_tipo": "d",
+  "A_prova": "Il livello «dox+cno» unisce GSM5668370-372 («+ 2hr CNO») e GSM5668373-375 («+ 2day CNO»): stesso tipo di cellula, stesso trattamento, stesso «day 14», quindi un solo gruppo. Il fattore «time» è il giorno di differenziazione e non li separa. Il testo dichiara la durata dell'attivazione a confronto: «to assess the consequence of Gq-based chemogenetic activation of astrocytes over time».",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori tipo di cellula (4 livelli, con il giorno nel nome) e trattamento (reference 3, doxycycline 9, CNO 2 h 3, CNO 2 d 3), 6 gruppi di 3. Le due durate di CNO sono separate e le assegnazioni seguono i titoli e la tabella."
+ },
+ {
+  "scheda": "S029",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Fattori risposta (complete 5, partial 10, progressive 12) e stadio (M0 1, M1a 2, M1b 3, M1c 21), 8 gruppi. Le assegnazioni seguono la colonna `disease status` (Pt9 M0; Pt8 e Pt10 M1a; Pt1, Pt15, Pt16 M1b). Lo stadio è contesto; la risposta è l'oggetto dichiarato («response vs. non-response»).",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori risposta, terapia MAPKi precedente (no 15, yes 12), tempo della biopsia (on_treatment 1 = Pt16) e «strandedness» (stranded 7: Pt27A, Pt27B, Pt31, Pt32, Pt35, Pt37, Pt38). Tutte le assegnazioni seguono la tabella. Dubbio: «strandedness» viene da una colonna tecnica (`stranded/unstranded rnaseq`) e potrebbe essere (a); ma ha due livelli di protocollo e vale come un lotto, che le istruzioni mettono fra le variabili di contesto. Nel dubbio, sostenuto."
+ },
+ {
+  "scheda": "S047",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Fattore «genetic perturbation»: shMek5 6 (hairpin #1 GSM3438988-990 e hairpin #2 GSM3438991-993), shGFP 3, shScr 3; «cell line» è costante. Unire i due hairpin contro lo stesso gene è unire repliche della stessa condizione; i due controlli restano separati.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattore «genotype»: MAP2K5 knockdown 6, wild type 6 (shGFP GSM3438994-996 più shScr GSM3438997-999). Il testo chiama i due insieme «control knockdowns (shGFP and shScr)» e non li mette a confronto fra loro: unirli è difendibile."
+ },
+ {
+  "scheda": "S054",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Fattori «cell line» (3) e «growth condition» (5 livelli), 7 gruppi di 3 campioni. Le assegnazioni seguono la tabella (il livello «keratinocyte conditioned media» è il mezzo dei cheratinociti shNT).",
+  "B": "errore",
+  "B_tipo": "a",
+  "B_prova": "Il fattore «replicate» (1, 2, 3; 7 campioni per livello) è il numero della replica e lascia ogni campione da solo: 21 gruppi per 21 campioni. Per i 12 campioni di melanoma (WM1341D e 501mel, repliche 1-3) è solo l'indice della replica. Per i 9 campioni di cheratinociti il numero coincide con il clone (C1, C2, C3), che il testo tratta come lotto («batch correction to account for keratinocyte clonal variation»), ma questo non vale per gli altri 12."
+ },
+ {
+  "scheda": "S058",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Un fattore «disease_status»: healthy 6 (linee SBAD-02-01 e SBAD-03-01, colonna `disease status` = Ctrl) e Alzheimer 3 (SCF042-03-01, AD_sporadic). Segue la tabella.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori «cell line» (3 livelli di 3 campioni) e «disease» (reference 6, sporadic Alzheimer 3), 3 gruppi; le assegnazioni seguono la tabella. Dubbio: ogni linea viene da un donatore («astrocytes from 3 different donors») e la malattia non cambia dentro la linea, quindi il fattore «cell line» potrebbe essere il soggetto come fattore (a). Ma la linea cellulare è una colonna della tabella, ha 3 campioni per livello e le istruzioni la mettono fra le variabili di contesto che si possono tenere. Nel dubbio, sostenuto."
+ },
+ {
+  "scheda": "S074",
+  "letta_fino_alla_fine": true,
+  "A": "errore",
+  "A_tipo": "b",
+  "A_prova": "Il livello «brain» del fattore «cell_type» ha 4 campioni: Brain_1 e Brain_4 (GSM5527752, GSM5527753) e anche Fat_1 e Fat_2 (GSM5527756, GSM5527757). La tabella dice per questi due `tissue` = «fat» e `source_name_ch1` = «untreated normal human fat tissue». Le assegnazioni del trattamento sono giuste.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori tipo di cellula o tessuto (8 livelli: tessuto adiposo e cervello separati), trattamento (IL11 10, TGFB1 12, reference 35) e secondo trattamento (anti-IL11 4, IgG di controllo 4, niente 49), 12 gruppi. I fibroblasti si dividono in non trattati, IL11, TGF-B, TGF-B+IgG, TGF-B+anti-IL11 come nella colonna `treatment`. I nomi più precisi della scheda («dorsal plus ventral thalamus», «skin fibroblast», le dosi) non dividono i campioni."
+ },
+ {
+  "scheda": "S077",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Fattori linea cellulare (LNCaP 9, DU145 9, NCI-H660 6) e genotipo (YAP1 knockdown 12, overexpression 3, wild type 9), 6 gruppi. Unisce i cloni 1 e 2 del knockdown: il testo («YAP1 knowckdown or overexpression») non dichiara i cloni a confronto fra loro. La linea segue il titolo e `source_name_ch1` (la colonna `cell line` scrive «LNCaP» anche per DU145 e NCI-H660 con un numero ATCC diverso).",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori linea cellulare (3) e perturbazione (control 9, YAP1_KD_clone1 6, YAP1_KD_clone2 6, YAP1_OE 3), 8 gruppi di 3. Segue la colonna `genotype/variation`; tenere separati i due cloni del knockdown è difendibile, sono due cloni distinti e non indici di replica."
+ },
+ {
+  "scheda": "S104",
+  "letta_fino_alla_fine": true,
+  "A": "sostenuto",
+  "A_tipo": "",
+  "A_prova": "Un fattore «grade»: grade2 5 (GSM7688120-124), grade1 11. Segue la colonna `grade` della tabella.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Un solo livello «meningioma» per i 16 campioni, 1 gruppo: il grado non c'è. Dubbio: il grado è l'unica colonna che cambia, ma nessuna frase del testo lo dichiara oggetto di confronto («RNA-seq of 17 human meningioma tumor samples was used to validate our MRI based predictions of iron homeostasis»). Senza la frase non è (c)."
+ },
+ {
+  "scheda": "S113",
+  "letta_fino_alla_fine": true,
+  "A": "errore",
+  "A_tipo": "d",
+  "A_prova": "I 6 campioni del tumore primario (GSM6879645-650, biopsie e mastectomie della mammella) e le 6 metastasi (GSM6879651-656: stomaco, peritoneo, linfonodo ascellare, cute del torace) stanno nello stesso gruppo («primary_tumor», «breast», «untreated»). Il testo li dichiara distinti e a confronto: «RNA-seq analysis comparing the primary tumor, metastases and the cell line». Inoltre i nomi dei livelli «primary_tumor» e «breast» dati alle metastasi sono smentiti dai titoli (per esempio «Stomach Metastasis»).",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Un fattore con 5 livelli: tumore primario 6, metastasi 6, liquido peritoneale 1, liquido pleurico 2, linea WCRC25 1. Le assegnazioni seguono i titoli; tumore primario, metastasi e linea cellulare sono separati come nel testo («comparing the primary tumor, metastases and the cell line»)."
+ },
+ {
+  "scheda": "S116",
+  "letta_fino_alla_fine": true,
+  "A": "errore",
+  "A_tipo": "a",
+  "A_prova": "Il fattore «repeat» (tipo tecnico; repeat1 3, repeat2 3, repeat3 2) è il numero della replica preso dai titoli («shLuc, repeat1», «shRUNX2_3_repeat2»): con la perturbazione lascia ogni campione da solo, 8 gruppi per 8 campioni.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Un fattore «genotype»: RUNX2 knockdown 5 (shRUNX2_3 ×3, shRUNX2_4 ×2), wild type 3 (shLuc). Unisce i due shRNA contro lo stesso gene, che il testo non mette a confronto fra loro («to identify transcripts that are regulated by RUNX2»)."
+ },
+ {
+  "scheda": "S120",
+  "letta_fino_alla_fine": true,
+  "A": "errore",
+  "A_tipo": "b",
+  "A_prova": "GSM4909344 e GSM4909346 sono assegnati alla linea «AD3», ma la scheda dice AD2: colonna `cell line` = AD2, sigla nel titolo [AD2_5.2] e [AD2_9.1], file dei dati «..._AD2-results-...». Solo l'inizio del titolo scrive «AD3». Così AD3 ha 20 campioni e AD2 16, con 4 e 2 campioni a 5 d e a 9 d, contro il disegno («3 different cell lines ... with three replicates per time point»). Il fattore tempo è giusto.",
+  "B": "sostenuto",
+  "B_tipo": "",
+  "B_prova": "Fattori linea cellulare (840, AD2, AD3: 18 campioni l'una) e stadio (6 livelli di 9 campioni), 18 gruppi di 3. Segue le colonne `cell line` e `differentiation stage`; GSM4909344 e GSM4909346 stanno in AD2 come nella tabella."
+ }
+]

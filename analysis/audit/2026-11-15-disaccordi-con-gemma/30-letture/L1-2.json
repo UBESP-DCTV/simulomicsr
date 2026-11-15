@@ -1,0 +1,162 @@
+[
+  {
+    "scheda": "S009",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa «cell type» (ESC 2 campioni, iPSC 12) e «genotype» a 5 livelli, 6 gruppi. I livelli seguono la tabella dei campioni e nessun campione sta su un livello che la scheda smentisce.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa «cell_line» a 7 livelli (KMC6002, KMC6003, KMC7001, KMC7002, AS0035, AS0041, H9; 2 repliche per linea) e «genotype», 7 gruppi. Dubbio: ogni linea iPSC corrisponde a un individuo ed è annidata nel genotipo, quindi il fattore è vicino al caso (a); ma la linea cellulare è una variabile di contesto ammessa e ogni livello ha 2 campioni: nel dubbio sostenuto."
+  },
+  {
+    "scheda": "S015",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia la malattia (sclerosi multipla, controllo) con la regione (sostanza grigia, sostanza bianca), 4 gruppi. I livelli seguono i titoli dei campioni (`Sample_MS_GM_*`, `Sample_MS_WM_*`, `Sample_CON_GM_*`, `Sample_CON_WM_*`).",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "I 5 campioni `Sample_MS_GM_*` (GSM3045828-GSM3045832) sono assegnati a disease = «control» e gli 11 campioni `Sample_CON_WM_*` (GSM3045833-GSM3045843) a disease = «ms»: i titoli li smentiscono. Il fattore disease coincide con la regione e i gruppi sono 2."
+  },
+  {
+    "scheda": "S019",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia il costrutto (GFP, OMO) con il trattamento (+Dox, non trattato), 4 gruppi di un campione. I livelli seguono i titoli dei 4 campioni.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno mette il solo GSM6084324 (omo + dox) al livello OMOMYC e gli altri 3 campioni al livello di riferimento. È conforme al testo: «Three samples are controls/references (...) and one sample is treated/test (4-SM-vumc-omo-dox_S4)»."
+  },
+  {
+    "scheda": "S020",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha il solo fattore «treatment» a 37 livelli. Dubbio: il livello DMSO (4 campioni) unisce DMSO su macrofagi M2 (GSM4303849, GSM4303850) e su macrofagi M1 (GSM4303885, GSM4303886). Il testo dice «M2 Mac were treated with different M1-type compounds or IFNg or DMSO ... M1 Mac were treated with different M2-type compounds or IL4 or DMSO», ma non dichiara un confronto fra M1 e M2: lo stato del macrofago è contesto. Nel dubbio sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno incrocia lo stato del macrofago (M1, M2) con il composto, 38 gruppi. I livelli seguono la tabella dei campioni e il testo; i due DMSO restano separati per stato."
+  },
+  {
+    "scheda": "S044",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha «cell type» a 3 livelli: NZC (4), SIX2 negativo (8, cioè SIX2-, SIX2-/MEIS1+ e SIX2-/MEIS1-), SIX2 positivo (3, cioè SIX2+ e SIX2+/MEIS1+). Dubbio sul caso (d): il titolo nomina «SIX2+ and SIX2-/MEIS1+ cells» e il disegno dice «Comparing gene expression profiles of human and mouse nephron progenitors and stromal cells», ma nessuna frase dichiara a confronto MEIS1+ e MEIS1- dentro le SIX2-. Nel dubbio sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa «cell_type» a 6 livelli e «stage» a 7 livelli (la colonna «developing stage» della tabella), più «organism» con un livello: 15 gruppi, uno per campione. Lo stadio è una variabile di tempo presente nella tabella, non una sigla del campione; nessun gruppo ha repliche, ma questo non è uno dei quattro errori."
+  },
+  {
+    "scheda": "S046",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "c",
+    "A_prova": "Al disegno (sesso, ipoglicemia, trattamento; 10 gruppi) manca il prelievo prima o dopo il pasto. Il testo: «we isolated monocytes from peripheral blood samples taken immediately before and 60 min (...) after ingestion of the mixed meal test on all three treatment days», per misurare i «transcriptional changes». La colonna «status pre or post meal» cambia (32 Pre, 32 Post) e il disegno mette nello stesso gruppo, per esempio, GSM3891807 (Pre) e GSM3891808 (Post). Fiducia moderata: la frase dichiara il prelievo ai due tempi, il confronto è implicito.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa trattamento, pasto (prima, dopo) e ipoglicemia, 12 gruppi. I livelli seguono le colonne della tabella dei campioni e il testo."
+  },
+  {
+    "scheda": "S057",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia la linea (D425, D458) con lo shRNA (control, sh6, sh7, sh8), 6 gruppi di 3 repliche. I livelli seguono la colonna «treatment» della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno incrocia la linea con il genotipo (knockdown di EYA2 12 campioni, wild type 6), 4 gruppi: unisce i due shRNA di ogni linea. Il testo dice «Control vs two different EYA2-targeting shRNAs»: i due shRNA sono contro lo stesso gene e non sono dichiarati a confronto fra loro."
+  },
+  {
+    "scheda": "S067",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa «organism part» e «treatment»: i 35 campioni Day5 della coorte AZA-HiDAC-Mito sono i trattati, i 58 campioni Day0 (comprese le coorti HiDAC-Mito e AZA) sono il riferimento; 5 gruppi. I campioni Day0 sono presi prima del trattamento e il testo non dichiara a confronto le coorti al giorno 0.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa la coorte di trattamento (3 livelli), il tempo (Day0, Day5) e il tessuto, 8 gruppi. I livelli seguono le colonne della tabella dei campioni."
+  },
+  {
+    "scheda": "S068",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «collection of material» ha 3 livelli (cytoplasmic RNA extract 27, insoluble fraction 27, total RNA 54): tutti i 27 campioni con fraction = Nucleus («Nuclear Fraction», per esempio GSM4766656, GSM4766676, GSM4766682, GSM4766724, GSM4766736) sono assegnati a «total RNA» insieme ai campioni Total. La tabella lo smentisce. Vale anche (d): «Using subcellular fractionation combined with RNA-seq (CeFra-seq) we characterize the global mRNA localization landscape».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa tipo cellulare, linea, trattamento e «fraction» a 4 livelli (27 campioni ciascuno), 56 gruppi. I livelli seguono le colonne della tabella dei campioni; la frazione nucleare resta separata dal totale."
+  },
+  {
+    "scheda": "S073",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «disease_state» ha il solo livello «healthy» per tutti gli 11 campioni: GSM2790562 e GSM2790563 (source_name «fAD Cranial Pericytes») e GSM2790564 e GSM2790565 («sAD human brain pericytes») sono assegnati a «healthy», e la tabella lo smentisce. Vale anche (c): «Comparison of primary and in vitro derived pericytes, as well as fAD and sAD versus control pericytes».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa la fonte (ESC 1, forebrain 4, iPSC 6), il tipo cellulare e la malattia a 4 livelli (fAD, sAD e due livelli di controllo che coincidono con la fonte), 6 gruppi. I livelli seguono la tabella e il testo («fAD and sAD versus control pericytes»); i due nomi del controllo non cambiano i gruppi."
+  },
+  {
+    "scheda": "S095",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa la linea (REH 19, tonsilla 4) e «genotype» a 9 livelli, 9 gruppi che coincidono con la colonna «genotype» della tabella: i tre knockdown con Morpholino, il knockout con vettore vuoto e le tre ricostituzioni (scritte come knockdown delle isoforme che mancano, per esempio GSM6523767 «pan-FBXW7 knockout + FBXW7 alpha reconstitution» = beta e gamma), i WT di tonsilla, i WT di REH. Il nome «knockdown» per il knockout è una forma del nome; i gruppi sono giusti.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM6523767 e GSM6523771 («pan-FBXW7 knockout + FBXW7 alpha reconstitution») sono assegnati ad «alpha_knockdown» insieme ai Morpholino contro alpha (GSM6523759, GSM6523763): la tabella dice che in quei campioni alpha è la sola isoforma presente. Lo stesso vale per gamma (GSM6523768, GSM6523772) e beta (GSM6523769, GSM6523773). GSM6523766 e GSM6523770 («pan-FBXW7 knockout + empty retroviral vector») sono assegnati a «control» insieme alle REH WT."
+  },
+  {
+    "scheda": "S110",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha «stage» a 4 livelli (undifferentiated, NCSC, ENCP, EN; 2 campioni ciascuno), conforme al testo: «enteric neuronal differentiation of human pluripotent stem cells at 4 different stage». Unisce H1 e hiPSC nello stesso stadio (GSM2108668 con GSM2108669, GSM2108670 con GSM2108671): la linea di origine è contesto e il testo non la dichiara a confronto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha «cell type» a 6 livelli: gli stessi stadi, con H1 e hiPSC separati per le cellule indifferenziate e per le NCSC (4 gruppi di un campione). I livelli seguono la colonna «cell type» della tabella; i nomi di ontologia («neural stem cell» per NCSC, «neural crest cell» per ENCP) sono forma del nome."
+  },
+  {
+    "scheda": "S112",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «reference subject role» (11 campioni) unisce i 5 gemelli non affetti (per esempio GSM5742171 «Pair 1, unaffected twin») e i 6 controlli sani non imparentati (per esempio GSM5742179 «Healthy control»). Il testo li dichiara distinti e oggetto di studio: «five monozygotic twin pairs discordant for schizophrenia and five healthy subjects were studied for alterations related to high genetic risk and clinical manifestation of SCZ». L'alto rischio genetico si misura solo fra gemelli e controlli sani; vale anche (c) per la colonna «group status». Fiducia moderata: la frase nomina i due effetti, non scrive i confronti.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa lo stato di malattia e «individual» a 3 livelli (gemello con diagnosi 5, gemello senza diagnosi 5, controllo sano non imparentato 6), 3 gruppi. I livelli seguono la colonna «individual» della tabella, che è una classe di soggetti e non una sigla del soggetto."
+  },
+  {
+    "scheda": "S115",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa la linea (3 livelli), il genotipo (BRD4-NUT indotto nei 3 campioni con tetraciclina, GSM1820985-GSM1820987) e il trattamento a 8 livelli, 10 gruppi. Le due repliche di JQ1 a 1 ora (GSM1820977 e GSM1820981) stanno su due livelli che differiscono solo per un numero fra parentesi quadre: è una divisione di repliche della stessa condizione, che le istruzioni non contano come errore. Gli altri livelli seguono la colonna «treatment».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno usa la linea, l'agente (JQ1 6, tetraciclina 3, non trattato 4) e il tempo a 7 livelli, 9 gruppi. I livelli seguono la colonna «treatment» della tabella e il riassunto («before BRD4-NUT induction (0h) and at different time points (2h, 3h, 7h)», «1hr, 2.5hr and 4hr following JQ1 treatment»)."
+  },
+  {
+    "scheda": "S119",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa il fondo genetico (5 livelli, dalla colonna «cell line»), il genotipo (WT, het, KD, OE) e il trattamento (Vehicle, 3AC, untreated, no virus, INPP5D retrovirus), 9 gruppi. Tutti i livelli seguono le colonne della tabella dei campioni.",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "Il disegno ha il solo fattore «genotype» e manca il trattamento con 3AC, che il testo dichiara oggetto di confronto: «For INPP5D acute inhibition, samples include iMGs from 2 genetic backgrounds (BR01, BR33), treated with 3AC (1.25 uM 3AC, 6 hours) or vehicle». La colonna «treatment» cambia (3AC 6 campioni, Vehicle 6) e il disegno mette nello stesso gruppo «wild type genotype», per esempio, GSM7808618 (Vehicle) e GSM7808620 (3AC)."
+  },
+  {
+    "scheda": "S123",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa il sesso (femmina 6, maschio 3) e la malattia (CdLS 3, riferimento 6), 4 gruppi. I livelli seguono le colonne «gender» e «disorder»; tenere il sesso come variabile, anche se il testo non lo dichiara a confronto, non è uno dei quattro errori.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il solo fattore malattia (cdls 3, healthy 6), 2 gruppi, conforme al testo: «3 of CdLS patient pre-frontal cortex samples, and 6 healthy age-matched controls»."
+  }
+]

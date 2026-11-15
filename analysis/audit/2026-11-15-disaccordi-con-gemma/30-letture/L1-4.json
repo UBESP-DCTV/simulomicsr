@@ -1,0 +1,162 @@
+[
+  {
+    "scheda": "S005",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno usa il grado (HGG 95, LGG 77, non scritto 1) e lo stato di IDH (Mutant 116, WT 10, non scritto 47) come stanno nelle colonne della tabella. Il grado è il confronto dichiarato («mRNA profiles of low- and high-grade human glioma samples»); IDH è un'annotazione dei campioni che il testo nomina («genetic information including IDH mutation status ... are also included»).",
+    "B": "errore",
+    "B_tipo": "d",
+    "B_prova": "Il livello «merged (high + low grade)» unisce 14 campioni (GSM5600921-GSM5600934, titoli «..._L003merged») ai quali la tabella dà un grado proprio: per esempio GSM5600921 grade LGG e GSM5600922 grade HGG stanno nello stesso livello (6 LGG e 8 HGG). Il testo dichiara i due gradi a confronto: «mRNA profiles of low- and high-grade human glioma samples». Vale anche (b): la tabella smentisce il livello. In più il fattore «collection of material» (DE_Exclude per GSM5600902, DE_Include per gli altri 172) è una distinzione che nella scheda non è scritta."
+  },
+  {
+    "scheda": "S006",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo, trattamento e tempo danno i 3 gruppi della tabella: RC1-A/C/D (WT, Vehicle), RM1-A/B/D (RHO-CNV, Vehicle), RM1_PR3_1/2/3 (RHO-CNV, PR3, 7 giorni dopo il trattamento). Dubbio: per RM1-A/B/D il disegno scrive il tempo «Ctrl» dove la tabella scrive «disease»; i gruppi non cambiano, quindi non lo conto come errore.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il genotipo è smentito dalla tabella: RC1-A, RC1-C, RC1-D (genotype WT) stanno nel livello della triplicazione di RHO, e RM1_PR3_1/2/3 (genotype RHO-CNV) stanno in «wild type genotype». Ne escono 2 gruppi, e il controllo sta insieme agli organoidi RHO-CNV, che il testo mette a confronto: «organoids with RHO-CNV, control and PR3 treated RHO CNV retinal organoids»."
+  },
+  {
+    "scheda": "S023",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM3414829 e GSM3414830 (genotype/variation «Wild type MLL3») e GSM3414831 e GSM3414832 («MLL3 knockout») hanno tutti genotype = «non applicabile», come gli altri fattori: i knockout di MLL3 e i loro controlli stanno in un gruppo solo. La tabella scrive un genotipo diverso per le due coppie. Togliere la linea cellulare è una scelta di contesto e non conta.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "I gruppi seguono la tabella: linea cellulare, knockout di TET2, shRNA contro MLL3, knockout di MLL3, estradiolo, tamoxifene. Dubbio: due livelli portano il nome di un altro gene, «gene knockdown of WDR5» per i 4 campioni shMLL3 (GSM3414817-GSM3414820) e «Homozygous negative WDR5» per i knockout di MLL3 (GSM3414831, GSM3414832), dove la tabella scrive MLL3. I campioni che stanno insieme sono quelli giusti, quindi per la regola del dubbio scrivo sostenuto; chi conta il nome del gene lo legge come (b)."
+  },
+  {
+    "scheda": "S031",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM938901 (treatment «siRNA knockdown of ADAR2», experiment «cDNA-ADAR2-siRNA») sta nel livello «gene knockdown of ADAR [human] adenosine deaminase, RNA specific», cioè il gene di ADAR1, insieme ai knockdown di ADAR1. Il testo tratta le due proteine come distinte: «ADAR proteins (ADAR1 and ADAR2)», «siRNAs against ADAR1 and ADAR2». Dubbio dichiarato: il livello si potrebbe leggere come la famiglia ADAR, ma il nome è quello del gene di ADAR1.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM938907 e GSM938909 (treatment «RNA-IP using ADAR1 antibody») hanno la perturbazione genetica «ADAR1 KD»: la scheda scrive un'immunoprecipitazione, non un knockdown. In più i campioni di base (treatment «no») stanno nel livello del siRNA di controllo."
+  },
+  {
+    "scheda": "S035",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tessuto e tipo cellulare danno la stessa divisione; il terzo fattore è il fornitore (Innoprot 11, ScienCell 9), con più campioni per livello. Il fornitore è una variabile di contesto come il lotto, e il testo la nomina («Cells were purchased from vendors ScienCell Research Laboratories and Innoprot»). Dubbio su (a): il fornitore non è un oggetto di confronto, ma non è una sigla di campione o di corsa.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Parte dell'organismo e sesso (contesto): 4 gruppi. Le assegnazioni del sesso concordano con la colonna Sex della tabella (per esempio HPMEC_2 = M)."
+  },
+  {
+    "scheda": "S042",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tempo e trattamento (7 livelli, non trattato e DMSO come basi) seguono le colonne della tabella; il lotto è tolto, ed è contesto. Dubbio: GSM8156327-GSM8156329 hanno il titolo «Selumetinib&Digoxin, 24 hr» e la colonna del tempo «2 hr»; il disegno segue la colonna. La scheda si contraddice da sola, quindi non lo conto come errore.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore «second_treatment» è smentito dalla tabella: GSM8156300-GSM8156302 (selumetinib da solo, secondo trattamento None) e GSM8156336-GSM8156338 (selumetinib 24 hr) hanno «digoxin»; GSM8156315-GSM8156317, GSM8156333-GSM8156335 e GSM8156339-GSM8156341 (Selumetinib&Rigosertib) hanno «digoxin». Il selumetinib non compare nel disegno, e il testo lo dichiara a confronto: «RNAseq was captured ... for Digoxin, Rigosertib, and Selumetinib, as well as combinations»."
+  },
+  {
+    "scheda": "S045",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM7120101 e GSM7120102 (cell type «CD14+ primary monocytes», titolo «CD14+ primary monocytes D4 unstimulated») hanno cell_type = «macrophages» e stanno in un gruppo con GSM7120124 (macrofagi da hiPSC non stimolati). La tabella scrive un tipo cellulare diverso.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tipo cellulare (monociti CD14+ 2, macrofagi 9, neuroni 7) e trattamento (lipofectamina come controllo 7, poly dA:dT 0,25 µg/mL 3, 2 µg/mL 2, non stimolati 6): 7 gruppi che concordano con la tabella."
+  },
+  {
+    "scheda": "S048",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «microglia» (4 campioni) unisce la microglia derivata da hiPSC (GSM5175989, GSM5175990) e la microglia fetale umana (GSM5175993, GSM5175994). Il testo le dichiara distinte e a confronto: «We performed RNA-seq analysis to compare hiPSC-derived microglia with hiPSCs, NPCs and human fetal microglia».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Quattro livelli, quattro gruppi: hiPSC, microglia derivata da hiPSC, NPC derivati da hiPSC, microglia fetale. Sono i tipi che il testo mette a confronto e concordano con titoli e colonna source_name."
+  },
+  {
+    "scheda": "S051",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un solo fattore, la malattia (Alzheimer 6, sani 11, Parkinson 6), come la colonna disease della tabella e come il testo («ALS, AD and PD patients and controls»).",
+    "B": "non_verificabile",
+    "B_tipo": "",
+    "B_prova": "La malattia è assegnata come nella tabella, ma il fattore «collection of material» («Has data» 16, «Low Alignment» 7; per esempio GSM4891602, GSM4891603, GSM4891611, GSM4891613-GSM4891616 = «Low Alignment») è una distinzione che non sta né nella tabella né nel testo. Dal nome sembra un segno tecnico di qualità (possibile (a)), ma dalla scheda non si può dire."
+  },
+  {
+    "scheda": "S061",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un solo fattore, il trattamento (DMSO 7, entinostat 7, panobinostat 1), come la colonna treatment. La linea cellulare e il tipo di coltura sono tolti: sono contesto, e il testo non li dichiara a confronto («treated with various histone deacetylase inhibitors or with vehicle»).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Agente (come nella tabella) e tipo di coltura (linea cellulare 11, coltura da xenotrapianto 4, dalle colonne «tissue type» e description): 5 gruppi. Il tipo di coltura è una variabile di contesto che sta nella scheda."
+  },
+  {
+    "scheda": "S084",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «low» (24 campioni) unisce le tre dosi di VX: GSM6855755-GSM6855758 (titolo «Liver, medium, day1») e GSM6855759-GSM6855762 («Liver,high, day1») stanno con i campioni «low», e lo stesso al giorno 7. Il testo dichiara tre concentrazioni a confronto col controllo: «comparing VX-exposed (three concentrations) to Control media -exposed cultures at Day 1 (24 hrs) and Day 7 (168 hrs)». Vale anche (b): i titoli «medium» e «high» smentiscono il livello «low».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tempo (1 e 7 giorni) e trattamento a 4 livelli (controllo, VX 6,25, 12,5 e 25 µM): 8 gruppi di 4 repliche. Le tre dosi stanno nel protocollo di trattamento («final concentrations of 6.25 µM, 12.5 µM, and 25 µM») e corrispondono in ordine a low, medium e high dei titoli."
+  },
+  {
+    "scheda": "S085",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Tutti i campioni trattati hanno il livello «control»: per esempio GSM7656588-GSM7656590 (genotype «the treat group of knockdown of TRIM24 by siRNA») hanno knockdown = «control», GSM7656597-GSM7656599 (HA-RBN) hanno overexpression = «control», GSM7656609-GSM7656614 (RBprotac 5 e 10 umol/L) hanno inhibition = «control». Restano 3 gruppi che non separano nessun trattato dal suo controllo, mentre il testo dichiara i confronti: «after knockdown of TRIM24 and RB1 by siRNA, overexpression of RBN and RB(244-255) by plasmids and inhibition of RB1 by RB ... (PROTAC)».",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM7656606-GSM7656608 (titolo «RBprotac-0 umol/L», genotype «the control group of inhibition of RB1 by RBprotac») hanno treatment = PROTAC «delivered at dose 5 umol/L» e stanno in un gruppo con i trattati a 5 umol/L (GSM7656609-GSM7656611): il controllo della PROTAC sparisce. In più GSM7656603-GSM7656605 (titolo «HA-RB(245-255)») stanno in «wild type genotype» con i vettori vuoti; qui la scheda si contraddice (la colonna genotype li chiama «control group»), quindi questo secondo punto resta un dubbio."
+  },
+  {
+    "scheda": "S097",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare, trattamento (controllo 20, inibitore di MYC 8) e genotipo (transgene SERPINB3 16, knockout 8, selvatico 4): 6 gruppi che concordano con la tabella. Il disegno unisce i due cloni di knockout (#1 e #2, GSM7764627-GSM7764634) in un livello; il testo dichiara solo «BxPC-3 ± SERPINB3 knockout» e non mette i due cloni a confronto, quindi è l'unione di repliche della stessa condizione. DMSO e «No treatment» stanno tutti e due in «control», ma in linee cellulari diverse: nessun gruppo si unisce.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare, genotipo (knockout 1 e knockout 2 separati, sovraespressione, selvatico) e trattamento (inibitore di MYC, DMSO, nessun trattamento): 7 gruppi che seguono le colonne treatment e genotype. Il livello dell'inibitore porta il nome «10058-F4», che nella scheda non è scritto (la tabella dice «MYC inhibitor»): è un nome, non una distinzione fra campioni, e i campioni che stanno insieme sono gli stessi."
+  },
+  {
+    "scheda": "S114",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare (astrociti 6, motoneuroni 6, NPC 9) e genotipo (TERT knockout 13, selvatico 8): 6 gruppi. I due cloni C13 e C16 sono uniti; il testo dichiara il confronto fra selvatico e perdita di funzione di TERT («either from wild type human induced pluripotent stem cells (hiPSC) or from hi PSCs with TERT loss-of-function») e non mette i cloni a confronto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Stesso tipo cellulare, ma il genotipo tiene i due cloni separati (tert_ko_c13 5, tert_ko_c16 8, wt 8), come la colonna genotype della tabella («TERT-KO_C13», «TERT-KO_C16»): 8 gruppi. Ogni clone ha più campioni; dividere i cloni della stessa condizione non è un errore."
+  },
+  {
+    "scheda": "S117",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore con 5 livelli: le 4 colture di glioblastoma (56, 730, 914, 1219), 2 repliche l'una, e i progenitori neurali normali (GSM3478003, GSM3478004) come base. Segue la colonna «cell type» della tabella. Dubbio su (a): ogni livello di glioblastoma è la coltura di un solo paziente, e il testo dichiara il confronto fra glioblastoma e progenitori («transcripts differentially expressed between GBM cells and HNPCs»), non fra i pazienti. Ogni coltura è però una linea cellulare con repliche proprie, e tenere la linea cellulare è una scelta di contesto: per la regola del dubbio scrivo sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Due livelli: glioblastoma (8 campioni, le 4 colture unite) e progenitori neurali (2). È il confronto che il testo dichiara: «transcripts differentially expressed between GBM cells and HNPCs»."
+  },
+  {
+    "scheda": "S122",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Sesso e malattia: 4 gruppi. Le assegnazioni concordano con la tabella (GSM5932128 male e microdelezione, GSM5932131 female e controllo, e così gli altri 5). Il sesso è una variabile di contesto che il testo non dichiara a confronto («sex- and age-matched control subjects»); il disegno la scrive come perturbazione con un livello di base, ma tenere una variabile di contesto non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Un solo fattore, la malattia (microdelezione 15q13.3 3, sani 4), come la colonna disease e come il testo: «three 15q13.3 microdeletion patients and four controls»."
+  }
+]

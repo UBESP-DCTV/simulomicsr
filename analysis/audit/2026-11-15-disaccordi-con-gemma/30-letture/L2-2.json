@@ -1,0 +1,172 @@
+[
+  {
+    "scheda": "S002",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia il genotipo (WT, AP4KO, p53KO, AP4KO-p53KO) con il trattamento (controllo, DOX): 8 gruppi di 3 repliche, come nella tabella e nel testo «For each genotype, RNAs from three biological replicates (48 DOX treatment and ICI-only treated controls) were obtained».",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il disegno ha due fattori di genotipo (TP53, TFAP4) e nessun trattamento, e assegna i campioni KO di controllo al livello «wild type genotype» in tutti e due i fattori: per esempio GSM6857421 «AP4_control_1» (colonna genotype = AP4KO), GSM6857427 (p53KO, controllo), GSM6857433 (AP4KO-p53KO, controllo). La tabella smentisce l'assegnazione. In più manca il trattamento DOX, che il testo dichiara: «48 DOX treatment and ICI-only treated controls»."
+  },
+  {
+    "scheda": "S003",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha il genotipo (RUNX1T1 KO 4, WT 4, «non applicabile» per i 18 campioni delle cellule in coltura) e il trattamento (Control Food 4, DMSO 9, Doxycycline 13): 4 gruppi. Tiene il confronto con e senza trattamento che il testo dichiara («KELLY cells containing doxycycline-inducible shRNA to Runx1t1 were cultured with and without treatment»). Dubbio: unisce le cellule con vettore vuoto e quelle con shRNA, e chiama «Doxycycline Food» la doxiciclina data in coltura (solo nome, i gruppi non cambiano); nessuna frase del testo dichiara il confronto vettore vuoto contro shRNA, quindi non è errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha la linea (cellule KELLY 18, derivati dal tumore 8) e il genotipo (knockdown = sh4 e shAMB con doxiciclina, 6; omozigote negativo = PDX KO, 4; wild type 16). Il trattamento è unito al genotipo: i campioni con shRNA indotto sono il knockdown. I gruppi che escono sono difendibili e nessun campione è assegnato contro la tabella."
+  },
+  {
+    "scheda": "S018",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha la linea cellulare (4 livelli), il genotipo (knockdown LUNAR1 10, wt 16, wt di controllo 5) e il trattamento (GSI 2, riferimento 27, controllo 2): 8 gruppi. Unisce i due shRNA contro LUNAR1 in un livello: sono due reagenti per la stessa condizione, e il testo non li dichiara a confronto fra loro.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il tipo di cellula (sano 2, T-ALL 29) e l'agente (controllo 14, GSI 2, shRNA di controllo 5, shLUNAR1 5, secondo shLUNAR1 5): 6 gruppi. Mette nel livello «control» le T-ALL primarie e le linee con DMSO e toglie la linea cellulare: è una variabile di contesto che il testo non dichiara a confronto. Le assegnazioni seguono la tabella."
+  },
+  {
+    "scheda": "S028",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un solo fattore, il genotipo, con i 4 livelli della colonna delle mutazioni (KCT 3, KCST 3, KECST 1, No 1). Toglie il donatore (S1, S2), che è una variabile di contesto.",
+    "B": "errore",
+    "B_tipo": "a",
+    "B_prova": "Oltre alle mutazioni, il disegno usa il fattore «subject» con 8 livelli per 8 campioni (JL_RSq1 … JL_RSq8, presi dalla colonna description): è la sigla del campione, un livello per ogni campione, non una variabile dell'esperimento."
+  },
+  {
+    "scheda": "S037",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «claudin_1_depletion» ha il solo livello «shntc» per tutti i 12 campioni, anche per quelli con shCLDN1 (per esempio GSM7469902 «DLD-1 shCLDN1 #1-1»): la tabella smentisce l'assegnazione. Il testo dichiara il confronto: «with (shCLDN1) or without (shNTC) CLDN1 depletion».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno incrocia la linea cellulare (DLD-1, LoVo) con il genotipo (knockdown di CLDN1 8, wild type 4): segue la tabella e il confronto dichiarato nel testo."
+  },
+  {
+    "scheda": "S051",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un solo fattore, la malattia, con 3 livelli (AD 6, controllo sano 11, PD 6), come nella colonna della tabella.",
+    "B": "errore",
+    "B_tipo": "a",
+    "B_prova": "Oltre alla malattia, il disegno usa il fattore «collection of material» con i livelli «Has data» (16) e «Low Alignment» (7): per il nome è un'etichetta tecnica di qualità dei dati, non una variabile dell'esperimento. La distinzione non c'è né nella tabella né nel testo della scheda (sarebbe anche non verificabile; con le due cose insieme la regola dice errore)."
+  },
+  {
+    "scheda": "S055",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia la diagnosi (controllo, schizofrenia) con il trattamento (JQ1 7, veicolo 7) e segue la tabella riga per riga. Nota: la tabella dà la libreria 6_S4 come veicolo sulla corsia L001 (GSM4292675) e come JQ1 sulla corsia L002 (GSM4292682); il disegno segue la tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno incrocia la malattia con il trattamento (JQ1 8, riferimento 6). Dubbio: assegna a JQ1 il campione GSM4292675 («6_S4_L001_R1_001»), che nella tabella è «Vehicle (PBS)», e questo sarebbe un errore (b). Però la stessa libreria 6_S4 sulla corsia L002 (GSM4292682) è JQ1 nella tabella: la tabella si contraddice sulla stessa libreria e il disegno tiene insieme le due corsie. Nel dubbio scrivo sostenuto."
+  },
+  {
+    "scheda": "S061",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un solo fattore, il trattamento (DMSO 7, entinostat 7, panobinostat 1), come nella tabella. Toglie il tipo di coltura (linea cellulare, coltura da xenotrapianto), che è una variabile di contesto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha l'agente (DMSO 7, entinostat 7, panobinostat 1) e il tipo di coltura (linea cellulare 11, coltura da xenotrapianto 4): 5 gruppi. Tutti e due i fattori stanno nelle colonne «treatment» e «tissue type» della tabella."
+  },
+  {
+    "scheda": "S068",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "Il fattore «collection of material» ha 3 livelli (estratto citoplasmatico 27, frazione insolubile 27, «total RNA» 54) e assegna a «total RNA» tutti i campioni della frazione nucleare: per esempio GSM4766676 «H1 Stem Cell Nuclear Fraction Replicate 1» e GSM4766736 «CR463 Line Puromycin Treatment Nuclear Fraction Replicate 1», che nella tabella hanno fraction = Nucleus. La tabella smentisce l'assegnazione, e la frazione è l'oggetto dello studio: «Using subcellular fractionation combined with RNA-seq (CeFra-seq) we characterize the global mRNA localization landscape».",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il tipo di cellula (motoneurone 88, staminale 20), la linea (6 livelli), il trattamento (non trattato, puromicina, recupero) e la frazione con 4 livelli di 27 campioni (citoplasma, insolubile, nucleo, totale): 56 gruppi, come nelle colonne della tabella."
+  },
+  {
+    "scheda": "S080",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un fattore con 3 livelli (controllo 4, YBX1-ko sgRNA1 4, YBX1-ko sgRNA2 4), come la colonna «sgrna» della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il genotipo con 2 livelli (knockout di YBX1 8, wild type 4) e unisce le due guide. Il testo dichiara il confronto fra knockout e controllo («a YBX1-knockout using 2 different CRISPR guide-RNAs and a non-targeting guide as control»), non fra le due guide: unire due reagenti della stessa condizione non è errore."
+  },
+  {
+    "scheda": "S081",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha il genotipo con 3 livelli (knockout di NGLY1 3, mutazione di NGLY1 6, wild type 9) e unisce le due linee dei pazienti (NGLY1-592 e NGLY1-594). Il testo non dichiara il confronto fra i due pazienti («wild-type midbrain organoids, NGLY1-Knockout and two NGLY1 deficient midbrain organoids generated from patient derived iPSCs»): i gruppi sono difendibili.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il genotipo con i 4 livelli della colonna «genotype» (NGLY1-592 3, NGLY1-594 3, NGLY1-KO 3, WT 9). Segue la tabella."
+  },
+  {
+    "scheda": "S091",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un solo fattore, il sesso (femmina 54, maschio 100), che sta nella colonna «gender» della tabella. Il testo non dichiara una variabile di confronto («Comparative gene expression profiling analysis of RNA-seq data was performed on 154 colorectal cancer samples»), quindi non manca niente di dichiarato.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha la malattia (un solo livello) e lo stadio con 10 livelli presi dalla colonna «tnm stage» della tabella. La distinzione è nella scheda e il testo non dichiara un altro confronto."
+  },
+  {
+    "scheda": "S094",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un solo fattore, il tessuto (colon 49, duodeno 30, ileo 47, «non applicabile» 12), e segue la colonna source_name_ch1. I 12 campioni «non applicabile» sono quelli del muscolo (VU15_MuD, VU15_MuC, VU15_MuI, VU20_Musc): unisce il muscolo delle tre sedi, ma il testo non dichiara nessun confronto («to generate a comprehensive transcriptome atlas for the human myenteric plexus»).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha il sesso (femmina 54, maschio 84) e la parte dell'organismo con 6 livelli (colon 49, duodeno 30, ileo 47, muscolo del colon 3, del duodeno 3, dell'ileo 6): 9 gruppi. Tutti e due i fattori stanno nella tabella (colonne Sex e source_name_ch1). Il sesso è una variabile di contesto tenuta, non un errore."
+  },
+  {
+    "scheda": "S097",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Sui 28 campioni della scheda il disegno ha la linea (AsPC 8, BxPC 12, Panc10.05 8), il trattamento (controllo 20, inibitore di MYC 8) e il genotipo (transgene SERPINB3 16, knockout 8, wild type 4): 6 gruppi. Unisce i due cloni knockout (#1 e #2) e mette insieme DMSO e «No treatment» come controllo: il testo dichiara «BxPC-3 ± SERPINB3 knockout» e «± a MYC inhibitor», non il confronto fra i due cloni.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha la linea (3 livelli), il genotipo (knockout 1 4, knockout 2 4, sovraespressione di SERPINB3 16, wild type 4) e il trattamento (10058-F4 8, controllo 12, riferimento 8): 7 gruppi. Tiene distinti i due cloni knockout e il DMSO dal «No treatment», come nelle colonne «genotype» e «treatment». «10058-F4» è il nome dato all'inibitore di MYC: è un nome, non una distinzione in più fra i campioni."
+  },
+  {
+    "scheda": "S101",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "a",
+    "A_prova": "Oltre alla sede (CNS 3, milza 2), il disegno usa il fattore «replicate» (rep1 2, rep2 2, rep3 1), preso dal titolo dei campioni («REH Brain rep1» …): è la sigla della replica, non una variabile dell'esperimento. Ne escono 5 gruppi per 5 campioni, un campione per gruppo.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha un solo fattore, la parte dell'organismo (cervello 3, milza 2), che è il confronto dichiarato nel testo: «blasts were retrieved from the CNS and periphery (spleen), and their gene expression profiles were compared»."
+  },
+  {
+    "scheda": "S117",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno ha un fattore con 5 livelli: le cellule progenitrici normali (2) e le quattro colture di glioblastoma 56, 730, 914 e 1219 (2 repliche l'una), come la colonna «cell type» della tabella. Dubbio: ogni livello di glioblastoma è la coltura di un paziente, e il testo dichiara il confronto «between GBM cells and HNPCs», non fra le colture. Però ogni livello ha due repliche ed è una coltura cellulare (variabile di contesto tenuta), e ogni coltura contro le HNPC è un confronto difendibile: nel dubbio scrivo sostenuto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha un fattore con 2 livelli (glioblastoma 8, progenitrici neurali 2) e unisce le quattro colture di glioblastoma. È il confronto dichiarato nel testo: «transcripts differentially expressed between GBM cells and HNPCs»."
+  },
+  {
+    "scheda": "S122",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Il disegno incrocia il sesso (femmina 3, maschio 4) con la malattia (microdelezione 15q13.3 3, controllo 4): 4 gruppi. Tutti e due i fattori stanno nella tabella. Il sesso è una variabile di contesto tenuta (il testo dice «4 sex- and age-matched control subjects»), non un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Il disegno ha un solo fattore, la malattia (microdelezione 15q13.3 3, sano 4), che è il confronto dichiarato nel testo: «RNAseq data of whole blood samples from three 15q13.3 microdeletion patients and four controls»."
+  }
+]

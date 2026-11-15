@@ -1,0 +1,116 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+== KD3 (lettura)
+schede giudicate: 124, distinte 124, tutte le 124: TRUE; lette fino alla fine: 124; giudizi nell'elenco: TRUE
+schede giudicate: 124, distinte 124, tutte le 124: TRUE; lette fino alla fine: 124; giudizi nell'elenco: TRUE
+KD3 (lettura): PASSA; schede tagliate: 0 (20-out.txt: nessuna riga oltre 1.900 caratteri, nessuna scheda oltre 2.000 righe)
+
+== KD5 (iii): le esche
+ scheda      gse l1_lettore  l1_gemma l2_lettore  l2_gemma              causa1
+   S032 GSE46665     errore sostenuto     errore sostenuto  errore_del_lettore
+   S033 GSE71289  sostenuto    errore  sostenuto    errore errore_del_curatore
+   S083 GSE60340     errore sostenuto     errore sostenuto  errore_del_lettore
+   S106 GSE51261  sostenuto sostenuto  sostenuto sostenuto      scelte_diverse
+              causa2               causa
+  errore_del_lettore  errore_del_lettore
+ errore_del_curatore errore_del_curatore
+  errore_del_lettore  errore_del_lettore
+      scelte_diverse      scelte_diverse
+KD5 (iii) tutte e due le letture danno `errore` al disegno del lettore in GSE46665 e GSE60340: PASSA
+accanto: esche GSE51261 e GSE71289 con causa finale scelte_diverse: 1 su 2
+
+== le due letture
+schede del campione con la stessa causa: 111 su 120; decise da me: 9
+causa nella lettura 1 (righe) e nella lettura 2 (colonne), campione:
+                       
+                        errore_del_lettore errore_di_tutti_e_due scelte_diverse
+  errore_del_lettore                    31                     0              2
+  errore_di_tutti_e_due                  1                     6              0
+  scelte_diverse                         1                     0             53
+  errore_del_curatore                    0                     0              2
+  fuori_vista                            0                     0              0
+                       
+                        errore_del_curatore fuori_vista
+  errore_del_lettore                      0           0
+  errore_di_tutti_e_due                   0           0
+  scelte_diverse                          2           0
+  errore_del_curatore                    20           0
+  fuori_vista                             1           1
+
+== cause finali per classe dei gruppi (voci del campione)
+                       
+                        incrociata piu_fine piu_grossa
+  errore_del_lettore            11        4         18
+  errore_di_tutti_e_due          2        3          1
+  scelte_diverse                 8       31         20
+  errore_del_curatore            8       12          1
+  fuori_vista                    1        0          0
+
+== cause finali per classe del censimento (voci del campione)
+                       
+                        altro fattore_in_meno fattore_in_piu
+  errore_del_lettore        2               6              3
+  errore_di_tutti_e_due     1               0              1
+  scelte_diverse            7              11             12
+  errore_del_curatore       3               1              6
+  fuori_vista               0               0              0
+                       
+                        fattori_in_piu_e_in_meno livelli_piu_fini
+  errore_del_lettore                           6                4
+  errore_di_tutti_e_due                        0                3
+  scelte_diverse                               5               16
+  errore_del_curatore                          7                4
+  fuori_vista                                  0                1
+                       
+                        livelli_piu_grossi
+  errore_del_lettore                    12
+  errore_di_tutti_e_due                  1
+  scelte_diverse                         8
+  errore_del_curatore                    0
+  fuori_vista                            0
+
+== quote pesate, con l'intervallo al 95%
+PD7: 28.0% (IC95 20.8-35.6%)
+PD8: 53.2% (IC95 44.3-62.4%)
+PD9: 18.7% (IC95 11.8-26.1%)
+PD10: +0.887 (IC95 +0.810, +0.951)
+PD11: +0.368 (IC95 +0.165, +0.565)
+PD11_nonpesata: +0.358 (IC95 +0.160, +0.554)
+errore_del_lettore: 22.9% (IC95 16.5-29.5%)
+errore_di_tutti_e_due: 5.1% (IC95 1.2-9.6%)
+scelte_diverse: 53.2% (IC95 44.3-62.4%)
+errore_del_curatore: 18.2% (IC95 11.2-25.6%)
+fuori_vista: 0.5% (IC95 0.0-1.5%)
+curatore_errore: 23.3% (IC95 15.7-31.4%)
+lettore_errore_stretto: 28.0% (IC95 20.8-35.6%)
+PD7_lettura1: 28.3% (IC95 21.3-35.5%)
+PD7_lettura2: 28.0% (IC95 20.8-35.6%)
+
+voci con un errore di lettura del lettore sulle 2.052 = 545 x PD7 / 2.052: 7.4% (IC95 5.5-9.4%), cioe' circa 153 voci (114-194); accanto, le voci non chiuse: 130 (6,3%)
+caso che la carta non scrive alla lettera (lettore errore o non verificabile, Gemma non verificabile), contato in errore_del_lettore: 0 voci del campione
+giudizio finale del disegno del lettore: errore 39, sostenuto 81
+giudizio finale del disegno di Gemma: errore 27, non_verificabile 1, sostenuto 92
+
+== tipo dell'errore (a, b, c, d) nelle due letture, campione
+tipo1_lettore: a 5, b 27, c 2, d 6
+tipo2_lettore: a 6, b 25, c 1, d 7
+tipo1_gemma: b 12, c 8, d 9
+tipo2_gemma: a 1, b 14, c 8, d 6
+
+== almeno un altro lettore identico a Gemma, per causa finale (campione, non pesato)
+                       altri
+                        FALSE TRUE
+  errore_del_lettore       10   23
+  errore_di_tutti_e_due     6    0
+  scelte_diverse           39   20
+  errore_del_curatore      19    2
+  fuori_vista               1    0
+
+fine  2026-11-15T21:10:12Z 

@@ -1,0 +1,162 @@
+[
+  {
+    "scheda": "S006",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "I tre gruppi sono controllo WT, RHO-CNV non trattato e RHO-CNV con PR3, come nel disegno dello studio («organoids with RHO-CNV, control and PR3 treated RHO CNV retinal organoids»). Nota: A mette RM1-A/B/D al tempo «Ctrl» dove la tabella dice «disease», ma i gruppi non cambiano.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il genotipo è invertito: RC1-A/C/D (tabella: WT) stanno al livello della triplicazione, RM1_PR3_1-3 (tabella: RHO-CNV) stanno a «wild type genotype». Così i controlli WT e gli RHO-CNV non trattati cadono in un solo gruppo, contro «organoids with RHO-CNV, control and PR3 treated RHO CNV retinal organoids»."
+  },
+  {
+    "scheda": "S012",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tessuto (cervello fetale, placenta) per sesso, 4 gruppi: i livelli seguono la tabella. Dubbio: il testo dice «Correlations were performed to understand which genes change in response to increasing maternal fat intake», ma i trigliceridi materni sono un valore continuo per feto e il testo parla di correlazioni, non di gruppi a confronto: non lo giudico (c).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sesso per stadio di sviluppo (E72-E82) per parte dell'organismo, 28 gruppi: l'età in d.p.c. è una variabile di contesto e i livelli seguono la colonna `age` (per esempio H-17257, 79 d.p.c., sta a E79). Stesso dubbio di A sui trigliceridi materni («Correlations were performed ... increasing maternal fat intake»): variabile continua, non la giudico (c)."
+  },
+  {
+    "scheda": "S013",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Un fattore siRNA con tre livelli (siCtrl, siGRHL2-A, siGRHL2-C), come nella tabella dei campioni; i gruppi sono le tre condizioni dello studio.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Knockdown di GRHL2 (12 campioni) contro wild type (6): unisce i due siRNA contro lo stesso gene. La colonna `si_group` della tabella li unisce e il testo dice «This study compares depletion of GRHL2 by siRNA vs siCtrl»."
+  },
+  {
+    "scheda": "S027",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "GSM2027304-306 («infected with Y3 wt RNA», sovraespressione di Y3 wt) stanno a «wild type genotype» insieme ai campioni non infettati e ai mock RNAi senza UV. Il riassunto dichiara l'infezione come perturbazione a confronto: «IMR-32 cells were subjected to lentiviral YRNA infection or nELAVL RNAi and/or UV stress». Dubbio: il testo non nomina a parte Y3 wt contro non infettato.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "Il fattore «lentiviral_infection» ha un solo livello «non applicabile» per tutti i 21 campioni, ma la tabella dà «non-infected», «infected with Y3 wt RNA» e «infected with Y3 mut RNA» per GSM2027301-309: i nove campioni cadono in un solo gruppo. Vale anche (d), con la stessa frase: «IMR-32 cells were subjected to lentiviral YRNA infection or nELAVL RNAi and/or UV stress»."
+  },
+  {
+    "scheda": "S031",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "GSM938901 (trattamento «siRNA knockdown of ADAR2») sta al livello «gene knockdown of ADAR [human] adenosine deaminase, RNA specific», che è il gene ADAR1; il testo nomina due proteine distinte: «ADAR proteins (ADAR1 and ADAR2)». Dubbio: il livello si può leggere come la famiglia ADAR. A unisce anche l'IP con anticorpo ADAR1 e l'IP con IgG di controllo.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM938907 e GSM938909 (trattamento «RNA-IP using ADAR1 antibody», nessun siRNA) stanno al livello «ADAR1 KD»: la tabella smentisce il livello. Il fattore dell'anticorpo li tiene in un gruppo a parte, ma l'assegnazione resta sbagliata."
+  },
+  {
+    "scheda": "S034",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Solo il trattamento (non trattato contro osimertinib 6 settimane), 2 gruppi: toglie il modello PDX, che è una variabile di contesto; il testo non dichiara un confronto fra i PDX.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Trattamento per modello PDX, 6 gruppi: il PDX è contesto, con più campioni e con tutte e due le condizioni dentro ogni modello; non è un soggetto come fattore nel senso di (a)."
+  },
+  {
+    "scheda": "S043",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo per «Experiment 1/2», 4 gruppi: la lettera A/B è nella tabella (`knockout.CHCHD10.A`, `control.A`). Dubbio: il testo non dice che il KO A va con il controllo A («Two independent controls (independent differentiations) of the same control») e il nome «Experiment» non è nella scheda; i gruppi però sono i quattro della tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo con KO_A, KO_B e wild_type, 3 gruppi: divide le due linee KO e unisce i due controlli; unire o dividere repliche della stessa condizione non è un errore."
+  },
+  {
+    "scheda": "S050",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "b",
+    "A_prova": "A segue la colonna `treatment`, che è uguale al numero di replica in 16 campioni su 16 e contraddice titolo e descrizione: GSM5211737 («D0 control, replicate 2», `D0.D.2`) sta a TMG, GSM5211738 («D0 TMG, replicate 1», `D0.T.1`) sta a control. Ogni gruppo di A ha un campione titolato control e uno titolato TMG. Dubbio: la colonna della tabella sostiene A, ma è la colonna a essere smentita da titolo e descrizione.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Tempo (D0, D12, D30, D70) per trattamento (control, TMG), 8 gruppi: segue i titoli e le descrizioni dei campioni (`D0.D.2` control, `D0.T.1` TMG), che danno due repliche per condizione."
+  },
+  {
+    "scheda": "S052",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo p53 per coltura (monostrato, sferoide) per trattamento (DMSO, non applicabile, simvastatina), 8 gruppi: tiene gli sferoidi non trattati di RNAseq1 (trattamento «na») separati dagli sferoidi con DMSO di RNAseq2, come nella tabella.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Genotipo per condizione di crescita per trattamento (riferimento, simvastatina), 6 gruppi: unisce gli sferoidi «na» e quelli con DMSO come riferimento; il testo non li dichiara distinti e a confronto."
+  },
+  {
+    "scheda": "S056",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Stato di infezione per categoria di trattamento per trattamento (8 livelli), 16 gruppi: sono le 16 condizioni elencate nel disegno dello studio (CoV+/CoV- per i gRNA IL10RB-1..4 e scramble, gli shRNA IL10RB, IFNAR2 e scramble).",
+    "B": "non_verificabile",
+    "B_tipo": "",
+    "B_prova": "Il fattore con i livelli «DE_Exclude»/«DE_Include» mette GSM5466144 (COV_NPC_7) da solo, separato da GSM5466145-146 che hanno gli stessi valori nella tabella: questa distinzione non è nella tabella né nel testo. Unire i quattro gRNA di IL10RB in un solo livello di sovraespressione non lo giudico un errore (stesso gene, stessa perturbazione)."
+  },
+  {
+    "scheda": "S062",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tre gruppi: controllo col vettore pLPLUC (3), sovraespressione di USP22 (2), controllo shRNA con doxiciclina (1), come nella tabella dei campioni.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Sovraespressione di USP22 (2) contro wild type (4). Dubbio: GSM4155492 (shRNA di controllo, doxiciclina) è unito ai controlli col vettore; sono i controlli di due modelli diversi («USP22 overexpression or shRNA-mediated depletion»), ma nessuna frase del testo dichiara i due controlli distinti e a confronto fra loro."
+  },
+  {
+    "scheda": "S089",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Genotipo con tre livelli: WT (2), triplo knockout BRWD1+BRWD3+PHIP (4), BRWD1+BRWD3 nulli per i campioni con PHIP reintrodotto (4). La distinzione del rescue è nei titoli dei campioni (`HCT116_BRWD_TKO_Clone1_PHIP_Rescue_R1`).",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "WT (2) contro BRWD-TKO (8). Dubbio: unisce TKO e TKO con rescue di PHIP; la colonna `genotype` dice «BRWD-TKO» per tutti gli otto e nessuna frase di titolo, riassunto o disegno dichiara il rescue a confronto («we have performed RNA-sequencing of PHIP loss-of-function mutants»): per la regola non è (d)."
+  },
+  {
+    "scheda": "S105",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Tipo cellulare (neuron, non-neuron) per regione (25) con il tessuto annidato, 50 gruppi: sono le due variabili del disegno dello studio («RNA-seq profiles in neuronal and non-neuronal nuclei isolated from 25 brain regions»). Togliere il sesso, variabile di contesto, non è un errore.",
+    "B": "errore",
+    "B_tipo": "c",
+    "B_prova": "Sesso per regione, 50 gruppi: manca il tipo cellulare, che cambia fra i campioni (colonna `group`: 130 neuron, 133 non-neuron) e che il testo dichiara: «RNA-seq profiles in neuronal and non-neuronal nuclei isolated from 25 brain regions», «Brain region- and cell-specific transcriptome». Così per esempio GSM6502249 (BB5_PVC_G, non-neuron) e GSM6502250 (BB5_PVC_N, neuron) stanno nello stesso gruppo. Dubbio: il testo nomina le due popolazioni come assi del disegno, ma scrive la parola «differences» solo per le regioni."
+  },
+  {
+    "scheda": "S112",
+    "letta_fino_alla_fine": true,
+    "A": "errore",
+    "A_tipo": "d",
+    "A_prova": "Il livello «reference subject role» unisce i gemelli monozigoti non affetti (GSM5742171, 174, 176, 177, 184) con i controlli sani non imparentati (GSM5742179-182, 185, 186). Il riassunto li dichiara distinti e a confronto: «five monozygotic twin pairs discordant for schizophrenia and five healthy subjects were studied for alterations related to high genetic risk and clinical manifestation of SCZ» (il rischio genetico chiede gemelli contro controlli). Dubbio: il testo non scrive i tre gruppi per nome. Il sesso come fattore è contesto.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Stato di malattia per «individual» con tre classi (controllo non imparentato, gemello affetto, gemello non affetto), 3 gruppi: «individual» qui è la classe del soggetto, non un livello per persona, e i tre gruppi sono quelli della tabella."
+  },
+  {
+    "scheda": "S115",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Linea cellulare, genotipo (sovraespressione di BRD4-NUT per i tre campioni con tetraciclina) e trattamento con 8 livelli, 10 gruppi. Le due repliche di JQ1 a 1 h (GSM1820977, GSM1820981) stanno in due livelli («[247654]», «[247660]»): dividere repliche della stessa condizione non è un errore.",
+    "B": "sostenuto",
+    "B_tipo": "",
+    "B_prova": "Linea cellulare, agente (JQ1, tetraciclina, non trattato) e tempo, 9 gruppi: i livelli seguono la colonna `treatment` e i titoli (per esempio GSM1820978 «2h30_JQ1_797R1» sta a JQ1, 2h30min)."
+  },
+  {
+    "scheda": "S121",
+    "letta_fino_alla_fine": true,
+    "A": "sostenuto",
+    "A_tipo": "",
+    "A_prova": "Quattro livelli di materiale (ApaLI* non selezionato, ApaLI non selezionato, ApaLI GFP-, ApaLI GFP+) per le due linee (RRBP1-GFP11, MTA2-GFP11), 8 gruppi: sono i quattro trattamenti del disegno dello studio nelle due linee. Il nome «Overexpression of RRBP1/MTA2» non è esatto (il gene è marcato, non sovraespresso), ma la forma del nome non conta.",
+    "B": "errore",
+    "B_tipo": "b",
+    "B_prova": "GSM6607506, GSM6607507, GSM6607514 e GSM6607515 (titoli «ApaLI, Dox, unsorted», genotipo «inducible ApaLI integrated») stanno al trattamento «ApaLI*», l'enzima cataliticamente inattivo. Così i non selezionati con enzima attivo e inattivo cadono in un solo gruppo, contro il disegno «ApaLI* + Dox, ApaLI + Dox, ApaLI + Dox GFP- population, ApaLI + Dox GFP+ population»."
+  }
+]
