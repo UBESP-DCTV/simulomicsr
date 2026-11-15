@@ -95,10 +95,11 @@ lett_sv <- stats::setNames(lapply(sv$gse, function(g) lettura_studio(viste[[g]],
 stopifnot(identical(vapply(lett_sv, chiave_gc, ""), stats::setNames(paste(chiavi_lettura(m)$gruppi, chiavi_lettura(m)$confronti), sv$gse)))
 cp <- misura_voci(s21, viste, lett_sv)
 pil <- utils::read.csv(file.path(LG, "31-pilota-per-studio.csv"), stringsAsFactors = FALSE); pil <- pil[pil$chi == "mistral_B0", ]
-car <- function(d) as.data.frame(lapply(d[COL], as.character), stringsAsFactors = FALSE)
+# (il nome non e' `car`: l'adattatore v1 chiama una funzione globale `car()`, e un altro `car` qui la copre)
+come_testo <- function(d) as.data.frame(lapply(d[COL], as.character), stringsAsFactors = FALSE)
 rg <- riassumi_gemma(cp$per, B, SEME)
 passa("K1 controllo positivo: misura_voci() sui 21 studi di sviluppo rida' 31-pilota-per-studio.csv riga per riga",
-      length(cp$senza) == 0L && identical(car(cp$per), car(pil)),
+      length(cp$senza) == 0L && identical(come_testo(cp$per), come_testo(pil)),
       sprintf("%s; %s; %s", riga_gemma(rg, "a_gruppi_identici"), riga_gemma(rg, "b_confronti_ritrovati"), riga_gemma(rg, "c_errori_non_elencati")))
 if (Sys.getenv("SOLO_CONTROLLO") == "1") { cat("SOLO_CONTROLLO=1: fine dopo il controllo positivo\n"); quit(save = "no", status = 0L) }
 
@@ -127,7 +128,12 @@ apri_corsa <- function(corsa) {
   passa(sprintf("K3 %s: un record per ogni studio dell'ingresso", corsa), setequal(id, in_ingresso), sprintf("%d su %d", length(id), length(in_ingresso)))
   x[in_ingresso]
 }
-letture_di <- function(x) stats::setNames(lapply(names(x), function(g) lettura_studio(VG[[g]], x[[g]])), names(x))
+# Il validatore di ogni studio (ajv in V8) resta nella cache `.validatori_forma` di 10-forme.R: con 2.016 schemi la
+# memoria di V8 finisce. Qui la cache si svuota dopo ogni studio: l'esito della validazione non cambia.
+letture_di <- function(x) stats::setNames(lapply(seq_along(x), function(i) { g <- names(x)[i]
+  r <- lettura_studio(VG[[g]], x[[g]])
+  rm(list = ls(.validatori_forma), envir = .validatori_forma); if (i %% 25L == 0L) invisible(gc())
+  r }), names(x))
 
 # ---- la corsa del primo lettore: esiti per studio (K3) e misura per voce -------------------------------------
 X <- apri_corsa(CORSA); L <- letture_di(X)
