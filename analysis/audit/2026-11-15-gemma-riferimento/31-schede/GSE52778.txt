@@ -1,0 +1,81 @@
+GSE52778 (voce di Gemma GSE52778.2): universo 13 campioni (Atlas 14, Gemma 15; di Atlas fuori da Gemma 1)
+gruppi: Atlas 4, Gemma 13 (piu_fine), Mistral B0 4 (identica); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 3; ritrovati Gemma 0 (verso opposto 0), Mistral B0 3
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    treatment: albuterol (3); albuterol and dexamethasone (3); dexamethasone (4); untreated (3)
+  tipi e basi: treatment=contesto
+
+FATTORI DI GEMMA TENUTI:
+    cell line [55340]: N052611 (3); N061011 (3); N080611 (3); N61311 (4)
+    treatment [55339]: albuterol delivered at dose 1 uM and delivered for duration 18 h (3); albuterol delivered at dose 1 uM and delivered for duration 18 h, dexamethasone delivered at dose 1 uM and delivered for duration 18 h (3); dexamethasone delivered at dose 1 uM and delivered for duration 18 h (4); reference substance role (3)
+  tipi e basi: cell line [55340]=contesto | treatment [55339]=perturbazione (base: reference substance role)
+  base dichiarata da Gemma e non usata (contesto o tempo): cell line [55340]=N052611
+  fattori di Gemma tolti: block [55341] blocco
+  note: fattore_tolto_blocco:block | base_di_contesto_non_usata:cell line [55340]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g10 g12 g13 g14 g15 g2 g3 g5 g6 g7 g8 g9
+   g1  1   .   1   .   .   .  .  .  .  .  .  1  .
+   g2  .   .   .   1   .   .  .  .  1  .  .  .  1
+   g3  .   1   .   .   1   .  1  .  .  1  .  .  .
+   g4  .   .   .   .   .   1  .  1  .  .  1  .  .
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4
+   g1  3  .  .  .
+   g2  .  3  .  .
+   g3  .  .  4  .
+   g4  .  .  .  3
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g4_g1 | 'albuterol' vs 'untreated' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 3 contro 3
+  g4_g3 | 'dexamethasone' vs 'untreated' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 4 contro 3
+  g4_g2 | 'albuterol and dexamethasone' vs 'untreated' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                            dettaglio
+       g1       g2    nessuno_al_base                    treatment [55339]
+       g1       g3              n_min                    treatment [55339]
+       g1       g4 fattore_senza_base                    cell line [55340]
+       g1       g5  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1       g6  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1       g7  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1       g8 fattore_senza_base                    cell line [55340]
+       g1       g9  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1      g10  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1      g11  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1      g12 fattore_senza_base                    cell line [55340]
+       g1      g13  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1      g14  piu_di_un_fattore cell line [55340], treatment [55339]
+       g1      g15  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2       g3              n_min                    treatment [55339]
+       g2       g4  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2       g5  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2       g6 fattore_senza_base                    cell line [55340]
+       g2       g7  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2       g8  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2       g9  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2      g10 fattore_senza_base                    cell line [55340]
+       g2      g11  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2      g12  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2      g13  piu_di_un_fattore cell line [55340], treatment [55339]
+       g2      g14 fattore_senza_base                    cell line [55340]
+       g2      g15  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3       g4  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3       g5  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3       g6  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3       g7 fattore_senza_base                    cell line [55340]
+       g3       g8  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3       g9  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3      g10  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3      g11 fattore_senza_base                    cell line [55340]
+       g3      g12  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3      g13  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3      g14  piu_di_un_fattore cell line [55340], treatment [55339]
+       g3      g15 fattore_senza_base                    cell line [55340]
+       g4       g5    nessuno_al_base                    treatment [55339]

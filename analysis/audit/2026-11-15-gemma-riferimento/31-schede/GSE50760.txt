@@ -1,0 +1,40 @@
+GSE50760 (voce di Gemma GSE50760): universo 54 campioni (Atlas 54, Gemma 54; di Atlas fuori da Gemma 0)
+gruppi: Atlas 3, Gemma 3 (incrociata), Mistral B0 3 (incrociata); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 0 (verso opposto 0), Mistral B0 0
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    biopsy site: colorectal cancer metastatic in the liver (17); normal (19); primary tumor (18)
+  tipi e basi: biopsy site=contesto
+
+FATTORI DI GEMMA TENUTI:
+    organism part [22431]: colon (18); colorectal cancer (18); metastatic carcinoma located in liver cancer (18)
+  tipi e basi: organism part [22431]=contesto
+  base dichiarata da Gemma e non usata (contesto o tempo): organism part [22431]=colorectal cancer
+  fattori di Gemma tolti: block [32692] blocco
+  note: outlier_di_gemma:2 | fattore_tolto_blocco:block | base_di_contesto_non_usata:organism part [22431]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3
+   g1  .  . 17
+   g2 18  .  1
+   g3  . 18  .
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3
+   g1  . 17  .
+   g2 18  1  .
+   g3  .  . 18
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g2_g1 | 'colorectal cancer metastatic in the liver' vs 'normal' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral no | 17 contro 19
+  g2_g3 | 'primary tumor' vs 'normal' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral no | 18 contro 19
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo             dettaglio
+       g1       g2 fattore_senza_base organism part [22431]
+       g1       g3 fattore_senza_base organism part [22431]
+       g2       g3 fattore_senza_base organism part [22431]

@@ -1,0 +1,82 @@
+GSE60340 (voce di Gemma GSE60340): universo 24 campioni (Atlas 24, Gemma 24; di Atlas fuori da Gemma 0)
+gruppi: Atlas 8, Gemma 8 (identica), Mistral B0 6 (piu_grossa); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 0 (verso opposto 0), Mistral B0 0
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    phenotype: aging cells (3); induced into quiescence (3); induced into senescence (9); replicatively senescent (3); spontaneously immortal cells (3); young cells (3)
+    treatment: 5-aza-2-deoxycytidine (3); adriamycin (3); control (3); grown until growth arrest (3); hydrogen peroxide (3); non scritto (6); serum starved (3)
+  tipi e basi: phenotype=contesto | treatment=contesto
+
+FATTORI DI GEMMA TENUTI:
+    cell type [22279]: aging with Population doubling 17-19 (3); immortal (3); Induced into quiescence (3); Induced into senescence (9); senescent with Population doubling 28-30 (3); young with Population doubling 10-12 (3)
+    treatment [22278]: 5-aza-2'-deoxycytidine (3); doxorubicin (3); hydrogen peroxide (3); reference substance role (12); serum starved (3)
+  tipi e basi: cell type [22279]=contesto | treatment [22278]=perturbazione (base: reference substance role)
+  base dichiarata da Gemma e non usata (contesto o tempo): cell type [22279]=young with Population doubling 10-12
+  fattori di Gemma tolti: block [36156] blocco
+  note: fattore_tolto_blocco:block | base_di_contesto_non_usata:cell type [22279]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4 g5 g6 g7 g8
+   g1  .  .  .  .  3  .  .  .
+   g2  3  .  .  .  .  .  .  .
+   g3  .  3  .  .  .  .  .  .
+   g4  .  .  3  .  .  .  .  .
+   g5  .  .  .  3  .  .  .  .
+   g6  .  .  .  .  .  .  3  .
+   g7  .  .  .  .  .  3  .  .
+   g8  .  .  .  .  .  .  .  3
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4 g5 g6
+   g1  3  .  .  .  .  .
+   g2  .  .  3  .  .  .
+   g3  .  .  .  3  .  .
+   g4  .  .  .  3  .  .
+   g5  .  .  .  3  .  .
+   g6  .  .  .  .  3  .
+   g7  .  3  .  .  .  .
+   g8  .  .  .  .  .  3
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g7_g6 | 'replicatively senescent; grown until growth arrest' vs 'spontaneously immortal cells; control' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+  g7_g1 | 'aging cells' vs 'spontaneously immortal cells; control' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral no | 3 contro 3
+  g7_g8 | 'young cells' vs 'spontaneously immortal cells; control' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral no | 3 contro 3
+  g7_g2 | 'induced into quiescence; serum starved' vs 'spontaneously immortal cells; control' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+  g7_g3 | 'induced into senescence; 5-aza-2-deoxycytidine' vs 'spontaneously immortal cells; control' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+  g7_g4 | 'induced into senescence; adriamycin' vs 'spontaneously immortal cells; control' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+  g7_g5 | 'induced into senescence; hydrogen peroxide' vs 'spontaneously immortal cells; control' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                            dettaglio
+       g1       g2  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g3  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g4  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g5  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g6  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g7  piu_di_un_fattore cell type [22279], treatment [22278]
+       g1       g8  piu_di_un_fattore cell type [22279], treatment [22278]
+       g2       g3    nessuno_al_base                    treatment [22278]
+       g2       g4    nessuno_al_base                    treatment [22278]
+       g2       g5  piu_di_un_fattore cell type [22279], treatment [22278]
+       g2       g6  piu_di_un_fattore cell type [22279], treatment [22278]
+       g2       g7  piu_di_un_fattore cell type [22279], treatment [22278]
+       g2       g8  piu_di_un_fattore cell type [22279], treatment [22278]
+       g3       g4    nessuno_al_base                    treatment [22278]
+       g3       g5  piu_di_un_fattore cell type [22279], treatment [22278]
+       g3       g6  piu_di_un_fattore cell type [22279], treatment [22278]
+       g3       g7  piu_di_un_fattore cell type [22279], treatment [22278]
+       g3       g8  piu_di_un_fattore cell type [22279], treatment [22278]
+       g4       g5  piu_di_un_fattore cell type [22279], treatment [22278]
+       g4       g6  piu_di_un_fattore cell type [22279], treatment [22278]
+       g4       g7  piu_di_un_fattore cell type [22279], treatment [22278]
+       g4       g8  piu_di_un_fattore cell type [22279], treatment [22278]
+       g5       g6 fattore_senza_base                    cell type [22279]
+       g5       g7 fattore_senza_base                    cell type [22279]
+       g5       g8 fattore_senza_base                    cell type [22279]
+       g6       g7 fattore_senza_base                    cell type [22279]
+       g6       g8 fattore_senza_base                    cell type [22279]
+       g7       g8 fattore_senza_base                    cell type [22279]

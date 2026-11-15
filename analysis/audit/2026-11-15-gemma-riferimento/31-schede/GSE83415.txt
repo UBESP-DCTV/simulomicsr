@@ -1,0 +1,31 @@
+GSE83415 (voce di Gemma GSE83415): universo 21 campioni (Atlas 21, Gemma 21; di Atlas fuori da Gemma 0)
+gruppi: Atlas 2, Gemma 2 (identica), Mistral B0 2 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 1; ritrovati Gemma 1 (verso opposto 0), Mistral B0 1
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    disease staging: active, on treatment (11); remission, on treatment (10)
+  tipi e basi: disease staging=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [31012]: juvenile idiopathic arthritis (11); remission has role reference subject role (10)
+  tipi e basi: disease [31012]=perturbazione (base: remission has role reference subject role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: block [36744] blocco
+  note: fattore_tolto_blocco:block
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2
+   g1 11  .
+   g2  . 10
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2
+   g1 11  .
+   g2  . 10
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g2_g1 | 'active, on treatment' vs 'remission, on treatment' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 11 contro 10
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:

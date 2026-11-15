@@ -1,0 +1,67 @@
+GSE71289 (voce di Gemma GSE71289): universo 42 campioni (Atlas 42, Gemma 42; di Atlas fuori da Gemma 0)
+gruppi: Atlas 8, Gemma 6 (piu_grossa), Mistral B0 8 (identica); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 6; ritrovati Gemma 2 (verso opposto 0), Mistral B0 6
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    cell type: neural progenitor cell (20); neuron (22)
+    genotype: DISC1 exon 2 mut/mut (12); DISC1 exon 8 mut/mut (9); DISC1 exon 8 wt/mut (9); wild type genotype (12)
+    sampling time point: embryoid body, day 17 (20); embryoid body, day 50 (22)
+  tipi e basi: cell type=contesto | genotype=contesto | sampling time point=contesto
+
+FATTORI DI GEMMA TENUTI:
+    cell type [27996]: neuroblast (sensu Vertebrata) (20); neuron (22)
+    genotype [27997]: exon 2 mutation  DISC1 [human] disrupted in schizophrenia 1 (12); exon 8 mutation  DISC1 [human] disrupted in schizophrenia 1 (18); wild type genotype (12)
+  tipi e basi: cell type [27996]=contesto | genotype [27997]=perturbazione (base: wild type genotype)
+  base dichiarata da Gemma e non usata (contesto o tempo): cell type [27996]=neuroblast (sensu Vertebrata)
+  fattori di Gemma tolti: 
+  note: interazioni_ignorate:1 | base_di_contesto_non_usata:cell type [27996]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4 g5 g6
+   g1  6  .  .  .  .  .
+   g2  .  5  .  .  .  .
+   g3  .  3  .  .  .  .
+   g4  .  .  6  .  .  .
+   g5  .  .  .  6  .  .
+   g6  .  .  .  .  4  .
+   g7  .  .  .  .  6  .
+   g8  .  .  .  .  .  6
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4 g5 g6 g7 g8
+   g1  .  6  .  .  .  .  .  .
+   g2  .  .  .  5  .  .  .  .
+   g3  .  .  .  .  .  3  .  .
+   g4  .  .  .  .  .  .  .  6
+   g5  6  .  .  .  .  .  .  .
+   g6  .  .  4  .  .  .  .  .
+   g7  .  .  .  .  6  .  .  .
+   g8  .  .  .  .  .  .  6  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g4_g1 | 'DISC1 exon 2 mut/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 6 contro 6
+  g4_g2 | 'DISC1 exon 8 mut/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 5 contro 6
+  g4_g3 | 'DISC1 exon 8 wt/mut' vs 'wild type' in 'neural progenitor cell' at 'embryoid body, day 17' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 3 contro 6
+  g8_g5 | 'DISC1 exon 2 mut/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 6 contro 6
+  g8_g6 | 'DISC1 exon 8 mut/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 4 contro 6
+  g8_g7 | 'DISC1 exon 8 wt/mut' vs 'wild type' in 'neuron' at 'embryoid body, day 50' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 6 contro 6
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+  g2_g3 | genotype [27997] / exon 8 mutation  DISC1 [human] disrupted in schizophrenia 1 | giudizio braccio_misto | 8 contro 6
+  g5_g6 | genotype [27997] / exon 8 mutation  DISC1 [human] disrupted in schizophrenia 1 | giudizio braccio_misto | 10 contro 6
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                           dettaglio
+       g1       g2    nessuno_al_base                    genotype [27997]
+       g1       g4 fattore_senza_base                   cell type [27996]
+       g1       g5  piu_di_un_fattore cell type [27996], genotype [27997]
+       g1       g6  piu_di_un_fattore cell type [27996], genotype [27997]
+       g2       g4  piu_di_un_fattore cell type [27996], genotype [27997]
+       g2       g5 fattore_senza_base                   cell type [27996]
+       g2       g6  piu_di_un_fattore cell type [27996], genotype [27997]
+       g3       g4  piu_di_un_fattore cell type [27996], genotype [27997]
+       g3       g5  piu_di_un_fattore cell type [27996], genotype [27997]
+       g3       g6 fattore_senza_base                   cell type [27996]
+       g4       g5    nessuno_al_base                    genotype [27997]

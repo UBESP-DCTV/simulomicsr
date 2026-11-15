@@ -1,0 +1,44 @@
+GSE52194 (voce di Gemma GSE52194): universo 19 campioni (Atlas 19, Gemma 20; di Atlas fuori da Gemma 0)
+gruppi: Atlas 4, Gemma 4 (identica), Mistral B0 4 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 0; ritrovati Gemma 0 (verso opposto 0), Mistral B0 0
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    clinical information: HER2 Positive Breast Carcinoma (5); non-triple-negative breast cancer (6); normal (3); triple-negative breast cancer (5)
+    disease: breast carcinoma (16); normal (3)
+  tipi e basi: clinical information=contesto | disease=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [30082]: breast cancer with non-triple-negative (6); HER2 positive breast carcinoma (5); reference subject role (3); triple-negative breast carcinoma (5)
+  tipi e basi: disease [30082]=perturbazione (base: reference subject role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: 
+  note: 
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4
+   g1  5  .  .  .
+   g2  .  6  .  .
+   g3  .  .  3  .
+   g4  .  .  .  5
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4
+   g1  5  .  .  .
+   g2  .  .  .  6
+   g3  .  .  3  .
+   g4  .  5  .  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g3_g1 | 'HER2 Positive Breast Carcinoma; breast carcinoma' vs 'normal' | classe piu_fattori | nel riferimento FALSE | Gemma uguale | Mistral uguale | 5 contro 3
+  g3_g4 | 'triple-negative breast cancer; breast carcinoma' vs 'normal' | classe piu_fattori | nel riferimento FALSE | Gemma uguale | Mistral uguale | 5 contro 3
+  g3_g2 | 'non-triple-negative breast cancer; breast carcinoma' vs 'normal' | classe piu_fattori | nel riferimento FALSE | Gemma uguale | Mistral uguale | 6 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b          motivo       dettaglio
+       g1       g2 nessuno_al_base disease [30082]
+       g1       g4 nessuno_al_base disease [30082]
+       g2       g4 nessuno_al_base disease [30082]

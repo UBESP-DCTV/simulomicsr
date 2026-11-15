@@ -1,0 +1,58 @@
+GSE67196 (voce di Gemma GSE67196): universo 53 campioni (Atlas 53, Gemma 53; di Atlas fuori da Gemma 0)
+gruppi: Atlas 6, Gemma 6 (identica), Mistral B0 6 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 4; ritrovati Gemma 4 (verso opposto 0), Mistral B0 4
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    disease: amyotrophic lateral sclerosis with C9orf72 repeat expansion (16); amyotrophic lateral sclerosis without C9orf72 repeat expansion (20); normal (17)
+    organism part: cerebellum (26); frontal cortex (27)
+  tipi e basi: disease=contesto | organism part=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [27674]: C9orf72 [human] chromosome 9 open reading frame 72  repeat expansion  amyotrophic lateral sclerosis (16); reference subject role (17); sporadi  sporadic amyotrophic lateral sclerosis (20)
+    organism part [27675]: cerebellum (26); frontal cortex (27)
+  tipi e basi: disease [27674]=perturbazione (base: reference subject role) | organism part [27675]=contesto
+  base dichiarata da Gemma e non usata (contesto o tempo): organism part [27675]=cerebellum
+  fattori di Gemma tolti: block [32740] blocco
+  note: fattore_tolto_blocco:block | interazioni_ignorate:1 | base_di_contesto_non_usata:organism part [27675]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4 g5 g6
+   g1  8  .  .  .  .  .
+   g2  .  8  .  .  .  .
+   g3  .  .  .  . 10  .
+   g4  .  .  .  .  . 10
+   g5  .  .  8  .  .  .
+   g6  .  .  .  9  .  .
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4 g5 g6
+   g1  8  .  .  .  .  .
+   g2  .  8  .  .  .  .
+   g3  .  .  .  . 10  .
+   g4  .  .  .  .  . 10
+   g5  .  .  8  .  .  .
+   g6  .  .  .  9  .  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g5_g1 | 'amyotrophic lateral sclerosis with C9orf72 repeat expansion' vs 'normal' in 'cerebellum' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 8 contro 8
+  g6_g2 | 'amyotrophic lateral sclerosis with C9orf72 repeat expansion' vs 'normal' in 'frontal cortex' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 8 contro 9
+  g5_g3 | 'amyotrophic lateral sclerosis without C9orf72 repeat expansion' vs 'normal' in 'cerebellum' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 10 contro 8
+  g6_g4 | 'amyotrophic lateral sclerosis without C9orf72 repeat expansion' vs 'normal' in 'frontal cortex' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 10 contro 9
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                              dettaglio
+       g1       g2 fattore_senza_base                  organism part [27675]
+       g1       g4  piu_di_un_fattore disease [27674], organism part [27675]
+       g1       g5    nessuno_al_base                        disease [27674]
+       g1       g6  piu_di_un_fattore disease [27674], organism part [27675]
+       g2       g3  piu_di_un_fattore disease [27674], organism part [27675]
+       g2       g5  piu_di_un_fattore disease [27674], organism part [27675]
+       g2       g6    nessuno_al_base                        disease [27674]
+       g3       g4 fattore_senza_base                  organism part [27675]
+       g3       g6  piu_di_un_fattore disease [27674], organism part [27675]
+       g4       g5  piu_di_un_fattore disease [27674], organism part [27675]
+       g5       g6 fattore_senza_base                  organism part [27675]

@@ -1,0 +1,85 @@
+GSE78936 (voce di Gemma GSE78936): universo 82 campioni (Atlas 82, Gemma 82; di Atlas fuori da Gemma 0)
+gruppi: Atlas 9, Gemma 9 (identica), Mistral B0 9 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 6; ritrovati Gemma 6 (verso opposto 0), Mistral B0 6
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    disease: bipolar disorder (30); normal (24); schizophrenia (28)
+    organism part: Brodmann (1909) area 11 (44); Brodmann (1909) area 24 (19); Brodmann (1909) area 9 (19)
+  tipi e basi: disease=contesto | organism part=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [26752]: bipolar disorder (30); reference subject role (24); schizophrenia (28)
+    organism part [26753]: anterior cingulate cortex (19); orbitofrontal cortex (44); prefrontal cortex (19)
+  tipi e basi: disease [26752]=perturbazione (base: reference subject role) | organism part [26753]=contesto
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: 
+  note: outlier_di_gemma:1
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4 g5 g6 g7 g8 g9
+   g1  . 16  .  .  .  .  .  .  .
+   g2  7  .  .  .  .  .  .  .  .
+   g3  .  .  7  .  .  .  .  .  .
+   g4  .  .  .  . 12  .  .  .  .
+   g5  .  .  .  6  .  .  .  .  .
+   g6  .  .  .  .  .  6  .  .  .
+   g7  .  .  .  .  .  .  . 16  .
+   g8  .  .  .  .  .  .  6  .  .
+   g9  .  .  .  .  .  .  .  .  6
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4 g5 g6 g7 g8 g9
+   g1 16  .  .  .  .  .  .  .  .
+   g2  .  7  .  .  .  .  .  .  .
+   g3  .  .  7  .  .  .  .  .  .
+   g4  .  .  . 12  .  .  .  .  .
+   g5  .  .  .  .  6  .  .  .  .
+   g6  .  .  .  .  .  6  .  .  .
+   g7  .  .  .  .  .  . 16  .  .
+   g8  .  .  .  .  .  .  .  6  .
+   g9  .  .  .  .  .  .  .  .  6
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g4_g1 | 'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 11' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 16 contro 12
+  g5_g2 | 'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 24' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 7 contro 6
+  g6_g3 | 'bipolar disorder' vs 'normal' in 'Brodmann (1909) area 9' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 7 contro 6
+  g4_g7 | 'schizophrenia' vs 'normal' in 'Brodmann (1909) area 11' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 16 contro 12
+  g5_g8 | 'schizophrenia' vs 'normal' in 'Brodmann (1909) area 24' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 6 contro 6
+  g6_g9 | 'schizophrenia' vs 'normal' in 'Brodmann (1909) area 9' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 6 contro 6
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                              dettaglio
+       g1       g2 fattore_senza_base                  organism part [26753]
+       g1       g3 fattore_senza_base                  organism part [26753]
+       g1       g5  piu_di_un_fattore disease [26752], organism part [26753]
+       g1       g6  piu_di_un_fattore disease [26752], organism part [26753]
+       g1       g7    nessuno_al_base                        disease [26752]
+       g1       g8  piu_di_un_fattore disease [26752], organism part [26753]
+       g1       g9  piu_di_un_fattore disease [26752], organism part [26753]
+       g2       g3 fattore_senza_base                  organism part [26753]
+       g2       g4  piu_di_un_fattore disease [26752], organism part [26753]
+       g2       g6  piu_di_un_fattore disease [26752], organism part [26753]
+       g2       g7  piu_di_un_fattore disease [26752], organism part [26753]
+       g2       g8    nessuno_al_base                        disease [26752]
+       g2       g9  piu_di_un_fattore disease [26752], organism part [26753]
+       g3       g4  piu_di_un_fattore disease [26752], organism part [26753]
+       g3       g5  piu_di_un_fattore disease [26752], organism part [26753]
+       g3       g7  piu_di_un_fattore disease [26752], organism part [26753]
+       g3       g8  piu_di_un_fattore disease [26752], organism part [26753]
+       g3       g9    nessuno_al_base                        disease [26752]
+       g4       g5 fattore_senza_base                  organism part [26753]
+       g4       g6 fattore_senza_base                  organism part [26753]
+       g4       g8  piu_di_un_fattore disease [26752], organism part [26753]
+       g4       g9  piu_di_un_fattore disease [26752], organism part [26753]
+       g5       g6 fattore_senza_base                  organism part [26753]
+       g5       g7  piu_di_un_fattore disease [26752], organism part [26753]
+       g5       g9  piu_di_un_fattore disease [26752], organism part [26753]
+       g6       g7  piu_di_un_fattore disease [26752], organism part [26753]
+       g6       g8  piu_di_un_fattore disease [26752], organism part [26753]
+       g7       g8 fattore_senza_base                  organism part [26753]
+       g7       g9 fattore_senza_base                  organism part [26753]
+       g8       g9 fattore_senza_base                  organism part [26753]

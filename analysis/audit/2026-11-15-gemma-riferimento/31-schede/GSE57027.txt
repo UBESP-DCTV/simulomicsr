@@ -1,0 +1,38 @@
+GSE57027 (voce di Gemma GSE57027): universo 9 campioni (Atlas 9, Gemma 9; di Atlas fuori da Gemma 0)
+gruppi: Atlas 3, Gemma 3 (identica), Mistral B0 3 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 2 (verso opposto 0), Mistral B0 2
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    phenotype: control (3); overexpression of Halo-NfkB1 (3); overexpression of Halo-RelA (3)
+  tipi e basi: phenotype=contesto
+
+FATTORI DI GEMMA TENUTI:
+    genotype [22415]: Overexpression of  NFKB1 [human] nuclear factor of kappa light polypeptide gene enhancer in B-cells 1 (3); Overexpression of  RELA [human] v-rel avian reticuloendotheliosis viral oncogene homolog A (3); wild type genotype (3)
+  tipi e basi: genotype [22415]=perturbazione (base: wild type genotype)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: 
+  note: 
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3
+   g1  .  .  3
+   g2  3  .  .
+   g3  .  3  .
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3
+   g1  3  .  .
+   g2  .  3  .
+   g3  .  .  3
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g1_g3 | 'overexpression of Halo-RelA' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 3 contro 3
+  g1_g2 | 'overexpression of Halo-NfkB1' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b          motivo        dettaglio
+       g1       g2 nessuno_al_base genotype [22415]

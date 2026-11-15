@@ -1,0 +1,36 @@
+GSE52946 (voce di Gemma GSE52946): universo 17 campioni (Atlas 17, Gemma 20; di Atlas fuori da Gemma 0)
+gruppi: Atlas 2, Gemma 2 (identica), Mistral B0 2 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 1; ritrovati Gemma 1 (verso opposto 0), Mistral B0 1
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    disease: normal (10); sporadic ALS (7)
+  tipi e basi: disease=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [33177]: reference subject role (10); sporadic amyotrophic lateral sclerosis (7)
+  tipi e basi: disease [33177]=perturbazione (base: reference subject role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: block [33117] blocco
+  note: outlier_di_gemma:3 | fattore_tolto_blocco:block
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g2 g3
+   g1 10  .
+   g2  .  7
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g2 g3
+   g1 10  .
+   g2  .  7
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g1_g2 | 'sporadic ALS' vs 'normal' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 7 contro 10
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+  g1_g2 | disease [33177] / familial amyotrophic lateral sclerosis | giudizio fuori_atlas | 0 contro 10
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b          motivo       dettaglio
+       g1       g3 nessuno_al_base disease [33177]

@@ -1,0 +1,43 @@
+GSE57116 (voce di Gemma GSE57116): universo 12 campioni (Atlas 12, Gemma 14; di Atlas fuori da Gemma 0)
+gruppi: Atlas 3, Gemma 3 (identica), Mistral B0 3 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 0 (verso opposto 0), Mistral B0 2
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    treatment: 3 h DRB 0 min 4sU (4); 3 h DRB 8 min 4sU (4); untreated (4)
+  tipi e basi: treatment=contesto
+
+FATTORI DI GEMMA TENUTI:
+    timepoint [24016]: 8 min (4); initial time point (4); initial time point has role control (4)
+  tipi e basi: timepoint [24016]=tempo
+  base dichiarata da Gemma e non usata (contesto o tempo): timepoint [24016]=initial time point has role control
+  fattori di Gemma tolti: block [32498] blocco
+  note: outlier_di_gemma:1 | fattore_tolto_blocco:block | base_di_tempo_non_usata:timepoint [24016]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g2 g3 g4
+   g1  .  4  .
+   g2  4  .  .
+   g3  .  .  4
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g3 g4
+   g1  4  .  .
+   g2  .  4  .
+   g3  .  .  4
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g3_g1 | '3 h DRB 0 min 4sU' vs 'untreated' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 4 contro 4
+  g3_g2 | '3 h DRB 8 min 4sU' vs 'untreated' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 4 contro 4
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo         dettaglio
+       g1       g2 fattore_senza_base timepoint [24016]
+       g1       g3 fattore_senza_base timepoint [24016]
+       g1       g4 fattore_senza_base timepoint [24016]
+       g2       g3 fattore_senza_base timepoint [24016]
+       g2       g4 fattore_senza_base timepoint [24016]
+       g3       g4 fattore_senza_base timepoint [24016]

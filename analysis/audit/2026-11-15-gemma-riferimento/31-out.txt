@@ -1,0 +1,184 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+controllo positivo dell'adattatore v1: passato (studio finto: 6 gruppi, 7 confronti, fattore annidato, voce con due condizioni, valore di soggetto mancante; 11 esiti che chiudono visti)
+10-forme.R: 31 forme (10 lato A, 21 lato B); prompt di A0 e B0 uguali ai file congelati byte per byte; schema di B0 = schema_studio(), schema di A0 = 20-schema-v1.json; GSE0 chiude con 6 gruppi e 7 confronti in ogni forma e con la stessa firma; i motivi e i predicati vedono gli errori messi apposta
+10-letture.R: 8 letture (L1, L2, L3, L4, L5, L6, L7, L8), ognuna = B0 con una frase del prompt riscritta; resto del prompt identico al byte; campi fra apici inversi uguali; nessun cambio allo schema
+K2 controllo positivo dell'adattatore: passato (tabella, base, 2 confronti, blocco tolto, basi diverse, codici di uscita)
+K1: Mistral B0 sui 47 studi: 45 chiusi, 36 gruppi identici, 68/95 confronti ritrovati
+K4: 21 studi, tutti di sviluppo
+K3: 21 studi, 21 esiti dell'adattatore (tabella 21)
+Regola 7: campioni dell'universo di Atlas fuori dalla voce di Gemma: 1 in 1 studi (GSE52778 1/14); campioni di Gemma fuori dall'universo di Atlas: 29 in 7 studi
+
+Misura principale (riferimento a 95 confronti sui 47 studi), 21 studi, stesso universo per i due:
+  Gemma       a_gruppi_identici: 15/21 = 71.4% (IC95 52.4-90.5%)
+  Gemma       b_confronti_ritrovati: 28/49 = 57.1% (IC95 33.3-81.8%)
+  Gemma       c_errori_non_elencati: 20/20 = 100.0% (IC95 100.0-100.0%)
+  Gemma       verso_opposto: 0/49 = 0.0% (IC95 0.0-0.0%)
+  Mistral B0  a_gruppi_identici: 16/21 = 76.2% (IC95 57.1-90.5%)
+  Mistral B0  b_confronti_ritrovati: 33/49 = 67.3% (IC95 41.9-89.7%)
+  Mistral B0  c_errori_non_elencati: 2/21 = 9.5% (IC95 0.0-100.0%)
+  Mistral B0  verso_opposto: 0/49 = 0.0% (IC95 0.0-0.0%)
+accanto, misura principale97:
+  Gemma       a_gruppi_identici: 15/21 = 71.4% (IC95 52.4-90.5%)
+  Gemma       b_confronti_ritrovati: 28/51 = 54.9% (IC95 31.8-78.6%)
+  Gemma       c_errori_non_elencati: 20/20 = 100.0% (IC95 100.0-100.0%)
+  Gemma       verso_opposto: 0/51 = 0.0% (IC95 0.0-0.0%)
+  Mistral B0  a_gruppi_identici: 16/21 = 76.2% (IC95 57.1-90.5%)
+  Mistral B0  b_confronti_ritrovati: 33/51 = 64.7% (IC95 40.6-86.4%)
+  Mistral B0  c_errori_non_elencati: 2/21 = 9.5% (IC95 0.0-100.0%)
+  Mistral B0  verso_opposto: 0/51 = 0.0% (IC95 0.0-0.0%)
+accanto, misura intera:
+  Gemma       a_gruppi_identici: 15/21 = 71.4% (IC95 52.4-90.5%)
+  Gemma       b_confronti_ritrovati: 28/46 = 60.9% (IC95 38.6-82.1%)
+  Gemma       c_errori_non_elencati: 20/20 = 100.0% (IC95 100.0-100.0%)
+  Gemma       verso_opposto: 0/46 = 0.0% (IC95 0.0-0.0%)
+  Mistral B0  a_gruppi_identici: 16/21 = 76.2% (IC95 57.1-90.5%)
+  Mistral B0  b_confronti_ritrovati: 33/46 = 71.7% (IC95 50.0-88.5%)
+  Mistral B0  c_errori_non_elencati: 11/21 = 52.4% (IC95 50.0-100.0%)
+  Mistral B0  verso_opposto: 0/46 = 0.0% (IC95 0.0-0.0%)
+accanto, misura stretta:
+  Gemma       a_gruppi_identici: 15/21 = 71.4% (IC95 52.4-90.5%)
+  Gemma       b_confronti_ritrovati: 26/45 = 57.8% (IC95 33.3-84.6%)
+  Gemma       c_errori_non_elencati: 20/20 = 100.0% (IC95 100.0-100.0%)
+  Gemma       verso_opposto: 0/45 = 0.0% (IC95 0.0-0.0%)
+  Mistral B0  a_gruppi_identici: 16/21 = 76.2% (IC95 57.1-90.5%)
+  Mistral B0  b_confronti_ritrovati: 31/45 = 68.9% (IC95 40.9-92.9%)
+  Mistral B0  c_errori_non_elencati: 2/21 = 9.5% (IC95 0.0-100.0%)
+  Mistral B0  verso_opposto: 0/45 = 0.0% (IC95 0.0-0.0%)
+
+Differenza appaiata Gemma meno Mistral B0 (B = 10.000, seme 20261115):
+    misura_r3                misura gemma mistral_B0 differenza ic_basso
+   principale     a_gruppi_identici 0.714     0.7619    -0.0476   -0.238
+   principale b_confronti_ritrovati 0.571     0.6735    -0.1020   -0.361
+   principale c_errori_non_elencati 1.000     0.0952     0.9048    0.000
+ principale97     a_gruppi_identici 0.714     0.7619    -0.0476   -0.238
+ principale97 b_confronti_ritrovati 0.549     0.6471    -0.0980   -0.348
+ principale97 c_errori_non_elencati 1.000     0.0952     0.9048    0.000
+       intera     a_gruppi_identici 0.714     0.7619    -0.0476   -0.238
+       intera b_confronti_ritrovati 0.609     0.7174    -0.1087   -0.377
+       intera c_errori_non_elencati 1.000     0.5238     0.4762    0.000
+      stretta     a_gruppi_identici 0.714     0.7619    -0.0476   -0.238
+      stretta b_confronti_ritrovati 0.578     0.6889    -0.1111   -0.385
+      stretta c_errori_non_elencati 1.000     0.0952     0.9048    0.000
+ ic_alto ricampioni_senza_valore
+   0.143                       0
+   0.170                       0
+   1.000                     478
+   0.143                       0
+   0.162                       0
+   1.000                     478
+   0.143                       0
+   0.182                       0
+   0.500                     478
+   0.143                       0
+   0.195                       0
+   1.000                     478
+
+Previsioni:
+P1  m1, studi con una tabella di Gemma che forma gruppi, su 21: 21 (IC95 21, 21); atteso 20, rilevanza 18-21  ->  confermata
+P2  m2, Gemma: gruppi identici ad Atlas, su 21: 15 (IC95 11, 19); atteso 11, rilevanza 7-15  ->  indeterminata
+P3  m2, Mistral B0: gruppi identici ad Atlas, su 21: 16 (IC95 12, 19); atteso 16, rilevanza 13-19  ->  indeterminata
+     accanto, Mistral B0 sull'universo intero di Atlas: 16 su 21
+P4  m3, Gemma: confronti di Atlas ritrovati (28/49), in %: 57.1 (IC95 33.3, 81.8); atteso 45, rilevanza 25-65  ->  indeterminata
+     accanto, Mistral B0 sugli stessi 21 studi e sullo stesso universo: 33/49 = 67.3%; sull'universo intero 33/49
+P5  m3, differenza Gemma meno Mistral B0: -10.2 punti (IC95 -36.1, +17.0); atteso -15, IC tutto sotto 0  ->  smentita (IC a cavallo di 0)
+P6  m5, Gemma con i gruppi di Atlas nei 4 studi con un errore di Mistral che costa: 3 (IC95 NA, NA); atteso 2, rilevanza 1-3  ->  non giudicabile
+     (4 studi: nessun intervallo; il conto e' 3, dentro l'intervallo 1-3)
+
+m4: Gemma e Mistral B0 danno gli stessi gruppi in 14 studi su 21; di questi, identici ad Atlas: 13 
+    tabella a doppia entrata (Gemma identica ad Atlas x Mistral identico ad Atlas):
+       mistral
+gemma   FALSE TRUE
+  FALSE     3    3
+  TRUE      2   13
+
+m5: i 4 studi con un errore di lettura di Mistral che costa:
+   studio gruppi_atlas gruppi_gemma gruppi_mistral classe_gemma classe_mistral
+ GSE46665            3            3             25     identica       piu_fine
+ GSE49155            3            3              3     identica       identica
+ GSE57945            7           12             14   incrociata       piu_fine
+ GSE60340            8            8              6     identica     piu_grossa
+ gemma_uguale_a_mistral den ritrovati_gemma ritrovati_mistral
+                  FALSE   2               2                 0
+                   TRUE   2               2                 0
+                  FALSE   6               0                 0
+                  FALSE   2               0                 0
+
+Per studio:
+   studio n_universo gruppi_atlas gruppi_gemma gruppi_mistral classe_gemma
+ GSE46665         25            3            3             25     identica
+ GSE47718         17            2            2              2     identica
+ GSE49155         13            3            3              3     identica
+ GSE50760         54            3            3              3   incrociata
+ GSE51261          9            3            2              3   piu_grossa
+ GSE52194         19            4            4              4     identica
+ GSE52778         13            4           13              4     piu_fine
+ GSE52946         17            2            2              2     identica
+ GSE56691         12            4            4              4     identica
+ GSE56787         29            5            2              6   piu_grossa
+ GSE57027          9            3            3              3     identica
+ GSE57116         12            3            3              3     identica
+ GSE57945        321            7           12             14   incrociata
+ GSE60340         24            8            8              6     identica
+ GSE63015          6            2            2              2     identica
+ GSE67196         53            6            6              6     identica
+ GSE71289         42            8            6              8   piu_grossa
+ GSE71595         14            4            4              4     identica
+ GSE75852         12            4            4              4     identica
+ GSE78936         82            9            9              9     identica
+ GSE83415         21            2            2              2     identica
+ classe_mistral den ritrovati_gemma ritrovati_mistral errori_gemma
+       piu_fine   2               2                 0            0
+       identica   1               1                 1            0
+       identica   2               2                 0            0
+     incrociata   2               0                 0            0
+       identica   2               0                 2            1
+       identica   0               0                 0            0
+       identica   3               0                 3            0
+       identica   1               1                 1            0
+       identica   0               0                 0            0
+       piu_fine   0               0                 0            1
+       identica   2               2                 2            0
+       identica   2               0                 2            0
+       piu_fine   6               0                 0           16
+     piu_grossa   2               0                 0            0
+       identica   1               1                 1            0
+       identica   4               4                 4            0
+       identica   6               2                 6            2
+       identica   4               4                 2            0
+       identica   2               2                 2            0
+       identica   6               6                 6            0
+       identica   1               1                 1            0
+ gemma_uguale_a_mistral
+                  FALSE
+                   TRUE
+                   TRUE
+                   TRUE
+                  FALSE
+                   TRUE
+                  FALSE
+                   TRUE
+                   TRUE
+                  FALSE
+                   TRUE
+                   TRUE
+                  FALSE
+                  FALSE
+                   TRUE
+                   TRUE
+                  FALSE
+                   TRUE
+                   TRUE
+                   TRUE
+                   TRUE
+
+schede di lettura: 21 in analysis/audit/2026-11-15-gemma-riferimento/31-schede

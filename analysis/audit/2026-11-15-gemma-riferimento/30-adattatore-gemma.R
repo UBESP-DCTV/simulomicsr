@@ -27,7 +27,7 @@ gemma_leggi <- function(nome, dir = GEMMA_DIR) {
 
 # La tabella dei fattori di una voce di Gemma. Ritorna sempre una lista con `esito`: "tabella" oppure un motivo
 # con codice (K3). `note`: codici senza effetto sull'esito (fattori tolti, basi diverse, ...).
-gemma_tabella <- function(campioni, analisi, studio) {
+gemma_tabella <- function(campioni, analisi, studio, base_di_gemma = FALSE) {   # base_di_gemma = TRUE: solo per la sensibilita' di 32 (dopo i numeri)
   note <- character(0); nota <- function(codice, che = "") note <<- c(note, if (nzchar(che)) paste0(codice, ":", che) else codice)
   esce <- function(esito, ...) c(list(esito = esito, chiuso = FALSE, note = note, studio = studio), list(...))
 
@@ -106,6 +106,7 @@ gemma_tabella <- function(campioni, analisi, studio) {
   for (j in which((contesto | tempo) & !is.na(tenuti$base)))
     nota(if (contesto[j]) "base_di_contesto_non_usata" else "base_di_tempo_non_usata", tenuti$nome[j])
   tenuti$tipo <- ifelse(contesto, "contesto", ifelse(tempo, "tempo", ifelse(is.na(tenuti$base), "contesto", "perturbazione")))
+  if (isTRUE(base_di_gemma)) tenuti$tipo[!is.na(tenuti$base)] <- "perturbazione"   # fuori dalla carta: la regola 5 senza le due esclusioni
   tenuti$base_gemma <- tenuti$base
   tenuti$base[tenuti$tipo != "perturbazione"] <- NA_character_
 

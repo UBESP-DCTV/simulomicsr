@@ -1,0 +1,47 @@
+GSE75852 (voce di Gemma GSE75852): universo 12 campioni (Atlas 12, Gemma 12; di Atlas fuori da Gemma 0)
+gruppi: Atlas 4, Gemma 4 (identica), Mistral B0 4 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 2 (verso opposto 0), Mistral B0 2
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    cell type: induced pluripotent stem cell (6); neural stem cell (6)
+    disease: Ataxia-telangiectasia (6); normal (6)
+  tipi e basi: cell type=contesto | disease=contesto
+
+FATTORI DI GEMMA TENUTI:
+    cell type [25114]: induced pluripotent stem cell line cell (6); neural stem cell (6)
+    disease [25115]: ataxia telangiectasia (6); reference subject role (6)
+  tipi e basi: cell type [25114]=contesto | disease [25115]=perturbazione (base: reference subject role)
+  base dichiarata da Gemma e non usata (contesto o tempo): cell type [25114]=induced pluripotent stem cell line cell
+  fattori di Gemma tolti: 
+  note: interazioni_ignorate:1 | base_di_contesto_non_usata:cell type [25114]
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4
+   g1  3  .  .  .
+   g2  .  3  .  .
+   g3  .  .  3  .
+   g4  .  .  .  3
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4
+   g1  3  .  .  .
+   g2  .  3  .  .
+   g3  .  .  3  .
+   g4  .  .  .  3
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g2_g1 | 'Ataxia-telangiectasia' vs 'normal' in 'induced pluripotent stem cell' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 3 contro 3
+  g4_g3 | 'Ataxia-telangiectasia' vs 'normal' in 'neural stem cell' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 3 contro 3
+  g2_g4 | ' neural stem cell' vs 'induced pluripotent stem cell' in 'normal' | classe rispetta | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+  g1_g3 | ' neural stem cell' vs 'induced pluripotent stem cell' in 'Ataxia-telangiectasia' | classe rispetta | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b             motivo                          dettaglio
+       g1       g3 fattore_senza_base                  cell type [25114]
+       g1       g4  piu_di_un_fattore cell type [25114], disease [25115]
+       g2       g3  piu_di_un_fattore cell type [25114], disease [25115]
+       g2       g4 fattore_senza_base                  cell type [25114]

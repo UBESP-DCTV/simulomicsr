@@ -1,0 +1,35 @@
+GSE51261 (voce di Gemma GSE51261): universo 9 campioni (Atlas 9, Gemma 9; di Atlas fuori da Gemma 0)
+gruppi: Atlas 3, Gemma 2 (piu_grossa), Mistral B0 3 (identica); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 0 (verso opposto 0), Mistral B0 2
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    phenotype: BS69-1 knockdown (3); BS69-2 knockdown (3); control (3)
+  tipi e basi: phenotype=contesto
+
+FATTORI DI GEMMA TENUTI:
+    genotype [22625]: gene knockdown of  ZMYND11 [human] zinc finger MYND-type containing 11 (6); wild type genotype (3)
+  tipi e basi: genotype [22625]=perturbazione (base: wild type genotype)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: 
+  note: 
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2
+   g1  3  .
+   g2  3  .
+   g3  .  3
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3
+   g1  3  .  .
+   g2  .  3  .
+   g3  .  .  3
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g3_g1 | 'BS69-1 knockdown' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 3 contro 3
+  g3_g2 | 'BS69-2 knockdown' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma no | Mistral uguale | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+  g1_g2 | genotype [22625] / gene knockdown of  ZMYND11 [human] zinc finger MYND-type containing 11 | giudizio braccio_misto | 6 contro 3

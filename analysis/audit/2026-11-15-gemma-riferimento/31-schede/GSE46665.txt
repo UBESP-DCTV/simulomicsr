@@ -1,0 +1,43 @@
+GSE46665 (voce di Gemma GSE46665): universo 25 campioni (Atlas 25, Gemma 25; di Atlas fuori da Gemma 0)
+gruppi: Atlas 3, Gemma 3 (identica), Mistral B0 25 (piu_fine); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 2; ritrovati Gemma 2 (verso opposto 0), Mistral B0 0
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    treatment: 180 days after left ventricular assist device placement (7); 7 days after left ventricular assist device placement (9); control (9)
+  tipi e basi: treatment=contesto
+
+FATTORI DI GEMMA TENUTI:
+    treatment [16371]: left ventricular assist device delivered for duration 180 d (7); left ventricular assist device delivered for duration 7 d (9); reference substance role (9)
+  tipi e basi: treatment [16371]=perturbazione (base: reference substance role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: block [32345] blocco
+  note: fattore_tolto_blocco:block
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3
+   g1  7  .  .
+   g2  .  9  .
+   g3  .  .  9
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g10 g11 g12 g13 g14 g15 g16 g17 g18 g19 g2 g20 g21 g22 g23 g24 g25 g3
+   g1  .   1   .   .   1   .   .   1   .   .   .  1   .   1   .   .   1   .  .
+   g2  1   .   .   1   .   .   1   .   .   1   .  .   1   .   .   1   .   .  .
+   g3  .   .   1   .   .   1   .   .   1   .   1  .   .   .   1   .   .   1  1
+     mistral
+atlas g4 g5 g6 g7 g8 g9
+   g1  .  .  .  1  .  .
+   g2  1  .  1  .  .  1
+   g3  .  1  .  .  1  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g3_g1 | '180 days after left ventricular assist device placement' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral no | 7 contro 9
+  g3_g2 | '7 days after left ventricular assist device placement' vs 'control' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral no | 9 contro 9
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b          motivo         dettaglio
+       g1       g2 nessuno_al_base treatment [16371]

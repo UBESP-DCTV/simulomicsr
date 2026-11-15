@@ -1,0 +1,46 @@
+GSE71595 (voce di Gemma GSE71595): universo 14 campioni (Atlas 14, Gemma 14; di Atlas fuori da Gemma 0)
+gruppi: Atlas 4, Gemma 4 (identica), Mistral B0 4 (identica); Gemma uguale a Mistral: TRUE
+confronti di Atlas nel riferimento: 4; ritrovati Gemma 4 (verso opposto 0), Mistral B0 2
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    compound: JQ1 (7); none (7)
+    disease: juvenile idiopathic arthritis (6); normal (8)
+    dose: 300 nanomolar (7); non scritto (7)
+  tipi e basi: compound=contesto | disease=contesto | dose=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [53401]: juvenile idiopathic arthritis (6); reference subject role (8)
+    treatment [53402]: JQ1 (7); reference substance role (7)
+  tipi e basi: disease [53401]=perturbazione (base: reference subject role) | treatment [53402]=perturbazione (base: reference substance role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: 
+  note: interazioni_ignorate:1
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2 g3 g4
+   g1  3  .  .  .
+   g2  .  .  4  .
+   g3  .  3  .  .
+   g4  .  .  .  4
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g4
+   g1  .  .  3  .
+   g2  4  .  .  .
+   g3  .  .  .  3
+   g4  .  4  .  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g2_g1 | 'juvenile idiopathic arthritis' vs 'normal' in 'JQ1; 300 nanomolar' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral no | 3 contro 4
+  g3_g1 | 'JQ1; 300 nanomolar' vs 'none' in 'juvenile idiopathic arthritis' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 3 contro 3
+  g4_g2 | 'JQ1; 300 nanomolar' vs 'none' in 'normal' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral uguale | 4 contro 4
+  g5_g3 | 'juvenile idiopathic arthritis' vs 'normal' in 'none' | classe rispetta | nel riferimento TRUE | Gemma uguale | Mistral no | 3 contro 4
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+
+REGISTRO DEL COSTRUTTORE (Gemma):
+ gruppo_a gruppo_b            motivo                          dettaglio
+       g1       g4 piu_di_un_fattore disease [53401], treatment [53402]
+       g2       g3 piu_di_un_fattore disease [53401], treatment [53402]

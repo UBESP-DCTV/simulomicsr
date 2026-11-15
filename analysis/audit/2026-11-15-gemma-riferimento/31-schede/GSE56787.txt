@@ -1,0 +1,42 @@
+GSE56787 (voce di Gemma GSE56787): universo 29 campioni (Atlas 29, Gemma 38; di Atlas fuori da Gemma 0)
+gruppi: Atlas 5, Gemma 2 (piu_grossa), Mistral B0 6 (piu_fine); Gemma uguale a Mistral: FALSE
+confronti di Atlas nel riferimento: 0; ritrovati Gemma 0 (verso opposto 0), Mistral B0 0
+
+FATTORI DI ATLAS (livelli e campioni nell'universo):
+    disease: facioscapulohumeral dystrophy (17); normal (12)
+    genotype: control (12); FSHD1 mutation (8); FSHD2 mutation (9)
+    organism part: muscle (23); myotube (6)
+  tipi e basi: disease=contesto | genotype=contesto | organism part=contesto
+
+FATTORI DI GEMMA TENUTI:
+    disease [20078]: facioscapulohumeral muscular dystrophy (17); reference subject role (12)
+  tipi e basi: disease [20078]=perturbazione (base: reference subject role)
+  base dichiarata da Gemma e non usata (contesto o tempo): 
+  fattori di Gemma tolti: block [31611] blocco
+  note: outlier_di_gemma:1 | fattore_tolto_blocco:block
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI GEMMA (colonne), campioni:
+     gemma
+atlas g1 g2
+   g1  8  .
+   g2  6  .
+   g3  3  .
+   g4  .  9
+   g5  .  3
+
+GRUPPI DI ATLAS (righe) x GRUPPI DI MISTRAL B0 (colonne), campioni:
+     mistral
+atlas g1 g2 g3 g6 g8 g9
+   g1  .  .  .  8  .  .
+   g2  .  .  .  .  .  6
+   g3  .  .  .  .  3  .
+   g4  .  .  9  .  .  .
+   g5  1  2  .  .  .  .
+
+CONFRONTI DI ATLAS (classe; nel riferimento; ritrovato da Gemma; ritrovato da Mistral B0):
+  g4_g1 | 'facioscapulohumeral dystrophy; FSDH1 mutation' vs 'normal' in 'muscle' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral uguale | 8 contro 9
+  g4_g2 | 'facioscapulohumeral dystrophy; FSDH2 mutation' vs 'normal' in 'muscle' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral uguale | 6 contro 9
+  g5_g3 | 'facioscapulohumeral dystrophy; FSDH2 mutation' vs 'normal' in 'myotube' | classe piu_fattori | nel riferimento FALSE | Gemma no | Mistral no | 3 contro 3
+
+CONFRONTI DI GEMMA (costruttore) NON ELENCATI DA ATLAS:
+  g1_g2 | disease [20078] / facioscapulohumeral muscular dystrophy | giudizio braccio_misto | 17 contro 12
