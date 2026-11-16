@@ -1,0 +1,31 @@
+
+NOTE: Dependency discovery took 12 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+21-ingresso.R  INSIEME=prova 2026-11-16T11:37:55Z; caratteri del prompt v2: 5705
+controllo positivo: 47 schemi di sviluppo su 47 con l'impronta del lancio del secondo lettore
+CONTROLLO POSITIVO (K1): record di `controllo` rigenerati adesso e uguali byte per byte alla riga dell'ingresso di ieri: 50 su 50
+ingresso analysis/input/archs4-b0-ingresso-prova-casuale.jsonl: 482 studi, 7.5 MB, SHA-256 81d1dff714f9b20a1a41c6a5989703d30aacd07dde085a3a8c7f34583d7a2dd0
+ingresso analysis/input/archs4-b0-ingresso-prova-coda.jsonl: 90 studi, 30.7 MB, SHA-256 ef72ba2e527db8c4e525541e64b44b105e8544b257d24738d86bd82c27bc055b
+pezzo coda: 40 studi `grandi` con uno schema, 50 studi di `controllo`
+
+casuale: 500 studi attesi; con la vista 500; nell'ingresso 482; senza colonne non costanti 18; oltre il contesto (stima) 0
+  quantili (minimo | 25% | mediana | 75% | 95% | 99% | massimo)
+  token stimati dell'ingresso:     2.766,00 |  3.304,00 |  3.663,50 |  4.117,25 |  6.080,35 | 11.723,50 | 18.756,00 
+  caratteri dello schema:           3.093,00 |   6.074,75 |   8.191,00 |  12.497,00 |  28.122,40 |  72.510,43 | 103.888,00 
+  studi con lo schema oltre 222.556 caratteri (il massimo della terza prova): 0 
+
+grandi: 40 studi attesi; con la vista 40; nell'ingresso 40; senza colonne non costanti 0; oltre il contesto (stima) 32
+  quantili (minimo | 25% | mediana | 75% | 95% | 99% | massimo)
+  token stimati dell'ingresso:     12.373,00 |  44.353,75 |  59.331,00 | 104.110,25 | 135.897,30 | 413.395,51 | 572.551,00 
+  caratteri dello schema:           107.255,0 |   283.291,0 |   396.272,0 |   690.754,8 | 1.143.010,8 | 2.234.230,5 | 2.884.304,0 
+  studi con lo schema oltre 222.556 caratteri (il massimo della terza prova): 34 
+
+esclusi dalla vista: 0 
