@@ -14,7 +14,7 @@
 
 ---
 
-## 1. Dove siamo (2026-11-15): LAVORO RIPRESO DAL PI (il progetto era chiuso dal 2026-11-13)
+## 1. Dove siamo (2026-11-16): LAVORO RIPRESO DAL PI (il progetto era chiuso dal 2026-11-13)
 
 > **Il 2026-11-15 il PI ha ripreso il lavoro (ADR-0030 §Aggiornamento 2026-11-15). La sua richiesta di lavoro è la
 > decisione: non chiedere una riapertura formale.** Direzione: (1) il riferimento sono le curazioni umane di **Gemma
@@ -76,10 +76,29 @@
 > PD11 confermate, PD2-PD5 e PD8 indeterminate. **Conto accanto, nato dopo i numeri** (`32-out.txt`): negli studi tenuti
 > dall'accordo dei due lettori locali l'errore di lettura stimato è **24 voci su 1.347 (1,8%, IC95 0,6-3,1)**, negli altri
 > **129 su 705 (18,3%)**. Finding: `docs/findings/2026-11-15-disaccordi-con-i-curatori-di-gemma.md`.
-> **In attesa della decisione del PI:** i due lettori locali su tutto ARCHS4 con la regola dell'accordo (raccomandato;
-> circa 10 ore Mistral e 23 ore Gemma-4-31B su `poddgx02`, prima i testi GEO da congelare; corsa massiva in una sessione
-> nuova), oppure prima la parte chiusa di Gemma come conferma, oppure ci fermiamo. **Poi:** un container vLLM più nuovo
-> per i candidati 4-9. La parte chiusa (991 studi) resta chiusa fino a una decisione del PI.
+> **Decisione del PI (2026-11-16):** i due lettori locali (Mistral-Small 3.2 `B0`, Gemma-4-31B `GE-rp0`) leggono tutto
+> ARCHS4 con la regola dell'accordo; poi la parte chiusa di Gemma (991 studi) si apre come prova finale, con le previsioni
+> scritte prima, una volta sola.
+> **Fatto il 2026-11-16, passi 1 e 2 (`analysis/audit/2026-11-16-archs4-intero/`, carta `00-previsioni.md`):** i testi GEO
+> degli studi nuovi congelati (`analysis/input/geo-testi-archs4-2026-11-16`, 42.490 file uguali al manifesto; **21.244
+> studi su 21.249**, 5 senza testi dopo due passate: `GSE118725`, `GSE158435`, `GSE212793`, `GSE243983`, `GSE252644`); la
+> vista v0 (21.244 studi) e **l'ingresso della corsa grande `analysis/input/archs4-b0-ingresso-nuovi.jsonl`: 20.426 studi**
+> (SHA-256 in `21-ingresso-sha256-nuovo.txt`; 818 studi con un solo campione senza colonne non costanti; **51 oltre il
+> contesto secondo la stima = 0,25% degli studi e 12,7% dei campioni**, il lavoratore li salta); la copertura dei 24.393
+> studi ha un esito per studio (`21-copertura.csv`); lo schema dei 991 studi chiusi di Gemma generato e contato, senza
+> ingresso. **La prova piccola su `poddgx02`** (4 corse, 41 minuti; 482 studi nuovi a caso, 40 grandi, 50 di controllo;
+> `41-out-prova.txt`): cancelli K1-K5 passati, **le 9 previsioni PA1-PA7 confermate**; chiusi Mistral 457/482 (94,8%),
+> Gemma-4-31B 471/482 (97,7%); **studi tenuti dall'accordo 338/482 (70,1%, IC95 66,0-74,1)**; tenuti con almeno un
+> confronto 206, 484 confronti (resa attesa sui 21.249 studi nuovi, conto nato dopo i numeri: circa 8.750 studi e 20.570
+> confronti, `42-resa-out.txt`); controllo contro ieri: Mistral 50/50 al carattere, Gemma-4-31B 49/50 gruppi e confronti,
+> esito dell'accordo 50/50, **quindi le uscite di ieri (47 + 2.016 studi) non si rileggono**; dei 40 studi più grandi 37
+> (Mistral) e 36 (Gemma-4-31B) sono oltre il contesto; **durata della corsa grande: Mistral 6,8 ore, Gemma-4-31B fra 10 e
+> 25 ore, insieme sulle 8 GPU di `poddgx02`** (4 per lettore). Finding:
+> `docs/findings/2026-11-16-archs4-intero-testi-ingresso-prova.md`.
+> **In attesa della decisione del PI:** (1) il via per le GPU per la corsa grande (sessione nuova, questo ingresso, nessun
+> cambio); (2) se gli 82 studi di giudizio di Atlas entrano nella corsa grande (raccomandato: no, si leggono alla fine con
+> i 991 chiusi di Gemma). **Poi:** la regola dell'accordo su tutti gli studi, la parte chiusa di Gemma come prova finale;
+> un container vLLM più nuovo per i candidati 4-9. La parte chiusa (991 studi) resta chiusa fino alla prova finale.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
 
@@ -458,7 +477,7 @@ d'infrastruttura salvo impatto biologico diretto.
   (§«Come Claude si deve comportare con me in questo audit»).
 - **Handout corrente**: `docs/superpowers/specs/2026-11-07-HANDOUT-PIANO-RIVISTO.md` (ordine delle sessioni); quello del 2026-08-21 per le sessioni chiuse e i prompt di S12b-S12d, S16, S17;
   comandi dei run: `-2026-08-16-HANDOUT-PROSSIMA-SESSIONE.md` §6-§8.
-- **Findings recenti**: `2026-11-15-disaccordi-con-i-curatori-di-gemma` · `2026-11-15-lettori-su-gemma-parte-aperta` · `2026-11-15-gemma-curatori-contro-curatori` · `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
+- **Findings recenti**: `2026-11-16-archs4-intero-testi-ingresso-prova` · `2026-11-15-disaccordi-con-i-curatori-di-gemma` · `2026-11-15-lettori-su-gemma-parte-aperta` · `2026-11-15-gemma-curatori-contro-curatori` · `2026-11-14-S12r6-claude-via-api` · `2026-11-12-S12r5-piu-letture-dello-stesso-studio` · `2026-11-12-S12r4-cause-errori-di-lettura` · `2026-11-11-S12r3-terza-prova-lettore-studio` · `2026-11-10-S12r2-prova-ripetuta-lettore-studio` · `2026-11-09-S12r-prova-lettore-studio` · `2026-11-08-S12p-prova-cieca-stadio2b` · `2026-11-07-S12-stadio2b-disegno` · `2026-11-07-valutazione-autonoma-del-progetto` · `2026-11-07-S11-lettura-falsi-allarmi` · `2026-11-07-S10b-rilevatore-metadati` · `2026-11-07-S10-rilevatore` · `2026-11-07-S9-greche-e-corsie` · `2026-11-07-S14-due-passi-col-modello` · `2026-11-05-S8b-prova-re-run` · `2026-11-04-S8-re-run-decisione` · `2026-11-04-S7-validazione-esecuzione` · `2026-11-04-S6-validazione-disegno` · `2026-11-03-S5-gate-e-insiemi` · `2026-11-02-S4-controllo-condiviso` · `2026-11-02-inversioni-bracci-194` · `2026-08-21-S3-il-metro-concorda` · `2026-08-21-S2-deliverable-in-salvo` · `2026-08-20-rilettura-194-correttezza` · `2026-08-19-a3-movimento-stadio3`
   · `2026-08-16-batch-invarianza-a-shard-diverso` · `2026-08-13-tre-cambi-implementati`
   · `2026-08-13-passo2-il-nome-sbagliato-non-costa` · `2026-08-12-corsie-non-repliche`
   · `2026-08-10-sensitivity-confronti-spuri` · `2026-08-05-confronti-imperfetti`
