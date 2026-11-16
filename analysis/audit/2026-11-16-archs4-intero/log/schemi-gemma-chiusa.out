@@ -1,0 +1,24 @@
+
+NOTE: Dependency discovery took 13 seconds during snapshot.
+Consider using .renvignore to ignore files, or switching to explicit snapshots.
+See `?renv::dependencies` for more information.
+
+- /home/user/simulomicsr/tests/testthat: 204 files
+- /home/user/simulomicsr/man           : 446 files
+
+- The project is out-of-sync -- use `renv::status()` for details.
+Warning message:
+replacing previous import ‘S4Arrays::makeNindexFromArrayViewport’ by ‘DelayedArray::makeNindexFromArrayViewport’ when loading ‘SummarizedExperiment’ 
+22-schemi-gemma-chiusa.R 2026-11-16T16:24:01Z; caratteri del prompt v2: 5705
+viste congelate: analysis/input/gemma-viste-v0.jsonl  SHA-256 914d35562897fd92dd71dcb4e882e19740897d434c0a97dedf401beac9077dcb 
+CONTROLLO POSITIVO: studi aperti di Gemma con lo schema di ieri (SHA-256 o nessuno schema in tutti e due): 2024 su 2024; nell'ingresso oggi 2016, ieri 2016
+  token stimati: classe oggi numeric , ieri integer ; studi con lo stesso valore 2024 su 2024 
+
+studi chiusi di Gemma: 991 nell'elenco; con la vista 990 (senza vista: GSE224952); con uno schema 985; senza colonne non costanti 5; oltre il contesto (stima) 3
+  quantili (minimo | 25% | mediana | 75% | 95% | 99% | massimo)
+  campioni:   1,00 |   8,00 |  14,00 |  24,00 |  72,00 | 210,44 | 576,00 
+  token stimati dell'ingresso:  2.814,0 |  3.562,0 |  3.992,0 |  4.689,0 |  8.009,2 | 21.100,0 | 84.493,0 
+  caratteri dello schema:   3.445,00 |   7.207,00 |  10.436,00 |  15.448,00 |  34.601,60 |  96.186,92 | 512.938,00 
+  studi con lo schema oltre 222.556 caratteri: 4 
+nessun ingresso scritto, nessun modello, nessuna misura contro Gemma
+FINE 22-schemi-gemma-chiusa.R
