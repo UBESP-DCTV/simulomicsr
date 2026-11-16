@@ -95,10 +95,14 @@
 > (Mistral) e 36 (Gemma-4-31B) sono oltre il contesto; **durata della corsa grande: Mistral 6,8 ore, Gemma-4-31B fra 10 e
 > 25 ore, insieme sulle 8 GPU di `poddgx02`** (4 per lettore). Finding:
 > `docs/findings/2026-11-16-archs4-intero-testi-ingresso-prova.md`.
-> **In attesa della decisione del PI:** (1) il via per le GPU per la corsa grande (sessione nuova, questo ingresso, nessun
-> cambio); (2) se gli 82 studi di giudizio di Atlas entrano nella corsa grande (raccomandato: no, si leggono alla fine con
-> i 991 chiusi di Gemma). **Poi:** la regola dell'accordo su tutti gli studi, la parte chiusa di Gemma come prova finale;
-> un container vLLM più nuovo per i candidati 4-9. La parte chiusa (991 studi) resta chiusa fino alla prova finale.
+> **Decisioni del PI (2026-11-16, sera), come raccomandato; la sessione dei passi 1 e 2 è chiusa:** (1) **la corsa grande
+> parte: il PI ha dato il via per le 8 GPU di `poddgx02`** (i due lettori insieme, 4 GPU l'uno, in una sessione nuova, con
+> l'ingresso `analysis/input/archs4-b0-ingresso-nuovi.jsonl` e senza cambi a prompt, schema e parametri; prima del lancio
+> verifica che il nodo sia libero e il mount con un `srun` breve; aggiornamento ogni ora); (2) **gli 82 studi di giudizio
+> di Atlas non entrano nella corsa grande**: si leggono alla fine insieme ai 991 studi chiusi di Gemma, con le previsioni
+> scritte prima. **Prossima sessione:** la corsa grande (carta con cancelli e previsioni prima del lancio). **Poi:** la
+> regola dell'accordo su tutti gli studi, la prova finale sulle parti chiuse (991 di Gemma e 82 di Atlas), una volta sola;
+> un container vLLM più nuovo per i candidati 4-9. Le parti chiuse restano chiuse fino alla prova finale.
 > **Quello che segue in questa sezione è lo stato alla chiusura del 2026-11-13: resta vero come storia delle prove.**
 
 

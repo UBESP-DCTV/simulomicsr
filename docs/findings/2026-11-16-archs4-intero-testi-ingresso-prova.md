@@ -312,8 +312,12 @@ previsioni dentro, la sessione seguente lancia la corsa grande con questo ingres
 | `GSE235357`: Gemma-4-31B dà gruppi o confronti diversi da ieri | spiegato: lo studio non è tenuto né ieri né oggi; l'esito della regola dell'accordo è uguale in 50 studi su 50 (PA6b prevedeva 49 su 50) |
 | 132 studi tenuti su 338 senza confronti | spiegato (sezione 5): 73 hanno fino a 3 campioni; negli altri i gruppi concordi non formano un confronto. È la definizione del costruttore, non un errore della catena |
 | Gli studi oltre il contesto: nessuna lettura | spiegato e dichiarato fra i limiti: il lavoratore li salta e la copertura li conta; la carta chiede una regola solo sopra il 2% |
-| La durata di Gemma-4-31B nella corsa grande sta fra 10 e 25 ore | scelta del PI: la porto nel riassunto con il via per le GPU (decisione 1) |
-| Se gli 82 studi di giudizio di Atlas entrano nella corsa grande | scelta del PI: la porto nel riassunto (decisione 2), come dice la carta |
+| La durata di Gemma-4-31B nella corsa grande sta fra 10 e 25 ore | deciso dal PI il 2026-11-16: sì alla corsa grande sulle 8 GPU di `poddgx02`, in una sessione nuova, con questo ingresso e senza cambi |
+| Se gli 82 studi di giudizio di Atlas entrano nella corsa grande | deciso dal PI il 2026-11-16: no, non adesso; si leggono alla fine insieme ai 991 studi chiusi di Gemma, con le previsioni scritte prima |
+
+**Decisioni del PI (2026-11-16), come raccomandato.** (1) La corsa grande parte sulle 8 GPU di `poddgx02`, in una sessione
+nuova. (2) Gli 82 studi di giudizio di Atlas non entrano nella corsa grande: si leggono alla fine, con i 991 studi chiusi
+di Gemma. La sessione è chiusa.
 
 # 11. Da dove vengono i numeri del riassunto
 
